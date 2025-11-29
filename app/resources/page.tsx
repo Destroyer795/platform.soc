@@ -4,8 +4,6 @@ import Card from '@/app/components/resources-components/resourceCard';
 import { useEffect, useState } from 'react';
 import { BsCheckLg } from 'react-icons/bs';
 import { FaTimes } from 'react-icons/fa';
-import Cloud from '../components/dashboard-components/Cloud';
-import SunGlareEffect from '../components/dashboard-components/SunGlareEffect';
 
 type Resource = {
   title: string;
@@ -82,12 +80,8 @@ const ResourcePage = () => {
 
   return (
     <div>
-      <Navbar />
-      <SunGlareEffect />
-      <Cloud />
-
       {/* Header */}
-      <section className="mt-30 px-4 text-center">
+      <section className="mt-10 px-4 text-center">
         <h1 className="font-extrabold text-4xl text-white drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)] md:text-5xl">
           Explore Developer Resources
         </h1>

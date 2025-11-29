@@ -38,13 +38,10 @@ const Dashboard = () => {
     return () => window.removeEventListener('message', handleMessage);
   }, []);
 
+  const theme = process.env.THEME;
+
   return (
-    <div className="relative flex min-h-screen w-full flex-col text-white">
-      <SunGlareEffect />
-      <Cloud />
-      <div className="z-20 h-[80px] shrink-0">
-        <Navbar />
-      </div>
+    <div className="relative flex w-full flex-col text-white">
       <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-[40%_minmax(0,1fr)] gap-8 items-start py-12 md:py-0 flex-grow">
         <div className="z-10 flex flex-col items-center md:items-start justify-center text-left py-0 md:py-12 md:h-[calc(100vh-80px)]">
           <div className="flex flex-col items-center md:items-start gap-2 mb-6">

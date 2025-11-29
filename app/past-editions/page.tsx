@@ -2,8 +2,6 @@
 import Navbar from '@/app/components/Navbar';
 import { useState } from 'react';
 import EditionCard from '../components/EditionCard';
-import Cloud from '../components/dashboard-components/Cloud';
-import SunGlareEffect from '../components/dashboard-components/SunGlareEffect';
 
 const editions = [
   {
@@ -44,11 +42,7 @@ const pastEvents = () => {
     setExpandedIndex((prev) => (prev === title ? null : title));
   return (
     <div className="relative min-h-screen overflow-y-auto">
-      <Navbar />
-      <SunGlareEffect />
-      <Cloud />
-
-      <section className="mt-30 px-4 text-center">
+      <section className="mt-10 px-4 text-center">
         <h1 className="font-extrabold text-4xl text-white drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)] md:text-5xl">
           Take a look back at our incredible journey!
         </h1>
