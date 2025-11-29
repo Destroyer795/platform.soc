@@ -4,9 +4,10 @@ import localFont from 'next/font/local';
 import Navbar from './components/Navbar';
 import Cloud from './components/dashboard-components/Cloud';
 import SunGlareEffect from './components/dashboard-components/SunGlareEffect';
+import { ThemeProvider } from './components/theme-context';
 import { Toaster } from './components/ui/toaster';
 
-const theme = process.env.THEME;
+const theme = process.env.NEXT_PUBLIC_THEME;
 const summerGradient =
   'linear-gradient(to bottom, #3a55d4 15%, #609bf5 70%, #a9d1f6 100%)';
 const winterGradient = 'linear-gradient(to bottom, #000000, #222222)';
@@ -143,15 +144,17 @@ export default function RootLayout({
           background: theme === 'SUMMER' ? summerGradient : winterGradient,
         }}
       >
-        <Navbar />
-        {theme === 'SUMMER' && (
-          <>
-            <SunGlareEffect />
-            <Cloud />
-          </>
-        )}
-        {children}
-        <Toaster />
+        <ThemeProvider>
+          <Navbar />
+          {theme === 'SUMMER' && (
+            <>
+              <SunGlareEffect />
+              <Cloud />
+            </>
+          )}
+          {children}
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

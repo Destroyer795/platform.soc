@@ -1,5 +1,7 @@
+'use client';
 import React from 'react';
 import { MdArrowForward } from 'react-icons/md';
+import { useTheme } from '../theme-context';
 
 interface CardProps {
   title: string;
@@ -97,9 +99,12 @@ export default function Card({
 
   // Determine the resource's difficulty based on its tags
   const resourceDifficulty = getResourceDifficulty(tags);
+  const { theme, classes } = useTheme();
 
   return (
-    <div className="group relative h-full w-full max-w-sm overflow-hidden rounded-4xl bg-[#000000]/50 shadow-sm backdrop-blur-md transition-all duration-300 hover:shadow-xl">
+    <div
+      className={`group relative h-full w-full max-w-sm overflow-hidden rounded-4xl ${classes.resourceCardBg} shadow-sm backdrop-blur-md transition-all duration-300 hover:shadow-xl`}
+    >
       <div className="flex h-full flex-col md:p-2 p-4">
         {/* Image with subtle gradient overlay */}
         <div className="relative mb-4 w-full overflow-hidden rounded-3xl">
@@ -113,14 +118,18 @@ export default function Card({
 
         {/* Title */}
         <div className="mb-4 flex items-center justify-center">
-          <h3 className="line-clamp-2 text-center font-bold text-2xl text-white">
+          <h3
+            className={`line-clamp-2 text-center font-bold text-2xl ${classes.resourceCardTitle}`}
+          >
             {title}
           </h3>
         </div>
 
         {/* Description */}
         <div className="mb-4 flex-1">
-          <p className="line-clamp-3 text-center text-gray-200 text-sm">
+          <p
+            className={`line-clamp-3 text-center ${classes.resourceCardText} text-sm`}
+          >
             {description}
           </p>
         </div>
@@ -157,7 +166,7 @@ export default function Card({
         <button
           type="button"
           onClick={onClick}
-          className="group/button relative mt-4 flex w-full cursor-pointer items-center justify-center rounded-3xl bg-[#181818] px-4 py-3 font-medium text-white shadow-sm transition-all duration-200 hover:bg-[#000000]/80 hover:shadow-md"
+          className={`group/button relative mt-4 flex w-full cursor-pointer items-center justify-center rounded-3xl ${classes.resourceCardButtonBg} px-4 py-3 font-medium ${classes.resourceCardText} shadow-sm transition-all duration-200 ${classes.resourceCardButtonHover} hover:shadow-md`}
         >
           <span className="text-center">{buttonText}</span>
           <MdArrowForward

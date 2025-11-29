@@ -38,7 +38,7 @@ const Dashboard = () => {
     return () => window.removeEventListener('message', handleMessage);
   }, []);
 
-  const theme = process.env.THEME;
+  const theme = process.env.NEXT_PUBLIC_THEME;
 
   return (
     <div className="relative flex w-full flex-col text-white">
