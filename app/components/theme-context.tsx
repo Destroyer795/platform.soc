@@ -48,8 +48,10 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     cardText: theme === 'SUMMER' ? 'text-gray-700' : 'text-white/90',
     cardHover:
       theme === 'SUMMER' ? 'hover:bg-white/50' : 'hover:bg-blue-200/50',
+
     pageTitle: theme === 'SUMMER' ? 'text-white' : 'text-sky-200',
     pageDesc: theme === 'SUMMER' ? 'text-white/70' : 'text-blue-100',
+
     chipBg: theme === 'SUMMER' ? 'bg-slate-700' : 'bg-blue-100/30',
     chipText: theme === 'SUMMER' ? 'text-white' : 'text-blue-200',
     chipHoverBg: theme === 'SUMMER' ? 'bg-slate-800' : 'bg-blue-100/50',
@@ -58,6 +60,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     selectedChipHoverBg: theme === 'SUMMER' ? 'bg-gray-100' : 'bg-blue-200/60',
     selectedChipBorder:
       theme === 'SUMMER' ? 'border-gray-300' : 'border-white/20',
+
     resourceCardBg: theme === 'SUMMER' ? 'bg-[#000000]/50' : 'bg-purple-200/30',
     resourceCardTitle: theme === 'SUMMER' ? 'text-white' : 'text-blue-900',
     resourceCardText: theme === 'SUMMER' ? 'text-gray-200' : 'text-blue-800',
