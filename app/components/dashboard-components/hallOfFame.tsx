@@ -1,8 +1,10 @@
 'use client';
 import { Card, CardDescription, CardHeader } from '@/app/components/ui/card';
 import { make_api_call } from '@/app/lib/api';
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
+import { set } from 'zod';
 import LanguagePill from '../hof-components/language-pill';
+import { useTheme } from '../theme-context';
 
 type LeaderboardEntry = {
   github_username: string;
@@ -56,13 +58,13 @@ const HallOfFame = () => {
   const languages = languagePopularityOrder.filter(
     (lang) => lang in leaderboards,
   );
-
+  const { classes } = useTheme();
   return (
     <Card className="z-10 w-full max-h-full flex flex-col rounded-3xl border border-white/20 bg-white/35 p-4 backdrop-blur-md">
-      <CardHeader className="pb-1 font-bold text-4xl text-gray-800">
+      <CardHeader className={`pb-1 font-bold text-4xl ${classes.cardTitle}`}>
         Hall of Fame
       </CardHeader>
-      <CardDescription className="pb-4 text-gray-600">
+      <CardDescription className={`pb-4 ${classes.cardText}`}>
         Meet the top contributors for each language in this season!
       </CardDescription>
 
