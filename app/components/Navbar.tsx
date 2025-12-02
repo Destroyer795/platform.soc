@@ -36,7 +36,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 mt-4 flex w-full justify-center z-10">
+    <div className="fixed top-0 left-0 mt-4 flex w-full justify-center z-20 shrink-0">
       <nav className="w-11/12 rounded-2xl border-[#A7E6FF] border-b bg-white/90 shadow-sm backdrop-blur-sm z-10">
         <div className="mx-auto px-4 sm:px-6 lg:px-4">
           <div className="flex h-16 items-center justify-between">
@@ -69,7 +69,7 @@ const Navbar = () => {
                 <NavLink href="/repo">Repositories</NavLink>
                 <NavLink href="/bot-commands">Bot Commands</NavLink>
                 {/* <NavLink href="/announcements">Announcements</NavLink> */}
-                <NavLink href="/request-for-code">Request for Code</NavLink>
+                {/* <NavLink href="/request-for-code">Request for Code</NavLink> */}
                 <NavLink href="/resources">Resources</NavLink>
                 <NavLink href="/team">Team</NavLink>
                 <NavLink href="/past-editions">Past Editions</NavLink>

@@ -17,8 +17,6 @@ import {
 } from 'lucide-react';
 import React, { useEffect, useState, useMemo } from 'react';
 import Navbar from '../components/Navbar';
-import Cloud from '../components/dashboard-components/Cloud';
-import SunGlareEffect from '../components/dashboard-components/SunGlareEffect';
 import IssueCard from '../components/repo-components/IssueCard';
 import RepoCard from '../components/repo-components/RepoCard';
 import { Badge } from '../components/ui/badge';
@@ -988,12 +986,6 @@ const ReposPage = () => {
 
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-      <SunGlareEffect />
-      <Cloud />
-
-      <div className="z-20 h-[80px] shrink-0">
-        <Navbar />
-      </div>
       <div className="w-11/12 mx-auto flex flex-1 flex-col pt-4">
         <div className="hidden md:block md:flex-1 md:min-h-0">
           {desktopView}

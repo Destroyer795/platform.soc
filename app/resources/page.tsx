@@ -4,8 +4,7 @@ import Card from '@/app/components/resources-components/resourceCard';
 import { useEffect, useState } from 'react';
 import { BsCheckLg } from 'react-icons/bs';
 import { FaTimes } from 'react-icons/fa';
-import Cloud from '../components/dashboard-components/Cloud';
-import SunGlareEffect from '../components/dashboard-components/SunGlareEffect';
+import { useTheme } from '../components/theme-context';
 
 type Resource = {
   title: string;
@@ -80,18 +79,19 @@ const ResourcePage = () => {
           .sort((a, b) => b.matchingTagsCount - a.matchingTagsCount)
           .map(({ resource }) => resource);
 
+  const { theme, classes } = useTheme();
   return (
     <div>
-      <Navbar />
-      <SunGlareEffect />
-      <Cloud />
-
       {/* Header */}
-      <section className="mt-30 px-4 text-center">
-        <h1 className="font-extrabold text-4xl text-white drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)] md:text-5xl">
+      <section className="mt-10 px-4 text-center">
+        <h1
+          className={`font-extrabold text-4xl ${classes.pageTitle} drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)] md:text-5xl`}
+        >
           Explore Developer Resources
         </h1>
-        <p className="mx-auto mt-2 max-w-xl text-lg text-white/70 drop-shadow-[0_1px_6px_rgba(255,255,255,0.2)]">
+        <p
+          className={`mx-auto mt-2 max-w-xl text-lg ${classes.pageDesc} drop-shadow-[0_1px_6px_rgba(255,255,255,0.2)]`}
+        >
           Find tools, guides, and libraries to boost your development journey.
         </p>
 
@@ -106,8 +106,8 @@ const ResourcePage = () => {
                 onClick={() => toggleTag(tag)}
                 className={`flex cursor-pointer items-center justify-center rounded-full px-3 py-1 font-medium text-sm shadow-sm transition-all duration-200 ${
                   isSelected
-                    ? 'bg-slate-700 text-white hover:bg-slate-800'
-                    : 'border border-gray-300 bg-gray-50 text-gray-900 hover:bg-gray-100'
+                    ? `${classes.chipBg} ${classes.chipText} ${classes.chipHoverBg}`
+                    : `border ${classes.selectedChipBorder} ${classes.selectedChipText} ${classes.selectedChipHoverBg}`
                 }`}
               >
                 {isSelected && <BsCheckLg className="mr-2 h-4 w-4" />}

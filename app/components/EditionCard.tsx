@@ -1,3 +1,5 @@
+import { useTheme } from './theme-context';
+
 interface EditionCardProps {
   title: string;
   description: string;
@@ -21,8 +23,11 @@ export default function EditionCard({
   onToggle,
   isExpanded,
 }: EditionCardProps) {
+  const { classes } = useTheme();
   return (
-    <div className="bg-white/20 backdrop-blur-md border border-white/10 p-8 rounded-2xl w-full shadow-xl text-white text-left transition duration-300 mb-2">
+    <div
+      className={`${classes.cardBg} backdrop-blur-md border border-white/10 p-8 rounded-2xl w-full shadow-xl text-white text-left transition duration-300 mb-2`}
+    >
       <div className="flex flex-col md:flex-row items-center justify-center gap-3">
         <div className="flex-1 items-center justify-center lg:p-4">
           <img
@@ -32,18 +37,24 @@ export default function EditionCard({
           />
         </div>
         <div className="flex-1">
-          <h2 className="text-3xl text-center md:text-2xl font-bold">
+          <h2
+            className={`text-3xl text-center md:text-2xl font-bold ${classes.cardTitle}`}
+          >
             {title}
           </h2>
-          <p className="text-blue-50 mb-3 text-center italic">{dateRange}</p>
+          <p
+            className={`text-blue-50 mb-3 text-center italic ${classes.cardText}`}
+          >
+            {dateRange}
+          </p>
           <div className="flex flex-wrap gap-2 justify-center">
             {stats.map((stat) => (
               <span
                 key={stat}
-                className="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium
-                     bg-white/40 text-gray-800 font-semibold
+                className={`inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium
+                     ${classes.cardBg} ${classes.cardTitle} font-semibold
                      shadow-sm transition-all duration-200 ease-in-out
-                     hover:scale-105 hover:bg-white/50 hover:backdrop-blur-sm hover:shadow-md"
+                     hover:scale-105 ${classes.cardHover} hover:backdrop-blur-sm hover:shadow-md`}
               >
                 {stat}
               </span>
@@ -65,11 +76,19 @@ export default function EditionCard({
         <div className="mt-8 text-blue-10 text-left">
           <hr className="mb-4 border-white/50" />
 
-          <h2 className="text-lg font-semibold mt-6 mb-2">About</h2>
-          <p>{description}</p>
+          <h2
+            className={`text-lg font-semibold mt-6 mb-2 ${classes.cardTitle}`}
+          >
+            About
+          </h2>
+          <p className={classes.cardText}>{description}</p>
 
-          <h3 className="text-lg font-semibold mt-6 mb-2">Award Ceremony</h3>
-          <p className="mb-3">{conclusion}</p>
+          <h3
+            className={`text-lg font-semibold mt-6 mb-2 ${classes.cardTitle}`}
+          >
+            Award Ceremony
+          </h3>
+          <p className={`mb-3 ${classes.cardText}`}>{conclusion}</p>
           {images && images.length > 0 && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-2">
               {images.map((image, index) => (

@@ -9,18 +9,23 @@ import {
 import type { ReposData } from '@/app/store/useRepositoryStore';
 import { ChevronRight, Github } from 'lucide-react';
 import React from 'react';
+import { useTheme } from '../theme-context';
 
 const RepoCard = (props: ReposData) => {
+  const { classes } = useTheme();
+
   return (
-    <Card className="bg-white/20 backdrop-blur-md border border-white/30 shadow-sm w-full transition-all duration-300 hover:bg-white/30 hover:shadow-lg">
+    <Card
+      className={`${classes.cardBg} backdrop-blur-md border ${classes.cardBorder} shadow-sm w-full transition-all duration-300 hover:${classes.cardHover} hover:shadow-lg`}
+    >
       <div className="flex h-full flex-row items-center justify-between p-4 sm:p-5">
         <div>
-          <CardHeader className="p-0 pb-2 border-b border-white/30">
+          <CardHeader className={`p-0 pb-2 border-b ${classes.cardBorder}`}>
             <div className="flex flex-row items-center ">
               <CardTitle className="mb-0">
                 <a
                   href={props.url}
-                  className="text-xl sm:text-2xl font-bold flex flex-row items-center text-gray-800 hover:text-gray-600 focus:text-gray-600 transition-colors duration-200"
+                  className={`text-xl sm:text-2xl font-bold flex flex-row items-center ${classes.cardTitle} focus:text-gray-600 transition-colors duration-200`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -40,7 +45,7 @@ const RepoCard = (props: ReposData) => {
                   key={username}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-700 hover:text-gray-500 focus:text-gray-500 transition-colors duration-200"
+                  className={` hover:text-gray-500 focus:text-gray-500 transition-colors duration-200 ${classes.cardText}`}
                 >
                   <span
                     key={username}
@@ -53,15 +58,19 @@ const RepoCard = (props: ReposData) => {
               ))}
             </div>
           </CardHeader>
-          <CardDescription className="mt-2 text-gray-700 text-sm sm:text-base">
+          <CardDescription
+            className={`mt-2 ${classes.cardText} text-sm sm:text-base`}
+          >
             {props.description}
           </CardDescription>
-          <div className="mt-4 flex flex-row flex-wrap items-center gap-3 border-t border-white/30 pt-3">
+          <div
+            className={`mt-4 flex flex-row flex-wrap items-center gap-3 border-t ${classes.cardBorder} pt-3`}
+          >
             {props.tech.map((techname) => (
               <Badge
                 key={techname}
                 variant="outline"
-                className="flex items-center px-2 py-1.5 text-sm sm:text-sm bg-white/40 border-white/40 backdrop-blur-sm text-gray-800 hover:bg-white/50 focus:bg-white/50 transition-all duration-200"
+                className={`flex items-center px-2 py-1.5 text-sm sm:text-sm bg-white/40 border-white/40 backdrop-blur-sm ${classes.cardText} hover:bg-white/50 focus:bg-white/50 transition-all duration-200`}
               >
                 <img
                   className="mr-2"

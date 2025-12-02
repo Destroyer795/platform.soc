@@ -1,4 +1,6 @@
+'use client';
 import React from 'react';
+import { useTheme } from '../components/theme-context';
 
 interface Rule {
   label: string;
@@ -68,15 +70,20 @@ const rules: Rule[] = [
 ];
 
 const Rules = () => {
+  const { theme, classes } = useTheme();
   return (
     <div className="min-h-screen bg-gradient-to-br p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-6 sm:mb-8">
-          <h1 className="font-extrabold text-3xl mt-6 md:mt-0 sm:text-4xl md:text-5xl text-white drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]">
+          <h1
+            className={`font-extrabold text-3xl mt-6 md:mt-0 sm:text-4xl md:text-5xl ${classes.pageTitle} drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]`}
+          >
             Rules for This Summer
           </h1>
-          <p className="mx-auto mt-2 max-w-xl text-base sm:text-lg text-white/70 drop-shadow-[0_1px_6px_rgba(255,255,255,0.2)] px-4 sm:px-0">
+          <p
+            className={`mx-auto mt-2 max-w-xl text-base sm:text-lg ${classes.pageDesc} drop-shadow-[0_1px_6px_rgba(255,255,255,0.2)] px-4 sm:px-0`}
+          >
             The official rulebook for Amrita's Summer of Code, 2025
           </p>
         </div>
@@ -86,16 +93,22 @@ const Rules = () => {
           {/* Maintainer Commands Section */}
           <div className="space-y-4">
             {/* Rewards & Penalties */}
-            <div className="bg-white/40 backdrop-blur-xl rounded-3xl p-4 sm:p-6 border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300">
+            <div
+              className={`${classes.cardBg} backdrop-blur-xl rounded-3xl p-4 sm:p-6 border ${classes.cardBorder} shadow-xl hover:shadow-2xl transition-all duration-300`}
+            >
               <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-slate-500/20 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/30">
+                <div
+                  className={`w-12 h-12 ${classes.cardBg} backdrop-blur-sm rounded-2xl flex items-center justify-center border ${classes.cardBorder}`}
+                >
                   <span className="text-2xl">⚖️</span>
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-slate-800 mb-1">
+                  <h2
+                    className={`text-2xl font-bold ${classes.cardTitle} mb-1`}
+                  >
                     Charter for Amrita Summer of Code, 2025
                   </h2>
-                  <p className="text-slate-600">
+                  <p className={`${classes.cardText}`}>
                     This competition is for
                     <span className="font-bold">
                       {' '}
@@ -111,12 +124,14 @@ const Rules = () => {
                 {rules.map((item, index) => (
                   <div
                     key={`${item.label}`}
-                    className="backdrop-blur-sm bg-white/40 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-white/30 shadow-sm hover:shadow-2xl hover:bg-white/50 transition-all duration-300"
+                    className={`${classes.cardBg} backdrop-blur-xm  rounded-2xl sm:rounded-3xl p-4 sm:p-6 border ${classes.cardBorder} shadow-sm hover:shadow-2xl hover:bg-white/50 transition-all duration-300`}
                   >
-                    <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">
+                    <h2
+                      className={`text-lg sm:text-xl font-bold ${classes.cardTitle} mb-2`}
+                    >
                       {item.label}
                     </h2>
-                    <p className="text-sm sm:text-md text-gray-700">
+                    <p className={`text-sm sm:text-md ${classes.cardText}`}>
                       {item.description}
                     </p>
                   </div>

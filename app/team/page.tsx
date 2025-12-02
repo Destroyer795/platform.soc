@@ -2,8 +2,7 @@
 import Navbar from '@/app/components/Navbar';
 import Card from '@/app/components/TeamProfileCard';
 import { useEffect, useState } from 'react';
-import Cloud from '../components/dashboard-components/Cloud';
-import SunGlareEffect from '../components/dashboard-components/SunGlareEffect';
+import { useTheme } from '../components/theme-context';
 
 type TeamMember = {
   name: string;
@@ -74,19 +73,20 @@ const TeamPage = () => {
           .filter(({ matchingTagsCount }) => matchingTagsCount > 0)
           .sort((a, b) => b.matchingTagsCount - a.matchingTagsCount)
           .map(({ resource }) => resource);
+  const { theme, classes } = useTheme();
 
   return (
     <div className="min-h-screen">
-      <Navbar />
-      <SunGlareEffect />
-      <Cloud />
-
       {/* Header */}
-      <section className="mt-30 px-4 text-center">
-        <h1 className="font-extrabold text-4xl text-white drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)] md:text-5xl">
+      <section className="mt-10 px-4 text-center">
+        <h1
+          className={`font-extrabold text-4xl ${classes.pageTitle} drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)] md:text-5xl`}
+        >
           Our Team
         </h1>
-        <p className="mx-auto mt-2 max-w-xl text-lg text-white/70 drop-shadow-[0_1px_6px_rgba(255,255,255,0.2)]">
+        <p
+          className={`mx-auto mt-2 max-w-xl text-lg ${classes.pageDesc} drop-shadow-[0_1px_6px_rgba(255,255,255,0.2)]`}
+        >
           Meet the team of organizers and maintainers behind Amrita's Summer of
           Code 2025.
         </p>

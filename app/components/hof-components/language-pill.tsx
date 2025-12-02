@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import BackgroundWaves from '../hof-components/background-waves';
 import Badge from '../hof-components/badge';
+import { useTheme } from '../theme-context';
 
 interface LanguagePillProps {
   language: string;
@@ -72,6 +73,7 @@ const LanguagePill: React.FC<LanguagePillProps> = ({
   leaderboard,
 }) => {
   const { first_place, second_place } = leaderboard;
+  const { classes } = useTheme();
 
   return (
     <div className="relative w-full max-w-md mx-auto bg-white/25 backdrop-blur-2xl rounded-2xl p-3 border border-white/30 shadow hover:shadow-md transition-all duration-300">
@@ -125,11 +127,13 @@ const LanguagePill: React.FC<LanguagePillProps> = ({
               }}
             />
           )}
-          <h3 className="text-lg font-semibold text-gray-900 capitalize">
+          <h3
+            className={`text-lg font-semibold ${classes.cardTitle} capitalize`}
+          >
             {getDisplayLang(language)}
           </h3>
         </div>
-        <p className="text-xs text-gray-700 -mt-2 mb-3 text-center">
+        <p className={`text-xs ${classes.cardText} -mt-2 mb-3 text-center`}>
           {badgeDescriptionsMapping[language.toLowerCase()] ||
             'Outstanding Contribution'}
         </p>

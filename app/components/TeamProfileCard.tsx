@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTheme } from './theme-context';
 
 interface CardProps {
   name: string;
@@ -16,8 +17,11 @@ export default function TeamProfileCard({
   tags,
   designation,
 }: CardProps) {
+  const { theme, classes } = useTheme();
   return (
-    <div className="cursor-pointer group relative h-full w-full max-w-sm overflow-hidden rounded-3xl bg-white/40 border border-white/30 shadow-sm backdrop-blur-sm transition-all duration-200 hover:bg-white/50">
+    <div
+      className={`cursor-pointer group relative h-full w-full max-w-sm overflow-hidden rounded-3xl ${classes.cardBg} ${classes.cardBorder} shadow-sm backdrop-blur-sm transition-all duration-200 ${classes.cardHover}`}
+    >
       <a
         href={`https://github.com/${username}`}
         target="_blank"
@@ -29,7 +33,7 @@ export default function TeamProfileCard({
             src={avatar}
             alt="github-avatar"
           />
-          <div className="ml-1">
+          <div className={`ml-1 ${classes.cardText}`}>
             <div className="font-bold">{name}</div>
             <div className="font-semibold">{tags.join(', ')}</div>
             <div>{designation}</div>

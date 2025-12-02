@@ -11,6 +11,7 @@ import { color } from 'framer-motion';
 import { Code, Coins, ExternalLink, GitPullRequest } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
+import { useTheme } from '../theme-context';
 
 const difficultyColorMap: Record<string, string> = {
   Easy: 'bg-emerald-100/50 text-emerald-900 border-emerald-300/50 backdrop-blur-sm',
@@ -38,9 +39,11 @@ const IssueCard = (props: IssuesData) => {
   //     ? Math.round(bounty * multiplierValue)
   //     : bounty;
 
+  const { classes } = useTheme();
+
   return (
     <Card
-      className="mb-4 bg-white/20 backdrop-blur-md border border-white/30 shadow-sm transition-all duration-300 hover:bg-white/30 hover:shadow-lg relative overflow-hidden"
+      className={`mb-4 ${classes.cardBg} backdrop-blur-md border ${classes.cardBorder} shadow-sm transition-all duration-300 ${classes.cardHover} hover:shadow-lg relative overflow-hidden`}
       aria-label={`Issue: ${title} ${
         completionStatus
           ? '- Completed'
@@ -50,9 +53,13 @@ const IssueCard = (props: IssuesData) => {
       }`}
     >
       <div className="relative z-10">
-        <CardHeader className="p-4 sm:p-5 pb-2 border-b border-white/30">
+        <CardHeader
+          className={`p-4 sm:p-5 pb-2 border-b ${classes.cardBorder}`}
+        >
           <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
-            <CardTitle className="group mb-0 flex-grow min-w-0 font-semibold text-base sm:text-lg">
+            <CardTitle
+              className={`group mb-0 flex-grow min-w-0 font-semibold text-base sm:text-lg ${classes.cardTitle}`}
+            >
               <Link
                 href={url}
                 passHref
@@ -90,7 +97,9 @@ const IssueCard = (props: IssuesData) => {
           </div>
         </CardHeader>
 
-        <CardContent className="p-4 sm:p-5 pt-3 border-t border-white/30">
+        <CardContent
+          className={`p-4 sm:p-5 pt-3 border-t ${classes.cardBorder}`}
+        >
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <div
               className="flex flex-wrap gap-2"
@@ -100,7 +109,7 @@ const IssueCard = (props: IssuesData) => {
                 <Badge
                   key={lang}
                   variant="outline"
-                  className="flex items-center px-3 py-1.5 text-xs sm:text-sm bg-white/40 border-white/40 backdrop-blur-sm text-gray-800 hover:bg-white/50 focus:bg-white/50 transition-all duration-200"
+                  className={`flex items-center px-3 py-1.5 text-xs sm:text-sm ${classes.chipBg} border-white/40 backdrop-blur-sm ${classes.chipText} hover:${classes.chipHoverBg} focus:${classes.chipHoverBg} transition-all duration-200`}
                 >
                   <img
                     className="mr-1.5"
@@ -115,7 +124,7 @@ const IssueCard = (props: IssuesData) => {
               ))}
               {PRsActive > 0 && (
                 <Badge
-                  className="flex items-center px-3 py-1.5 text-xs sm:text-sm bg-white/40 border-white/40 backdrop-blur-sm text-gray-800 hover:bg-white/50 focus:bg-white/50 transition-all duration-200"
+                  className={`flex items-center px-3 py-1.5 text-xs sm:text-sm ${classes.chipBg} border-white/40 backdrop-blur-sm ${classes.chipText} hover:${classes.chipHoverBg} focus:${classes.chipHoverBg} transition-all duration-200`}
                   aria-label={`${PRsActive} Pull Request${
                     PRsActive > 1 ? 's' : ''
                   } active`}

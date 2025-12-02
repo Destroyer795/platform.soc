@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FaSort, FaSortDown, FaSortUp } from 'react-icons/fa'; // Import sorting icons
 import { MdCode, MdMonetizationOn } from 'react-icons/md';
+import { useTheme } from '../theme-context';
 import { Card, CardDescription, CardHeader } from '../ui/card';
 import ParticipantAvatar from './ParticipantAvatar';
 
@@ -188,14 +189,18 @@ const Leaderboard = ({ user }: { user: AuthUser | null }) => {
   const dataToDisplay =
     currentView === 'leaderboard' ? leaderboardData : participantsData;
 
+  const { classes } = useTheme();
+
   return (
     <Card className="z-10 flex w-full max-h-full flex-col rounded-3xl border border-white/20 bg-white/35 p-4 backdrop-blur-md">
       <div className="flex items-center justify-between">
         <div>
-          <CardHeader className="p-0 pb-1 font-bold text-4xl text-gray-800">
+          <CardHeader
+            className={`p-0 pb-1 font-bold text-4xl ${classes.cardTitle}`}
+          >
             {currentView === 'leaderboard' ? 'Leaderboard' : 'Participants'}
           </CardHeader>
-          <CardDescription className="pb-4 text-gray-600">
+          <CardDescription className={`pb-4 ${classes.cardText}`}>
             {currentView === 'leaderboard'
               ? 'Refresh the page to see real-time leaderboard updates.'
               : 'List of all registered participants.'}
@@ -222,7 +227,9 @@ const Leaderboard = ({ user }: { user: AuthUser | null }) => {
         )}
       </div>
 
-      <div className="flex items-center rounded-xl bg-white/20 px-3 py-2 font-medium text-gray-900 shadow-sm">
+      <div
+        className={`flex items-center rounded-xl bg-white/20 px-3 py-2 font-medium ${classes.cardText} shadow-sm`}
+      >
         <div
           className={`flex-grow font-medium pl-2 ${currentView === 'participants' ? '' : 'md:w-[50%]'}`}
         >
@@ -262,7 +269,7 @@ const Leaderboard = ({ user }: { user: AuthUser | null }) => {
         ) : currentView === 'leaderboard' && leaderboardData.length === 0 ? (
           <div className="flex items-center justify-center px-4 py-8">
             <div className="w-full rounded-2xl bg-white/40 p-8 text-center backdrop-blur-sm">
-              <p className="text-xl font-medium text-gray-800">
+              <p className={`text-xl font-medium ${classes.cardText}`}>
                 Be the first person to join the leaderboard by making a PR.
                 Explore projects by visiting the{' '}
                 <Link
@@ -276,7 +283,7 @@ const Leaderboard = ({ user }: { user: AuthUser | null }) => {
             </div>
           </div>
         ) : currentView === 'participants' && participantsLoading ? (
-          <div className="py-8 text-center text-white/60 text-xl">
+          <div className={`py-8 text-center ${classes.cardText} text-xl`}>
             Loading Participants...
           </div>
         ) : (
@@ -307,10 +314,12 @@ const Leaderboard = ({ user }: { user: AuthUser | null }) => {
                   </span>
                 </div>
                 <div>
-                  <div className="font-semibold">
+                  <div className={`${classes.cardText} font-semibold`}>
                     {data.fullName || data.username}
                   </div>
-                  <div className="text-gray-600 text-sm">@{data.username}</div>
+                  <div className={`${classes.cardText} text-sm`}>
+                    @{data.username}
+                  </div>
                 </div>
               </div>
               {currentView === 'leaderboard' && (
