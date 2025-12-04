@@ -42,7 +42,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const theme = process.env.NEXT_PUBLIC_THEME || 'SUMMER';
 
   const classes: ThemeClasses = {
-    cardBg: theme === 'SUMMER' ? 'bg-white/40' : 'bg-blue-200/40',
+    cardBg: theme === 'SUMMER' ? 'bg-white/30' : 'bg-blue-200/40',
     cardBorder: theme === 'SUMMER' ? 'border-white/20' : 'border-blue-200/20',
     cardTitle: theme === 'SUMMER' ? 'text-gray-800' : 'text-white',
     cardText: theme === 'SUMMER' ? 'text-gray-700' : 'text-white/90',
