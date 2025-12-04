@@ -1,5 +1,11 @@
 'use client';
 
+<<<<<<< HEAD
+=======
+import Navbar from '@/app/components/Navbar';
+import Cloud from '@/app/components/dashboard-components/Cloud';
+import SunGlareEffect from '@/app/components/dashboard-components/SunGlareEffect';
+>>>>>>> 7215ad6 (feat: add login page)
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
 import { Label } from '@/app/components/ui/label';
@@ -10,6 +16,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import * as z from 'zod';
 
+<<<<<<< HEAD
 export async function hashPassword(password: string): Promise<string> {
   const encoder = new TextEncoder();
   const data = encoder.encode(password);
@@ -21,6 +28,8 @@ export async function hashPassword(password: string): Promise<string> {
   return hashHex;
 }
 
+=======
+>>>>>>> 7215ad6 (feat: add login page)
 // Simplified Schema: Only Email and Password
 const formSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -79,6 +88,7 @@ export default function LoginPage() {
     try {
       const validatedData = formSchema.parse(formData);
 
+<<<<<<< HEAD
       const hashedPassword = await hashPassword(validatedData.password);
 
       console.log({ ...validatedData, password: hashedPassword });
@@ -86,6 +96,12 @@ export default function LoginPage() {
         url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
         method: 'POST',
         body: { ...validatedData, password: hashedPassword },
+=======
+      const result = await make_api_call<{ access_token: string }>({
+        url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
+        method: 'POST',
+        body: validatedData,
+>>>>>>> 7215ad6 (feat: add login page)
       });
 
       if (!result.success) {
