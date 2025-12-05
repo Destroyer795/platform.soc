@@ -42,6 +42,24 @@ const Dashboard = () => {
 
   return (
     <div className="relative flex w-full flex-col text-white">
+      {/* ✅ Desktop Background */}
+      <Image
+        src="/winter_bg1.png"
+        alt="Winter Desktop Background"
+        fill
+        priority
+        className="fixed inset-0 -z-10 hidden md:block object-cover"
+      />
+
+      {/* ✅ Mobile & Tablet Background */}
+      <Image
+        src="/winter_bg_mobile.png"
+        alt="Winter Mobile Background"
+        fill
+        priority
+        className="fixed inset-0 -z-10 block md:hidden object-cover"
+      />
+
       <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-[40%_minmax(0,1fr)] gap-8 items-start py-12 md:py-0 flex-grow">
         <div className="z-10 flex flex-col items-center md:items-start justify-center text-left py-0 md:py-12 md:h-[calc(100vh-80px)]">
           <div className="flex flex-col items-center md:items-start gap-2 mb-6">
@@ -69,13 +87,14 @@ const Dashboard = () => {
           <h1 className="font-extrabold text-5xl tracking-tight sm:text-6xl md:text-5xl text-white">
             Amrita
           </h1>
-          <h1 className="mb-4 md:mb-6 font-extrabold text-4xl sm:text-5xl md:text-6xl tracking-tight text-yellow-300">
-            Summer of Code
+          <h1 className="mb-4 md:mb-6 font-extrabold text-4xl sm:text-5xl md:text-6xl tracking-tight text-blue-400">
+            Winter of Code
           </h1>
           <p className="mb-6 max-w-2xl text-base sm:text-lg md:text-xl text-gray-200 text-center md:text-left px-4 md:px-0">
-            After a successful Winter of Code, the ACM student chapter is back
-            with the <strong>Summer of Code</strong>. Collaborate, learn, build
-            innovative projects and showcase your skills!
+            After a successful Summer of Code, the ACM student chapter is back
+            with the <strong className="text-blue-400">Winter of Code</strong>.
+            Collaborate, learn, build innovative projects and showcase your
+            skills!
           </p>
           <div className="flex flex-row gap-4 sm:flex-row">
             {!user ? (
@@ -90,8 +109,8 @@ const Dashboard = () => {
                 </button>
                 <button
                   type="button"
-                  onClick={() => router.push('/login')}
-                  className="transform cursor-pointer rounded-lg bg-yellow-400 px-6 py-2 text-sm font-medium sm:px-8 sm:py-3 sm:font-semibold text-gray-900 shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 focus:ring-offset-amber-700"
+                  onClick={() => router.push('/register')}
+                  className="transform cursor-pointer rounded-lg bg-blue-400 px-6 py-2 text-sm font-medium sm:px-8 sm:py-3 sm:font-semibold text-gray-900 shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 focus:ring-offset-amber-700"
                 >
                   Login Now
                 </button>
