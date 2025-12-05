@@ -35,7 +35,6 @@ const Leaderboard = ({ user }: { user: AuthUser | null }) => {
     null,
   );
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
-
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
@@ -192,7 +191,14 @@ const Leaderboard = ({ user }: { user: AuthUser | null }) => {
   const { classes } = useTheme();
 
   return (
-    <Card className="z-10 flex w-full max-h-full flex-col rounded-3xl border border-white/20 bg-white/35 p-4 backdrop-blur-md">
+    <Card
+      className={`
+    z-10 flex w-full max-h-full flex-col rounded-3xl
+    ${classes.cardBg}
+    ${classes.cardBorder}
+    p-4 backdrop-blur-md
+  `}
+    >
       <div className="flex items-center justify-between">
         <div>
           <CardHeader
@@ -231,7 +237,9 @@ const Leaderboard = ({ user }: { user: AuthUser | null }) => {
         className={`flex items-center rounded-xl bg-white/20 px-3 py-2 font-medium ${classes.cardText} shadow-sm`}
       >
         <div
-          className={`flex-grow font-medium pl-2 ${currentView === 'participants' ? '' : 'md:w-[50%]'}`}
+          className={`flex-grow font-medium pl-2 ${
+            currentView === 'participants' ? '' : 'md:w-[50%]'
+          }`}
         >
           Name
         </div>
@@ -305,7 +313,9 @@ const Leaderboard = ({ user }: { user: AuthUser | null }) => {
               }
             >
               <div
-                className={`flex flex-grow items-center gap-3 ${currentView === 'participants' ? '' : 'md:w-[50%]'}`}
+                className={`flex flex-grow items-center gap-3 ${
+                  currentView === 'participants' ? '' : 'md:w-[50%]'
+                }`}
               >
                 <div className="relative">
                   <ParticipantAvatar username={data.username} />
