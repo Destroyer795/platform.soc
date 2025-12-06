@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useTheme } from './theme-context';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -34,10 +35,14 @@ const Navbar = () => {
       router.push('/');
     }
   };
+  const { classes } = useTheme();
 
   return (
-    <div className="fixed top-0 left-0 mt-4 flex w-full justify-center z-20 shrink-0">
-      <nav className="w-11/12 rounded-2xl border-[#A7E6FF] border-b bg-white/90 shadow-sm backdrop-blur-sm z-10">
+    <div className="fixed top-4 left-0 flex w-full justify-center z-50">
+      <nav
+        className={`w-11/12 rounded-2xl  border-b  ${classes.cardBg}
+    ${classes.cardBorder} z-10`}
+      >
         <div className="mx-auto px-4 sm:px-6 lg:px-4">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
@@ -49,7 +54,9 @@ const Navbar = () => {
                 href="/"
                 aria-label="Home"
               >
-                <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg sm:h-12 sm:w-12">
+                <div
+                  className={`flex h-10 w-10 items-center justify-center overflow-hidden rounded-full ${classes.chipBg} shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg sm:h-12 sm:w-12`}
+                >
                   <Image
                     src="/acmilogo.png"
                     alt="ACM Logo"
