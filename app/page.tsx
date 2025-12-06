@@ -43,22 +43,22 @@ const Dashboard = () => {
   return (
     <div className="relative flex w-full flex-col text-white">
       {/* ✅ Desktop Background */}
-      <Image
+      {/* <Image
         src="/winter_bg1.png"
         alt="Winter Desktop Background"
         fill
         priority
         className="fixed inset-0 -z-10 hidden md:block object-cover"
-      />
+      /> */}
 
       {/* ✅ Mobile & Tablet Background */}
-      <Image
+      {/* <Image
         src="/winter_bg_mobile.png"
         alt="Winter Mobile Background"
         fill
         priority
         className="fixed inset-0 -z-10 block md:hidden object-cover"
-      />
+      /> */}
 
       <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-[40%_minmax(0,1fr)] gap-8 items-start py-12 md:py-0 flex-grow">
         <div className="z-10 flex flex-col items-center md:items-start justify-center text-left py-0 md:py-12 md:h-[calc(100vh-80px)]">

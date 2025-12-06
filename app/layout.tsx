@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import localFont from 'next/font/local';
+import Image from 'next/image';
 import Navbar from './components/Navbar';
 import Cloud from './components/dashboard-components/Cloud';
+import Snowfall from './components/dashboard-components/Snowfall';
 import SunGlareEffect from './components/dashboard-components/SunGlareEffect';
 import { ThemeProvider } from './components/theme-context';
 import { Toaster } from './components/ui/toaster';
@@ -120,14 +122,14 @@ const gilroy = localFont({
 
 export const metadata: Metadata = {
   title: 'SoC | ACM Amrita',
-  description: 'Leaderboard for Summer of Code',
+  description: 'Leaderboard for Winter of Code',
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <head>
@@ -137,22 +139,43 @@ export default function RootLayout({
           type="image/jpeg"
         />
       </head>
+      <body className={`${gilroy.className} antialiased`}>
+        {/* ✅ GLOBAL DESKTOP BACKGROUND */}
+        {/* ✅ GLOBAL BACKGROUND WRAPPER */}
+        <div className="fixed inset-0 -z-10">
+          <Image
+            src="/winter_bg1.png"
+            alt="Winter Background"
+            fill
+            priority
+            className="hidden md:block object-cover"
+          />
+          <Image
+            src="/winter_bg_mobile.png"
+            alt="Winter Mobile Background"
+            fill
+            priority
+            className="block md:hidden object-cover"
+          />
+        </div>
 
-      <body
-        className={`${gilroy.className} antialiased pt-20`}
-        style={{
-          background: theme === 'SUMMER' ? summerGradient : winterGradient,
-        }}
-      >
         <ThemeProvider>
           <Navbar />
+
+          {/* ✅ NAVBAR SPACER — PUSHES CONTENT, NOT BACKGROUND */}
+          <div className="h-20" />
+
+          <Snowfall />
+
           {theme === 'SUMMER' && (
             <>
               <SunGlareEffect />
               <Cloud />
             </>
           )}
+
           {children}
+
           <Toaster />
         </ThemeProvider>
       </body>
