@@ -72,14 +72,42 @@ const Navbar = () => {
             {/* Desktop Navigation */}
             <div className="hidden flex-1 items-center justify-center md:flex">
               <div className="flex space-x-4">
-                <NavLink href="/rules">Rules</NavLink>
-                <NavLink href="/repo">Repositories</NavLink>
-                <NavLink href="/bot-commands">Bot Commands</NavLink>
-                {/* <NavLink href="/announcements">Announcements</NavLink> */}
-                {/* <NavLink href="/request-for-code">Request for Code</NavLink> */}
-                <NavLink href="/resources">Resources</NavLink>
-                <NavLink href="/team">Team</NavLink>
-                <NavLink href="/past-editions">Past Editions</NavLink>
+                <NavLink
+                  href="/rules"
+                  textClass={classes.cardText}
+                >
+                  Rules
+                </NavLink>
+                <NavLink
+                  href="/repo"
+                  textClass={classes.cardText}
+                >
+                  Repositories
+                </NavLink>
+                <NavLink
+                  href="/bot-commands"
+                  textClass={classes.cardText}
+                >
+                  Bot Commands
+                </NavLink>
+                <NavLink
+                  href="/resources"
+                  textClass={classes.cardText}
+                >
+                  Resources
+                </NavLink>
+                <NavLink
+                  href="/team"
+                  textClass={classes.cardText}
+                >
+                  Team
+                </NavLink>
+                <NavLink
+                  href="/past-editions"
+                  textClass={classes.cardText}
+                >
+                  Past Editions
+                </NavLink>
               </div>
             </div>
 
@@ -182,13 +210,15 @@ const Navbar = () => {
 const NavLink = ({
   href,
   children,
+  textClass,
 }: {
   href: string;
   children: React.ReactNode;
+  textClass: string;
 }) => (
   <Link
     href={href}
-    className="whitespace-nowrap rounded-lg px-2 py-1 font-medium text-gray-700 text-md transition-colors duration-200 hover:bg-blue-50 hover:text-blue-500"
+    className={`whitespace-nowrap rounded-lg px-2 py-1 font-medium text-md transition-colors duration-200 hover:bg-blue-50 hover:text-blue-500 ${textClass}`}
   >
     {children}
   </Link>

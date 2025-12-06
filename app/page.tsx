@@ -17,6 +17,7 @@ import Navbar from './components/Navbar';
 import Cloud from './components/dashboard-components/Cloud';
 import Logtable from './components/dashboard-components/Logtable';
 import SunGlareEffect from './components/dashboard-components/SunGlareEffect';
+import { useTheme } from './components/theme-context';
 import { handleSignIn } from './lib/utils';
 import { useAuthStore } from './store/useAuthStore';
 
@@ -39,6 +40,7 @@ const Dashboard = () => {
   }, []);
 
   const theme = process.env.NEXT_PUBLIC_THEME;
+  const { classes } = useTheme();
 
   return (
     <div className="relative flex w-full flex-col text-white">
@@ -90,7 +92,7 @@ const Dashboard = () => {
           <h1 className="mb-4 md:mb-6 font-extrabold text-4xl sm:text-5xl md:text-6xl tracking-tight text-blue-400">
             Winter of Code
           </h1>
-          <p className="mb-6 max-w-2xl text-base sm:text-lg md:text-xl text-gray-200 text-center md:text-left px-4 md:px-0">
+          <p className="mb-6 max-w-2xl text-base sm:text-lg md:text-xl text-gray-100 text-center md:text-left px-4 md:px-0">
             After a successful Summer of Code, the ACM student chapter is back
             with the <strong className="text-blue-400">Winter of Code</strong>.
             Collaborate, learn, build innovative projects and showcase your
@@ -110,7 +112,7 @@ const Dashboard = () => {
                 <button
                   type="button"
                   onClick={() => router.push('/register')}
-                  className="transform cursor-pointer rounded-lg bg-blue-400 px-6 py-2 text-sm font-medium sm:px-8 sm:py-3 sm:font-semibold text-gray-900 shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 focus:ring-offset-amber-700"
+                  className="transform cursor-pointer rounded-lg bg-blue-400 px-6 py-2 text-sm font-medium sm:px-8 sm:py-3 sm:font-semibold text-gray-900 shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 focus:ring-offset-amber-700"
                 >
                   Login Now
                 </button>
@@ -139,22 +141,24 @@ const Dashboard = () => {
             defaultValue="leaderboard"
             className="w-full flex flex-col h-full"
           >
-            <TabsList className="grid w-full grid-cols-3 bg-white/20 p-1 rounded-3xl backdrop-blur-sm mb-2 shrink-0">
+            <TabsList
+              className={`grid w-full grid-cols-3 p-1 rounded-3xl backdrop-blur-sm mb-2 shrink-0 ${classes.cardBg}`}
+            >
               <TabsTrigger
                 value="live-activity"
-                className="py-2.5 text-sm font-bold data-[state=inactive]:text-gray-800 data-[state=active]:bg-white data-[state=active]:shadow-md rounded-3xl transition-all cursor-pointer"
+                className="py-2.5 text-sm font-bold data-[state=inactive]:text-gray-300 data-[state=active]:bg-white  rounded-3xl transition-all cursor-pointer"
               >
                 Live Activity
               </TabsTrigger>
               <TabsTrigger
                 value="leaderboard"
-                className="py-2.5 text-sm font-bold data-[state=inactive]:text-gray-800 data-[state=active]:bg-white data-[state=active]:shadow-md rounded-3xl transition-all cursor-pointer"
+                className="py-2.5 text-sm font-bold data-[state=inactive]:text-gray-300 data-[state=active]:bg-white  rounded-3xl transition-all cursor-pointer"
               >
                 Leaderboard
               </TabsTrigger>
               <TabsTrigger
                 value="hall-of-fame"
-                className="py-2.5 text-sm font-bold data-[state=inactive]:text-gray-800 data-[state=active]:bg-white data-[state=active]:shadow-md rounded-3xl transition-all cursor-pointer"
+                className="py-2.5 text-sm font-bold data-[state=inactive]:text-gray-300 data-[state=active]:bg-white  rounded-3xl transition-all cursor-pointer"
               >
                 Hall of Fame
               </TabsTrigger>
