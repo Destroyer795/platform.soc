@@ -184,7 +184,7 @@ const Dashboard = () => {
           </Tabs>
         </div>
       </div>
-      <footer className="w-full text-center py-4 mt-8 text-sm text-gray-950 font-medium ">
+      {/* <footer className="w-full text-center py-4 mt-8 text-sm text-gray-950 font-medium ">
         <span className="inline-flex items-center gap-2 justify-center">
           <span className="text-red-400 animate-pulse">❤️</span>
           <span>Powered by</span>
@@ -204,7 +204,7 @@ const Dashboard = () => {
             Infinite Sum Games
           </a>
         </span>
-      </footer>
+      </footer> */}
     </div>
   );
 };
