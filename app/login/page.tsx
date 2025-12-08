@@ -1,8 +1,5 @@
 'use client';
 
-import Navbar from '@/app/components/Navbar';
-import Cloud from '@/app/components/dashboard-components/Cloud';
-import SunGlareEffect from '@/app/components/dashboard-components/SunGlareEffect';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
 import { Label } from '@/app/components/ui/label';
@@ -12,6 +9,17 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import * as z from 'zod';
+
+export async function hashPassword(password: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  const hashHex = hashArray
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
+  return hashHex;
+}
 
 // Simplified Schema: Only Email and Password
 const formSchema = z.object({
@@ -71,10 +79,13 @@ export default function LoginPage() {
     try {
       const validatedData = formSchema.parse(formData);
 
+      const hashedPassword = await hashPassword(validatedData.password);
+
+      console.log({ ...validatedData, password: hashedPassword });
       const result = await make_api_call<{ access_token: string }>({
         url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
         method: 'POST',
-        body: validatedData,
+        body: { ...validatedData, password: hashedPassword },
       });
 
       if (!result.success) {
