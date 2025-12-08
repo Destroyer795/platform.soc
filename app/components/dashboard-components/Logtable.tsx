@@ -1,3 +1,5 @@
+'use client';
+
 import type React from 'react';
 
 import { Activity, Bug, Clock, Sparkles, Trophy } from 'lucide-react';
@@ -111,6 +113,7 @@ export default function Logtable() {
   const [fetchedLogs, setFetchedLogs] = useState<LogEntry[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { classes } = useTheme();
 
   // Setup clock
   useEffect(() => {
@@ -236,13 +239,12 @@ export default function Logtable() {
   if (error) {
     return <div className="p-4 text-red-500">{error}</div>;
   }
-  const { classes } = useTheme();
 
   return (
     <TooltipProvider>
       <div className="flex h-[500px] w-full sm:h-full">
         <Card
-          className={`flex h-full w-full flex-col overflow-hidden rounded-2xl border ${classes.cardBorder} ${classes.cardBg} shadow-lg backdrop-blur-md`}
+          className={`flex h-full w-full flex-col overflow-hidden rounded-2xl border ${classes.cardBorder} ${classes.cardBg} shadow-lg`}
         >
           <CardHeader
             className={`shrink-0 ${classes.cardBg} p-4 pb-2 backdrop-blur-md`}
@@ -250,7 +252,7 @@ export default function Logtable() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div
-                  className={`rounded-full bg-white/20 p-2 backdrop-blur-md ${
+                  className={`rounded-full bg-white/10 p-2 backdrop-blur-md ${
                     newActivity ? 'animate-pulse' : ''
                   }`}
                 >
@@ -297,28 +299,28 @@ export default function Logtable() {
               >
                 <TabsTrigger
                   value="all"
-                  className="!text-white !data-[state=active]:text-black bg-transparent !data-[state=active]:bg-white/20 rounded-3xl text-xs cursor-pointer"
+                  className="!text-gray-200 !data-[state=active]:text-black bg-transparent !data-[state=active]:bg-white/20 rounded-3xl text-xs cursor-pointer"
                   aria-label="Show all activity logs"
                 >
                   All
                 </TabsTrigger>
                 <TabsTrigger
                   value="top3"
-                  className="!text-white !data-[state=active]:text-black bg-transparent !data-[state=active]:bg-white/20 rounded-3xl text-xs cursor-pointer"
+                  className="!text-gray-200 !data-[state=active]:text-black bg-transparent !data-[state=active]:bg-white/20 rounded-3xl text-xs cursor-pointer"
                   aria-label="Show top 3 activity logs"
                 >
                   Top 3
                 </TabsTrigger>
                 <TabsTrigger
                   value="bounty"
-                  className="!text-white !data-[state=active]:text-black bg-transparent !data-[state=active]:bg-white/20 rounded-3xl text-xs cursor-pointer"
+                  className="!text-gray-200 !data-[state=active]:text-black bg-transparent !data-[state=active]:bg-white/20 rounded-3xl text-xs cursor-pointer"
                   aria-label="Show bounty activity logs"
                 >
                   Bounty
                 </TabsTrigger>
                 <TabsTrigger
                   value="issue"
-                  className="!text-white !data-[state=active]:text-black bg-transparent !data-[state=active]:bg-white/20 rounded-3xl text-xs cursor-pointer"
+                  className="!text-gray-200 !data-[state=active]:text-black bg-transparent !data-[state=active]:bg-white/20 rounded-3xl text-xs cursor-pointer"
                   aria-label="Show issue activity logs"
                 >
                   Issue
@@ -351,7 +353,7 @@ export default function Logtable() {
                             isFirst ? `animate-pulse-${pulseColor}` : ''
                           }`}
                         >
-                          <div className="relative rounded-full border border-white/50 bg-white/30 p-2 backdrop-blur-md">
+                          <div className="relative rounded-full border border-white/50 bg-white/20 p-2 backdrop-blur-md">
                             <Icon className={`h-5 w-5 ${iconColor}`} />
                             <span
                               className={`-top-1 -right-1 absolute h-2.5 w-2.5 rounded-full ${dotColor} border-2 border-white ${
@@ -361,7 +363,7 @@ export default function Logtable() {
                           </div>
                         </div>
 
-                        <div className="rounded-lg border border-white/30 bg-white/20 p-3 backdrop-blur-md">
+                        <div className="rounded-lg border border-white/20 bg-white/10 p-3 backdrop-blur-md">
                           <div className="mb-2 flex items-center gap-2">
                             <Avatar className="h-6 w-6">
                               <AvatarImage
@@ -391,7 +393,7 @@ export default function Logtable() {
                             </div>
                             <Badge
                               variant="secondary"
-                              className="border-none bg-white/30 backdrop-blur-md"
+                              className="border-none bg-white/20 backdrop-blur-md"
                             >
                               {label}
                             </Badge>
@@ -402,7 +404,7 @@ export default function Logtable() {
                             )}
                           </div>
 
-                          <div className="mb-2 text-gray-300 text-sm">
+                          <div className="mb-2 text-gray-100 text-sm">
                             {log.description}
                           </div>
 
@@ -411,7 +413,7 @@ export default function Logtable() {
                             <div className="flex items-center gap-2">
                               <Badge
                                 variant="outline"
-                                className="flex items-center gap-1 bg-white/30 backdrop-blur-md"
+                                className="flex items-center gap-1 bg-white/10 backdrop-blur-md text-gray-300 border-gray-500"
                               >
                                 <Clock className="h-3 w-3" />
                                 {timeAgo}
@@ -435,7 +437,7 @@ export default function Logtable() {
           </CardContent>
 
           <CardFooter className="flex shrink-0 items-center justify-between border-white/20 border-t bg-white/10 p-3 backdrop-blur-md">
-            <div className="max-w-[180px] truncate text-gray-300 text-xs sm:max-w-full">
+            <div className="max-w-[180px] truncate text-gray-200 text-xs sm:max-w-full">
               Live updates • Last activity:{' '}
               {fetchedLogs[0] ? getTimeAgo(fetchedLogs[0].timestamp) : 'N/A'}
             </div>
