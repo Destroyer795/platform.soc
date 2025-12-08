@@ -1,11 +1,14 @@
 'use client';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import Navbar from '@/app/components/Navbar';
 import Cloud from '@/app/components/dashboard-components/Cloud';
 import SunGlareEffect from '@/app/components/dashboard-components/SunGlareEffect';
 >>>>>>> 7215ad6 (feat: add login page)
+=======
+>>>>>>> e592dbc (feat: implement password hashing and update login button text)
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
 import { Label } from '@/app/components/ui/label';
@@ -17,6 +20,9 @@ import { useState } from 'react';
 import * as z from 'zod';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> e592dbc (feat: implement password hashing and update login button text)
 export async function hashPassword(password: string): Promise<string> {
   const encoder = new TextEncoder();
   const data = encoder.encode(password);
@@ -28,8 +34,11 @@ export async function hashPassword(password: string): Promise<string> {
   return hashHex;
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 7215ad6 (feat: add login page)
+=======
+>>>>>>> e592dbc (feat: implement password hashing and update login button text)
 // Simplified Schema: Only Email and Password
 const formSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -89,6 +98,7 @@ export default function LoginPage() {
       const validatedData = formSchema.parse(formData);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
       const hashedPassword = await hashPassword(validatedData.password);
 
       console.log({ ...validatedData, password: hashedPassword });
@@ -102,6 +112,15 @@ export default function LoginPage() {
         method: 'POST',
         body: validatedData,
 >>>>>>> 7215ad6 (feat: add login page)
+=======
+      const hashedPassword = await hashPassword(validatedData.password);
+
+      console.log({ ...validatedData, password: hashedPassword });
+      const result = await make_api_call<{ access_token: string }>({
+        url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
+        method: 'POST',
+        body: { ...validatedData, password: hashedPassword },
+>>>>>>> e592dbc (feat: implement password hashing and update login button text)
       });
 
       if (!result.success) {
