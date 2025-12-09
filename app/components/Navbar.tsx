@@ -41,7 +41,7 @@ const Navbar = () => {
     <div className="fixed top-4 left-0 flex w-full justify-center z-50">
       <nav
         className={`w-11/12 rounded-2xl  border-b  ${classes.cardBg}
-    ${classes.cardBorder} z-10`}
+    ${classes.cardBorder} z-50 backdrop-blur-2xl`}
       >
         <div className="mx-auto px-4 sm:px-6 lg:px-4">
           <div className="flex h-16 items-center justify-between">
@@ -141,11 +141,11 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="flex items-center md:hidden">
+            <div className={'flex items-center md:hidden '}>
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition-colors duration-200 hover:bg-blue-50 hover:text-blue-500 focus:outline-none"
+                className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 transition-colors duration-200 hover:bg-blue-50 hover:text-blue-500 focus:outline-none"
                 aria-label="Toggle menu"
               >
                 {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -155,50 +155,54 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
+
+        {/* Mobile Menu - Proper Extension */}
         <div
-          className={`overflow-hidden rounded-xl border-gray-200 border-t bg-white transition-all duration-400 ease-in-out md:hidden ${
-            mobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out border-t border-gray-500 ${
+            mobileMenuOpen ? 'max-h-[500px] ' : 'max-h-0 '
           }`}
         >
-          <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
+          <div
+            className={
+              'flex flex-col items-center gap-2 px-4 py-4 rounded-b-2xl'
+            }
+          >
             <MobileNavLink href="/">Home</MobileNavLink>
             <MobileNavLink href="/rules">Rules</MobileNavLink>
             <MobileNavLink href="/repo">Repositories</MobileNavLink>
             <MobileNavLink href="/bot-commands">Bot Commands</MobileNavLink>
-            {/* <MobileNavLink href="/announcements">Announcements</MobileNavLink> */}
             <MobileNavLink href="/request-for-code">
               Request for Code
             </MobileNavLink>
             <MobileNavLink href="/resources">Resources</MobileNavLink>
             <MobileNavLink href="/team">Team</MobileNavLink>
             <MobileNavLink href="/past-editions">Past Editions</MobileNavLink>
-            <div className="flex md:hidden items-center">
-              {user && (
-                <>
-                  <button
-                    type="button"
-                    onClick={() => router.push(`/profile/${github_username}`)}
-                    className="cursor-pointer flex items-center gap-2 rounded-l-full bg-white px-2 py-1 text-base font-semibold text-gray-800 shadow transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-200 w-full"
-                  >
-                    <img
-                      src={`https://github.com/${user.github_username}.png`}
-                      alt={user.github_username}
-                      className="h-8 w-8 rounded-full border border-gray-200"
-                    />
-                    <span className="font-semibold">
-                      {user.github_username}
-                    </span>
-                  </button>
-                  <div className="cursor-pointer flex items-center justify-center bg-red-200 rounded-r-full px-2 py-3 transition-all duration-200 ease-in-out hover:shadow-md">
-                    <LogOut
-                      color="red"
-                      onClick={handleLogout}
-                      className="h-4 w-4"
-                    />
-                  </div>
-                </>
-              )}
-            </div>
+
+            {/* Mobile Profile + Logout */}
+            {user && (
+              <div className="mt-3 flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => router.push(`/profile/${github_username}`)}
+                  className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-gray-200 shadow"
+                >
+                  <img
+                    src={`https://github.com/${user.github_username}.png`}
+                    alt={user.github_username}
+                    className="h-7 w-7 rounded-full border"
+                  />
+                  <span>{user.github_username}</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="flex items-center justify-center rounded-full bg-red-200 p-3"
+                >
+                  <LogOut className="h-4 w-4 text-red-600" />
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </nav>
@@ -234,7 +238,7 @@ const MobileNavLink = ({
 }) => (
   <Link
     href={href}
-    className="block rounded-md px-3 py-2 font-medium text-base text-gray-700 transition-colors duration-200 hover:bg-blue-50 hover:text-blue-500"
+    className="block rounded-md px-3 py-2 font-medium text-base text-gray-200 transition-colors duration-200 hover:bg-blue-50 hover:text-blue-500"
   >
     {children}
   </Link>
