@@ -1,14 +1,12 @@
 'use client';
-
-import React from 'react';
 import { useTheme } from '../components/theme-context'; // adjust path if needed
 
 const DevPoolDocs = () => {
   const { theme, classes } = useTheme();
 
   return (
-    <div className={'min-h-screen bg-gradient-to-br p-4 mt-6 md:mt-2 md:p-6'}>
-      <div className="max-w-7xl mx-auto">
+    <div className="max-h-screen bg-gradient-to-br p-4 mt-6 md:mt-2 md:p-6">
+      <div className="max-w-7xl mx-auto flex flex-col">
         {/* Header */}
         <div className="text-center mb-6 md:mb-8">
           <h1
@@ -23,13 +21,12 @@ const DevPoolDocs = () => {
           </p>
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-          {/* Contributors Panel */}
+        <div className="flex flex-col md:flex-row gap-4 flex-1">
+          {/* LEFT: Contributors Panel */}
           <div
-            className={`${classes.cardBg} ${classes.cardBorder} backdrop-blur-xl rounded-3xl p-4 md:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 col-span-1 md:col-span-4`}
+            className={`${classes.cardBg} ${classes.cardBorder} backdrop-blur-xl rounded-3xl p-4 md:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 w-full md:w-2/5 flex flex-col`}
           >
-            <div className="flex flex-col">
+            <div className="flex flex-col h-full">
               <div className="mb-4">
                 <div className="flex flex-row items-center gap-3 md:block">
                   <div className="flex-shrink-0 mb-0 md:mb-3 aspect-square w-12 bg-slate-500/20 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/30">
@@ -89,8 +86,8 @@ const DevPoolDocs = () => {
             </div>
           </div>
 
-          {/* Maintainer Commands */}
-          <div className="col-span-1 md:col-span-8 space-y-4">
+          {/* RIGHT: Maintainer Commands (stacked) */}
+          <div className="flex flex-col gap-4 w-full md:w-3/5">
             {/* Rewards & Penalties */}
             <div
               className={`${classes.cardBg} backdrop-blur-xl rounded-3xl p-4 md:p-6 ${classes.cardBorder} shadow-xl hover:shadow-2xl transition-all duration-300`}
@@ -156,6 +153,7 @@ const DevPoolDocs = () => {
               </div>
             </div>
 
+            {/* Achievements & Extensions Row */}
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
               {/* Achievements */}
               <div
