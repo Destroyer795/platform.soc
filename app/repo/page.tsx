@@ -19,6 +19,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import Navbar from '../components/Navbar';
 import IssueCard from '../components/repo-components/IssueCard';
 import RepoCard from '../components/repo-components/RepoCard';
+import { useTheme } from '../components/theme-context';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import {
@@ -36,7 +37,6 @@ import {
   TabsList,
   TabsTrigger,
 } from '../components/ui/tabs';
-
 /**
  * Randomize array in-place using Durstenfeld shuffle algorithm: Complexity 0(n)
  */
@@ -53,6 +53,7 @@ type IssueFilterType = 'all' | 'claimed' | 'unclaimed' | 'completed' | 'active';
 type IssueSortType = 'newest' | 'oldest';
 
 const ReposPage = () => {
+  const { classes } = useTheme();
   const {
     repos: repositories,
     isFetchingRepos,
@@ -263,14 +264,14 @@ const ReposPage = () => {
 
   const LoadingRepos = () => (
     <div className="flex flex-col items-center justify-center py-10 text-center">
-      <Loader2 className="mb-2 h-8 w-8 text-gray-600 animate-spin" />
-      <p className="text-gray-600">Loading repositories...</p>
+      <Loader2 className="mb-2 h-8 w-8 text-gray-400 animate-spin" />
+      <p className="text-gray-400">Loading repositories...</p>
     </div>
   );
 
   const LoadingIssues = () => (
     <div className="flex flex-col items-center justify-center py-10 text-center">
-      <Loader2 className="mb-2 h-8 w-8 text-gray-600 animate-spin" />
+      <Loader2 className="mb-2 h-8 w-8 text-gray-400 animate-spin" />
       <p className="text-gray-600">Loading issues...</p>
     </div>
   );
@@ -282,12 +283,12 @@ const ReposPage = () => {
           variant="outline"
           size="sm"
           type="button"
-          className="bg-white/40 cursor-pointer border-white/40 backdrop-blur-sm text-gray-800 hover:bg-white/50 hover:border-white/50 hover:text-gray-700"
+          className="bg-white/30 cursor-pointer border-white/40 backdrop-blur-sm text-gray-800 hover:bg-white/50 hover:border-white/50 hover:text-gray-700"
         >
           <Filter className="mr-1 h-4 w-4 text-gray-600" />
           <span>Filter</span>
           {issueFilter !== 'all' && (
-            <Badge className="ml-2 bg-gray-200 text-gray-800 border-white/30">
+            <Badge className="ml-2 bg-gray-400 text-gray-800 border-white/30">
               1
             </Badge>
           )}
@@ -439,7 +440,9 @@ const ReposPage = () => {
 
   const desktopView = (
     <div className="flex flex-col gap-6 md:flex-row h-[calc(100vh-105px)]">
-      <div className="w-full shrink-0 rounded-3xl bg-white/30 backdrop-blur-md border border-white/30 p-3 sm:p-4 md:p-5 shadow-lg md:w-1/2 lg:w-5/12 flex flex-col">
+      <div
+        className={`w-full shrink-0 rounded-3xl ${classes.cardBg} backdrop-blur-md border ${classes.cardBorder} p-3 sm:p-4 md:p-5 shadow-lg md:w-1/2 lg:w-5/12 flex flex-col`}
+      >
         <div className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-white/50 pb-2 shrink-0">
           <div className="flex items-center font-semibold text-2xl text-gray-800">
             <GitBranch
@@ -555,7 +558,9 @@ const ReposPage = () => {
         </div>
       </div>
 
-      <div className="w-full rounded-3xl bg-white/40 backdrop-blur-md border border-white/30 p-4 sm:p-5 shadow-lg md:w-1/2 lg:w-7/12 flex flex-col">
+      <div
+        className={`w-full rounded-3xl ${classes.cardBg}  backdrop-blur-md border border-white/30 p-4 sm:p-5 shadow-lg md:w-1/2 lg:w-7/12 flex flex-col`}
+      >
         <div className="mb-3 flex items-center justify-between border-b border-white/50 pb-2 shrink-0">
           <h2 className="flex items-center font-semibold text-2xl text-gray-800">
             <Code
