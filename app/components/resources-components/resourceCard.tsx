@@ -119,7 +119,7 @@ export default function Card({
         {/* Title */}
         <div className="mb-4 flex items-center justify-center">
           <h3
-            className={`line-clamp-2 text-center font-bold text-2xl ${classes.resourceCardTitle}`}
+            className={`line-clamp-2 text-center font-bold text-2xl ${classes.cardTitle}`}
           >
             {title}
           </h3>
@@ -127,9 +127,7 @@ export default function Card({
 
         {/* Description */}
         <div className="mb-4 flex-1">
-          <p
-            className={`line-clamp-3 text-center ${classes.resourceCardText} text-sm`}
-          >
+          <p className={`line-clamp-3 text-center ${classes.cardText} text-sm`}>
             {description}
           </p>
         </div>
@@ -166,12 +164,12 @@ export default function Card({
         <button
           type="button"
           onClick={onClick}
-          className={`group/button relative mt-4 flex w-full cursor-pointer items-center justify-center rounded-3xl ${classes.resourceCardButtonBg} px-4 py-3 font-medium ${classes.resourceCardText} shadow-sm transition-all duration-200 ${classes.resourceCardButtonHover} hover:shadow-md`}
+          className={`group/button relative mt-4 flex w-full cursor-pointer items-center justify-center rounded-3xl ${classes.resourceCardButtonBg} px-4 py-3 font-medium ${classes.cardText} shadow-sm transition-all duration-200 ${classes.cardHover} hover:shadow-md`}
         >
           <span className="text-center">{buttonText}</span>
           <MdArrowForward
             size={24}
-            className="absolute right-4 hidden transform transition-all duration-200 group-hover:translate-x-1 md:block group-hover:text-sky-400"
+            className="absolute right-4 hidden transform transition-all duration-200 group-hover:translate-x-1 md:block group-hover:text-sky-300 text-gray-200"
           />
         </button>
       </div>
