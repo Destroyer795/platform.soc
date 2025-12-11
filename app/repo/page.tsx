@@ -294,11 +294,11 @@ const ReposPage = () => {
           )}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-white/20 border-white/30 backdrop-blur-md text-gray-800">
-        <DropdownMenuLabel className="text-gray-700">
+      <DropdownMenuContent className="bg-white/40 border-white/30 backdrop-blur-md text-gray-800">
+        <DropdownMenuLabel className="text-gray-800">
           Filter Issues
         </DropdownMenuLabel>
-        <DropdownMenuSeparator className="bg-white/30" />
+        <DropdownMenuSeparator className="bg-white/50" />
         <DropdownMenuItem
           onClick={() => setIssueFilter('all')}
           className={cn(
@@ -381,7 +381,7 @@ const ReposPage = () => {
           )}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-white/20 border-white/30 backdrop-blur-md text-gray-800">
+      <DropdownMenuContent className="bg-white/40 border-white/30 backdrop-blur-md text-gray-800">
         <DropdownMenuLabel className="text-gray-700">
           Sort Issues
         </DropdownMenuLabel>
@@ -444,24 +444,24 @@ const ReposPage = () => {
         className={`w-full shrink-0 rounded-3xl ${classes.cardBg} backdrop-blur-md border ${classes.cardBorder} p-3 sm:p-4 md:p-5 shadow-lg md:w-1/2 lg:w-5/12 flex flex-col`}
       >
         <div className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-white/50 pb-2 shrink-0">
-          <div className="flex items-center font-semibold text-2xl text-gray-800">
+          <div className="flex items-center font-semibold text-2xl text-gray-200">
             <GitBranch
               className="mr-2 h-6 w-6"
-              color="#4B5563"
+              color="#FFFFFF"
             />
             Repositories
-            <span className="ml-2 text-gray-700">
+            <span className="ml-2 text-gray-200">
               ({filteredRepositories.length})
             </span>
           </div>
           <div className="flex gap-2 mt-2 sm:mt-0 w-full sm:w-auto">
             <div className="relative w-full max-w-xs">
-              <Search className="absolute top-2.5 left-2 h-4 w-4 text-gray-600" />
+              <Search className="absolute top-2.5 left-2 h-4 w-4 text-gray-900" />
               <Input
                 placeholder="Search repositories..."
                 value={repoSearchTerm}
                 onChange={(e) => setRepoSearchTerm(e.target.value)}
-                className="bg-white/40 border-white/40 backdrop-blur-sm pl-8 text-gray-800 focus:border-gray-500 focus:ring-1 focus:ring-gray-500 w-full"
+                className="bg-white/40 border-white/40 backdrop-blur-sm pl-8 text-gray-900 placeholder:text-gray-900 focus:border-gray-500 focus:ring-1 focus:ring-gray-500 w-full"
               />
               {repoSearchTerm && (
                 <button
@@ -562,14 +562,14 @@ const ReposPage = () => {
         className={`w-full rounded-3xl ${classes.cardBg}  backdrop-blur-md border border-white/30 p-4 sm:p-5 shadow-lg md:w-1/2 lg:w-7/12 flex flex-col`}
       >
         <div className="mb-3 flex items-center justify-between border-b border-white/50 pb-2 shrink-0">
-          <h2 className="flex items-center font-semibold text-2xl text-gray-800">
+          <h2 className="flex items-center font-semibold text-2xl text-gray-100">
             <Code
               className="mr-2 h-6 w-6"
-              color="#4B5563"
+              color="#FFFFFF"
             />
             Issues
             {selectedRepo && (
-              <span className="ml-2 text-lg text-gray-700 line-clamp-1">
+              <span className="ml-2 text-lg text-gray-200 line-clamp-1">
                 - {selectedRepo.name}
               </span>
             )}
@@ -590,12 +590,12 @@ const ReposPage = () => {
         {selectedRepo && (
           <div className="mb-2 flex flex-wrap items-center gap-2 rounded-lg p-3 shrink-0">
             <div className="relative max-w-md grow">
-              <Search className="absolute top-2.5 left-2 h-4 w-4 text-gray-600" />
+              <Search className="absolute top-2.5 left-2 h-4 w-4 text-black" />
               <Input
                 placeholder="Search issues..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="bg-white/40 border-white/40 backdrop-blur-sm pl-8 text-gray-800 focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
+                className="bg-white/40 border-white/40 placeholder:text-gray-900 backdrop-blur-sm pl-8 text-gray-900 focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
               />
               {searchTerm && (
                 <button
@@ -618,7 +618,7 @@ const ReposPage = () => {
                 size="sm"
                 type="button"
                 onClick={resetFilters}
-                className="bg-white/40 border-white/40 backdrop-blur-sm text-gray-800 hover:text-gray-600"
+                className="bg-white/40 border-white/40 backdrop-blur-sm text-gray-800 hover:text-gray-600 hover:bg-white/50"
               >
                 <X className="mr-1 h-4 w-4" /> Reset
               </Button>
@@ -672,7 +672,7 @@ const ReposPage = () => {
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center py-10 text-center">
-                <Search className="mb-2 h-10 w-10 text-gray-600" />
+                <Search className="mb-2 h-10 w-10 text-gray-900" />
                 <p className="text-gray-600">No issues found</p>
                 {hasActiveFilters && (
                   <Button
@@ -733,8 +733,8 @@ const ReposPage = () => {
         className="mt-4 rounded-2xl bg-white/40 backdrop-blur-md border border-white/30 p-4 sm:p-5 shadow-lg"
       >
         <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between border-b border-white/50 pb-2 shrink-0">
-          <div className="flex items-center font-semibold text-xl sm:text-2xl text-gray-800">
-            <GitBranch className="mr-2 h-6 w-6 text-gray-600" />
+          <div className="flex items-center font-semibold text-xl sm:text-2xl text-gray-100">
+            <GitBranch className="mr-2 h-6 w-6 text-gray-100" />
             Repositories
             <span className="ml-2 text-gray-700">
               ({filteredRepositories.length})
@@ -742,12 +742,12 @@ const ReposPage = () => {
           </div>
           <div className="flex gap-2 mt-2 sm:mt-0">
             <div className="relative">
-              <Search className="absolute top-2.5 left-2 h-4 w-4 text-gray-600" />
+              <Search className="absolute top-2.5 left-2 h-4 w-4 text-gray-900" />
               <Input
                 placeholder="Search repositories..."
                 value={repoSearchTerm}
                 onChange={(e) => setRepoSearchTerm(e.target.value)}
-                className="bg-white/40 border-white/40 backdrop-blur-sm pl-8 text-gray-800 focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
+                className="bg-white/40 border-white/40 backdrop-blur-sm pl-8 text-gray-800 focus:border-gray-500 focus:ring-1 focus:ring-gray-500 placeholder:text-gray-900"
                 style={{ minWidth: 140 }}
               />
               {repoSearchTerm && (
@@ -842,7 +842,7 @@ const ReposPage = () => {
               ))
             ) : (
               <div className="flex flex-col items-center justify-center py-10 text-center">
-                <GitBranch className="mb-2 h-10 w-10 text-gray-600" />
+                <GitBranch className="mb-2 h-10 w-10 text-gray-200" />
                 <p className="text-gray-600">No repositories found.</p>
               </div>
             )}
@@ -879,12 +879,12 @@ const ReposPage = () => {
         {selectedRepo && (
           <div className="mb-4 space-y-3  rounded-lg p-3">
             <div className="relative">
-              <Search className="absolute top-2.5 left-2 h-4 w-4 text-gray-600" />
+              <Search className="absolute top-2.5 left-2 h-4 w-4 text-gray-200" />
               <Input
                 placeholder="Search issues..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="bg-white/40 border-white/40 backdrop-blur-sm pl-8 text-gray-800 focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
+                className="bg-white/40 border-white/40 backdrop-blur-sm pl-8 text-gray-200 focus:border-gray-200 focus:ring-1 focus:ring-gray-200"
               />
               {searchTerm && (
                 <button
@@ -893,7 +893,7 @@ const ReposPage = () => {
                   onClick={() => setSearchTerm('')}
                   aria-label="Clear search"
                 >
-                  <X className="h-4 w-4 text-gray-600 hover:text-gray-500" />
+                  <X className="h-4 w-4 text-gray-200 hover:text-gray-500" />
                 </button>
               )}
             </div>

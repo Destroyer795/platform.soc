@@ -16,7 +16,7 @@ const RepoCard = (props: ReposData) => {
 
   return (
     <Card
-      className={`${classes.chipBg} border ${classes.selectedChipBorder} shadow-sm w-full transition-all duration-300 hover:${classes.cardHover} hover:shadow-lg`}
+      className={`bg-white/45 border ${classes.selectedChipBorder} shadow-sm w-full transition-all duration-300 hover:${classes.cardHover} hover:shadow-lg`}
     >
       <div className="flex h-full flex-row items-center justify-between p-4 sm:p-5">
         <div>
@@ -25,13 +25,13 @@ const RepoCard = (props: ReposData) => {
               <CardTitle className="mb-0">
                 <a
                   href={props.url}
-                  className={`text-xl sm:text-2xl font-bold flex flex-row items-center ${classes.cardTitle} focus:text-gray-600 transition-colors duration-200`}
+                  className="text-xl sm:text-2xl font-bold flex flex-row items-center text-gray-900 focus:text-gray-600 transition-colors duration-200"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <Github
                     className="hidden md:block mr-3 h-5 w-5 flex-shrink-0"
-                    color="#4B5563"
+                    color="#111111"
                     aria-hidden="true"
                   />
                   <span className="line-clamp-2 text-left">{props.name}</span>
@@ -45,7 +45,7 @@ const RepoCard = (props: ReposData) => {
                   key={username}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={` hover:text-gray-500 focus:text-gray-500 transition-colors duration-200 ${classes.cardText}`}
+                  className="hover:text-gray-500 focus:text-gray-500 transition-colors duration-200 text-gray-900"
                 >
                   <span
                     key={username}
@@ -58,9 +58,7 @@ const RepoCard = (props: ReposData) => {
               ))}
             </div>
           </CardHeader>
-          <CardDescription
-            className={`mt-2 ${classes.cardText} text-sm sm:text-base`}
-          >
+          <CardDescription className="mt-2 text-gray-900 text-sm sm:text-base">
             {props.description}
           </CardDescription>
           <div
