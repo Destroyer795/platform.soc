@@ -259,9 +259,9 @@ const Leaderboard = ({ user }: { user: AuthUser | null }) => {
               <button
                 type="button"
                 onClick={() => sortData('Bounty')}
-                className="flex items-center cursor-pointer gap-1 rounded-3xl bg-gray-700 px-3 py-1 font-medium text-gray-200 shadow-sm transition-all duration-200 hover:bg-amber-500/70 hover:text-gray-800 hover:shadow-md"
+                className="flex items-center cursor-pointer gap-1 rounded-3xl bg-yellow-600 px-3 py-1 font-medium text-gray-800 shadow-sm transition-all duration-200 hover:bg-amber-500/90 hover:text-gray-800 hover:shadow-md"
               >
-                <MdMonetizationOn className="mr-1 text-gray-200" /> Bounty
+                <MdMonetizationOn className="mr-1 text-gray-800" /> Bounty
                 {getSortIcon('Bounty')}
               </button>
             </div>
