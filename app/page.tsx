@@ -77,6 +77,13 @@ const Dashboard = () => {
                 className="h-auto max-w-[100px] object-contain"
               />
               <Image
+                src="/anokha.png"
+                alt="Anokha Logo"
+                width={100}
+                height={0}
+                className="h-auto max-w-[100px] object-contain"
+              />
+              <Image
                 src="/acmlogonew.webp"
                 alt="ACM Logo"
                 width={60}
