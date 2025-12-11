@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { tierStyles } from '../../components/profile-components/BadgeVariants';
-
+import { useTheme } from '../theme-context';
 interface BadgeProps {
   username: string;
   pullRequests: string;
@@ -99,7 +99,7 @@ const Badge: React.FC<BadgeProps> = ({
     gold: 'shadow-yellow-400/30',
     diamond: 'shadow-cyan-400/30',
   };
-
+  const { classes } = useTheme();
   return (
     <div className="relative text-center flex flex-col items-center justify-center">
       <div
@@ -120,11 +120,11 @@ const Badge: React.FC<BadgeProps> = ({
           {tier === 'gold' && '🥇'}
         </div>
       </div>
-      <p className="text-sm text-gray-900 font-bold leading-tight mt-2">
+      <p className={`text-sm ${classes.chipText} font-bold leading-tight mt-2`}>
         {badgeName}
       </p>
       <p
-        className="text-sm text-gray-800 truncate max-w-[80px] font-mono"
+        className={`text-sm ${classes.chipText} truncate max-w-[80px] font-mono`}
         title={`@${username}`}
       >
         {isClaimed ? `@${username}` : 'Unclaimed'}

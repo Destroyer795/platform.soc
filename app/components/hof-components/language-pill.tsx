@@ -76,8 +76,10 @@ const LanguagePill: React.FC<LanguagePillProps> = ({
   const { classes } = useTheme();
 
   return (
-    <div className="relative w-full max-w-md mx-auto bg-white/25 backdrop-blur-2xl rounded-2xl p-3 border border-white/30 shadow hover:shadow-md transition-all duration-300">
-      <div className="absolute inset-0 bg-white/10 rounded-2xl opacity-20" />
+    <div
+      className={`relative w-full max-w-md mx-auto rounded-2xl p-3 border ${classes.chipBg} border-${classes.cardBorder} shadow hover:shadow-md transition-all duration-300`}
+    >
+      <div className="absolute inset-0 rounded-2xl opacity-20" />
       <BackgroundWaves
         width={400}
         height={200}
@@ -133,7 +135,7 @@ const LanguagePill: React.FC<LanguagePillProps> = ({
             {getDisplayLang(language)}
           </h3>
         </div>
-        <p className={`text-xs ${classes.cardText} -mt-2 mb-3 text-center`}>
+        <p className={`text-md ${classes.cardText} -mt-2 mb-3 text-center`}>
           {badgeDescriptionsMapping[language.toLowerCase()] ||
             'Outstanding Contribution'}
         </p>
