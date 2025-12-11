@@ -156,8 +156,8 @@ const Navbar = () => {
 
         {/* Mobile Menu - Proper Extension */}
         <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out border-t border-gray-500 ${
-            mobileMenuOpen ? 'max-h-[500px] ' : 'max-h-0 '
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out border-gray-500 ${
+            mobileMenuOpen ? 'max-h-[500px] border-t' : 'max-h-0 '
           }`}
         >
           <div
