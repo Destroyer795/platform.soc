@@ -97,11 +97,12 @@ const Dashboard = () => {
             Amrita
           </h1>
           <h1 className="mb-4 md:mb-6 font-extrabold text-4xl sm:text-5xl md:text-6xl tracking-tight text-blue-400">
-            Winter of Code
+            Winter of Code 2.0
           </h1>
           <p className="mb-6 max-w-2xl text-base sm:text-lg md:text-xl text-gray-100 text-center md:text-left px-4 md:px-0">
-            After a successful Summer of Code, the ACM student chapter is back
-            with the <strong className="text-blue-400">Winter of Code</strong>.
+            After a successful Winter of Code last year, the ACM student chapter
+            is back with the{' '}
+            <strong className="text-blue-400">Winter of Code 2.0</strong>.
             Collaborate, learn, build innovative projects and showcase your
             skills!
           </p>
