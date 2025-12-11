@@ -16,7 +16,7 @@ const RepoCard = (props: ReposData) => {
 
   return (
     <Card
-      className={`${classes.cardBg} backdrop-blur-md border ${classes.cardBorder} shadow-sm w-full transition-all duration-300 hover:${classes.cardHover} hover:shadow-lg`}
+      className={`${classes.chipBg} border ${classes.selectedChipBorder} shadow-sm w-full transition-all duration-300 hover:${classes.cardHover} hover:shadow-lg`}
     >
       <div className="flex h-full flex-row items-center justify-between p-4 sm:p-5">
         <div>
@@ -70,7 +70,7 @@ const RepoCard = (props: ReposData) => {
               <Badge
                 key={techname}
                 variant="outline"
-                className={`flex items-center px-2 py-1.5 text-sm sm:text-sm bg-white/40 border-white/40 backdrop-blur-sm ${classes.cardText} hover:bg-white/50 focus:bg-white/50 transition-all duration-200`}
+                className={`flex items-center px-2 py-1.5 text-sm sm:text-sm ${classes.cardBg} border-white/40 backdrop-blur-sm  hover:bg-white/50 focus:bg-white/50 transition-all duration-200`}
               >
                 <img
                   className="mr-2"

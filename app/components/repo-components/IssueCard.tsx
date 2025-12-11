@@ -43,7 +43,7 @@ const IssueCard = (props: IssuesData) => {
 
   return (
     <Card
-      className={`mb-4 ${classes.cardBg} backdrop-blur-md border ${classes.cardBorder} shadow-sm transition-all duration-300 ${classes.cardHover} hover:shadow-lg relative overflow-hidden`}
+      className={`mb-4 ${classes.chipBg} border ${classes.selectedChipBorder} shadow-sm transition-all duration-300 ${classes.cardHover} hover:shadow-lg relative overflow-hidden`}
       aria-label={`Issue: ${title} ${
         completionStatus
           ? '- Completed'
