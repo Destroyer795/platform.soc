@@ -54,11 +54,9 @@ const Navbar = () => {
                 href="/"
                 aria-label="Home"
               >
-                <div
-                  className={`flex h-10 w-10 items-center justify-center overflow-hidden rounded-full ${classes.chipBg} shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg sm:h-12 sm:w-12`}
-                >
+                <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg sm:h-12 sm:w-12">
                   <Image
-                    src="/acmilogo.png"
+                    src="/acmlogonew.webp"
                     alt="ACM Logo"
                     width={48}
                     height={48}
