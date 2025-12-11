@@ -144,7 +144,7 @@ export default function RootLayout({
         {/* ✅ GLOBAL BACKGROUND WRAPPER */}
         <div className="fixed inset-0 -z-10">
           <Image
-            src="/winter_bg1.png"
+            src="/winter_bg1.jpg"
             alt="Winter Background"
             fill
             priority
