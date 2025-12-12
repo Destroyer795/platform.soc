@@ -151,7 +151,7 @@ export default function RootLayout({
             className="hidden md:block object-cover"
           />
           <Image
-            src="/winter_bg_mobile.png"
+            src="/winter_bg_mobile.jpeg"
             alt="Winter Mobile Background"
             fill
             priority
