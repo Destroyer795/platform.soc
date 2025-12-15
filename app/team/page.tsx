@@ -1,6 +1,6 @@
 'use client';
-import Navbar from '@/app/components/Navbar';
 import Card from '@/app/components/TeamProfileCard';
+import { Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTheme } from '../components/theme-context';
 
@@ -48,16 +48,16 @@ const TeamPage = () => {
   }, []);
 
   // Toggle a tag in the selectedLabels array
-  const toggleTag = (tag: string) => {
-    setSelectedLabels((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
-    );
-  };
+  // const toggleTag = (tag: string) => {
+  //   setSelectedLabels((prev) =>
+  //     prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
+  //   );
+  // };
 
   // Clear all selected tags
-  const clearFilters = () => {
-    setSelectedLabels([]);
-  };
+  // const clearFilters = () => {
+  //   setSelectedLabels([]);
+  // };
 
   // Filtering Logic (same as before)
   const filteredTeam =
@@ -85,10 +85,10 @@ const TeamPage = () => {
           Our Team
         </h1>
         <p
-          className={`mx-auto mt-2 max-w-xl text-lg ${classes.pageDesc} drop-shadow-[0_1px_6px_rgba(255,255,255,0.2)]`}
+          className={`mx-auto mt-2 max-w-2xl text-lg ${classes.pageDesc} drop-shadow-[0_1px_6px_rgba(255,255,255,0.2)]`}
         >
-          Meet the team of organizers and maintainers behind Amrita's Summer of
-          Code 2025.
+          Meet the team of organizers and maintainers behind Winter of Code,
+          2026.
         </p>
 
         {/* TODO: Filter Chips (enable after all maintainers are added) */}
@@ -126,8 +126,9 @@ const TeamPage = () => {
       {/* Cards Section */}
       <section className="mx-auto max-w-(--breakpoint-xl) px-4 pb-8 sm:px-6 md:px-8">
         {isLoading ? (
-          <div className="flex min-h-[60vh] items-center justify-center">
-            <p className="text-white">Loading team...</p>
+          <div className="flex min-h-[60vh] items-center justify-center gap-2">
+            <Loader2 className="animate-spin w-5 h-5 text-white" />
+            <p className="text-white">Fetching team...</p>
           </div>
         ) : error ? (
           <div className="flex min-h-[60vh] items-center justify-center">
