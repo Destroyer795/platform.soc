@@ -29,6 +29,13 @@
       "designation": "ACM Amrita Secretary"
     },
     {
+      "name": "Adithya Menon R",
+      "username": "adithya-menon-r",
+      "avatar": "https://avatars.githubusercontent.com/u/115925529?v=4",
+      "tags": ["Maintainer", "Organizer"],
+      "designation": "ACM Amrita Webmaster"
+    },
+    {
       "name": "Ashwin Narayanan S",
       "avatar": "https://avatars.githubusercontent.com/u/90165751?v=4",
       "username": "Ashrockzzz2003",
@@ -69,13 +76,6 @@
       "avatar": "https://avatars.githubusercontent.com/u/145009677?v=4",
       "tags": ["Organizer"],
       "designation": "Volunteer"
-    },
-    {
-      "name": "Adithya Menon R",
-      "username": "adithya-menon-r",
-      "avatar": "https://avatars.githubusercontent.com/u/115925529?v=4",
-      "tags": ["Maintainer", "Organizer"],
-      "designation": "ACM Member"
     },
     {
       "name": "Adhikkesh SK",
