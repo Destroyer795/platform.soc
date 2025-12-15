@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import localFont from 'next/font/local';
+import Image from 'next/image';
 import Navbar from './components/Navbar';
 import Cloud from './components/dashboard-components/Cloud';
+import Snowfall from './components/dashboard-components/Snowfall';
 import SunGlareEffect from './components/dashboard-components/SunGlareEffect';
 import { ThemeProvider } from './components/theme-context';
 import { Toaster } from './components/ui/toaster';
@@ -119,40 +121,66 @@ const gilroy = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'SoC | ACM Amrita',
-  description: 'Leaderboard for Summer of Code',
+  title: 'WoC 2.0 | ACM Amrita',
+  description: 'Platform for the Winter of Code 2.0 Event',
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <head>
         <link
           rel="icon"
-          href="fallbackImage.jpg"
+          href="fallback-penguin.jpg"
           type="image/jpeg"
         />
       </head>
-
       <body
-        className={`${gilroy.className} antialiased pt-20`}
+        className={`${gilroy.className} antialiased`}
         style={{
           background: theme === 'SUMMER' ? summerGradient : winterGradient,
         }}
       >
+        {theme === 'WINTER' && (
+          <div className="fixed inset-0 -z-10">
+            <Image
+              src="/winter-theme/winterBg.jpg"
+              alt="Winter Background"
+              fill
+              priority
+              className="hidden md:block object-cover"
+            />
+            <Image
+              src="/winter-theme/winterBgMobile.jpeg"
+              alt="Winter Mobile Background"
+              fill
+              priority
+              className="block md:hidden object-cover"
+            />
+          </div>
+        )}
+
         <ThemeProvider>
           <Navbar />
+
+          {/* ✅ NAVBAR SPACER — PUSHES CONTENT, NOT BACKGROUND */}
+          <div className="h-20" />
+
+          {theme === 'WINTER' && <Snowfall />}
+
           {theme === 'SUMMER' && (
             <>
               <SunGlareEffect />
               <Cloud />
             </>
           )}
+
           {children}
+
           <Toaster />
         </ThemeProvider>
       </body>

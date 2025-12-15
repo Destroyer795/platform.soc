@@ -43,7 +43,7 @@ const IssueCard = (props: IssuesData) => {
 
   return (
     <Card
-      className={`mb-4 ${classes.cardBg} backdrop-blur-md border ${classes.cardBorder} shadow-sm transition-all duration-300 ${classes.cardHover} hover:shadow-lg relative overflow-hidden`}
+      className={`mb-4 bg-white/45 border ${classes.selectedChipBorder} shadow-sm transition-all duration-300 ${classes.cardHover} hover:shadow-lg relative overflow-hidden`}
       aria-label={`Issue: ${title} ${
         completionStatus
           ? '- Completed'
@@ -57,18 +57,16 @@ const IssueCard = (props: IssuesData) => {
           className={`p-4 sm:p-5 pb-2 border-b ${classes.cardBorder}`}
         >
           <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
-            <CardTitle
-              className={`group mb-0 flex-grow min-w-0 font-semibold text-base sm:text-lg ${classes.cardTitle}`}
-            >
+            <CardTitle className="group mb-0 flex-grow min-w-0 font-semibold text-base sm:text-lg text-gray-900">
               <Link
                 href={url}
                 passHref
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 text-gray-600 hover:text-gray-500 focus:text-gray-500 transition-colors duration-200"
+                className="flex items-center gap-1 text-gray-900 hover:text-blue-100 focus:text-blue-100 transition-colors duration-200"
                 aria-label={`Open issue "${title}" in a new tab`}
               >
-                <span className="text-gray-800 truncate">{title}</span>
+                <span className="text-gray-900 truncate">{title}</span>
                 <ExternalLink
                   className="h-4 w-4 shrink-0 transition-transform duration-200 hover:scale-110"
                   aria-hidden="true"
@@ -130,7 +128,7 @@ const IssueCard = (props: IssuesData) => {
                   } active`}
                 >
                   <GitPullRequest
-                    className="mr-1.5 h-4 w-4 text-gray-600"
+                    className="mr-1.5 h-4 w-4 text-gray-300"
                     aria-hidden="true"
                   />
                   <span>

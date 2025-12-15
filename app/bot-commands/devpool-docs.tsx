@@ -1,14 +1,12 @@
 'use client';
-
-import React from 'react';
 import { useTheme } from '../components/theme-context'; // adjust path if needed
 
 const DevPoolDocs = () => {
   const { theme, classes } = useTheme();
 
   return (
-    <div className={'min-h-screen bg-gradient-to-br p-4 mt-6 md:mt-2 md:p-6'}>
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br p-4 mt-6 md:mt-2 md:p-6 pb-10">
+      <div className="max-w-7xl mx-auto flex flex-col">
         {/* Header */}
         <div className="text-center mb-6 md:mb-8">
           <h1
@@ -19,17 +17,16 @@ const DevPoolDocs = () => {
           <p
             className={`mx-auto mt-2 max-w-xl text-base md:text-lg drop-shadow-[0_1px_6px_rgba(255,255,255,0.2)] ${classes.pageDesc}`}
           >
-            Your guide to Summer of Code's bot commands
+            Your guide to Winter of Code's bot commands
           </p>
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-          {/* Contributors Panel */}
+        <div className="flex flex-col md:flex-row gap-4 flex-1">
+          {/* LEFT: Contributors Panel */}
           <div
-            className={`${classes.cardBg} ${classes.cardBorder} backdrop-blur-xl rounded-3xl p-4 md:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 col-span-1 md:col-span-4`}
+            className={`${classes.cardBg} ${classes.cardBorder} backdrop-blur-xl rounded-3xl p-4 md:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 w-full md:w-2/5 flex flex-col`}
           >
-            <div className="flex flex-col">
+            <div className="flex flex-col h-full">
               <div className="mb-4">
                 <div className="flex flex-row items-center gap-3 md:block">
                   <div className="flex-shrink-0 mb-0 md:mb-3 aspect-square w-12 bg-slate-500/20 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/30">
@@ -42,7 +39,7 @@ const DevPoolDocs = () => {
                       Contributors
                     </h2>
                     <p className={`text-sm md:text-base ${classes.cardText}`}>
-                      Commands for registered Summer of Code participants
+                      Commands for registered Winter of Code participants
                     </p>
                   </div>
                 </div>
@@ -89,8 +86,8 @@ const DevPoolDocs = () => {
             </div>
           </div>
 
-          {/* Maintainer Commands */}
-          <div className="col-span-1 md:col-span-8 space-y-4">
+          {/* RIGHT: Maintainer Commands (stacked) */}
+          <div className="flex flex-col gap-4 w-full md:w-3/5">
             {/* Rewards & Penalties */}
             <div
               className={`${classes.cardBg} backdrop-blur-xl rounded-3xl p-4 md:p-6 ${classes.cardBorder} shadow-xl hover:shadow-2xl transition-all duration-300`}
@@ -156,6 +153,7 @@ const DevPoolDocs = () => {
               </div>
             </div>
 
+            {/* Achievements & Extensions Row */}
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
               {/* Achievements */}
               <div
@@ -189,7 +187,9 @@ const DevPoolDocs = () => {
                       key={i}
                       className={`${classes.cardBg} backdrop-blur-sm rounded-xl p-3 ${classes.cardBorder}`}
                     >
-                      <code className="font-bold text-indigo-700">{b.cmd}</code>
+                      <code className={`font-bold ${classes.cardTitle}`}>
+                        {b.cmd}
+                      </code>
                       <p className={`${classes.cardText} text-sm mt-1`}>
                         {b.desc}
                       </p>

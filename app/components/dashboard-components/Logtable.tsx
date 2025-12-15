@@ -1,7 +1,10 @@
+'use client';
+
 import type React from 'react';
 
 import { Activity, Bug, Clock, Sparkles, Trophy } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { useTheme } from '../theme-context';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Badge } from '../ui/badge';
 import {
@@ -110,6 +113,7 @@ export default function Logtable() {
   const [fetchedLogs, setFetchedLogs] = useState<LogEntry[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { classes } = useTheme();
 
   // Setup clock
   useEffect(() => {
@@ -229,7 +233,7 @@ export default function Logtable() {
   }, [activeTab, fetchedLogs]);
 
   if (isLoading) {
-    return <div className="p-4 text-gray-800">Loading logs...</div>;
+    return <div className="p-4 text-gray-300">Loading logs...</div>;
   }
 
   if (error) {
@@ -239,19 +243,23 @@ export default function Logtable() {
   return (
     <TooltipProvider>
       <div className="flex h-[500px] w-full sm:h-full">
-        <Card className="flex h-full w-full flex-col overflow-hidden rounded-2xl border border-white/20 bg-white/30 shadow-lg backdrop-blur-md">
-          <CardHeader className="shrink-0 bg-white/10 p-4 pb-2 backdrop-blur-md">
+        <Card
+          className={`flex h-full w-full flex-col overflow-hidden rounded-2xl border ${classes.cardBorder} ${classes.cardBg} shadow-lg`}
+        >
+          <CardHeader
+            className={`shrink-0 ${classes.cardBg} p-4 pb-2 backdrop-blur-md`}
+          >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div
-                  className={`rounded-full bg-white/20 p-2 backdrop-blur-md ${
+                  className={`rounded-full bg-white/10 p-2 backdrop-blur-md ${
                     newActivity ? 'animate-pulse' : ''
                   }`}
                 >
                   <Activity className="h-5 w-5 text-blue-500" />
                 </div>
                 <div className="flex flex-col items-start sm:flex-row sm:items-center sm:gap-2">
-                  <CardTitle className="font-bold text-gray-800 text-xl">
+                  <CardTitle className="font-bold text-gray-100 text-xl">
                     Live Activity
                   </CardTitle>
                   {newActivity && (
@@ -286,31 +294,33 @@ export default function Logtable() {
               className="mt-2 rounded-3xl"
               onValueChange={setActiveTab}
             >
-              <TabsList className="rounded-3xl bg-white/20 backdrop-blur-md">
+              <TabsList
+                className={`rounded-3xl ${classes.cardBg} backdrop-blur-md`}
+              >
                 <TabsTrigger
                   value="all"
-                  className="rounded-3xl text-xs cursor-pointer"
+                  className="!text-gray-200 !data-[state=active]:text-black bg-transparent !data-[state=active]:bg-white/20 rounded-3xl text-xs cursor-pointer"
                   aria-label="Show all activity logs"
                 >
                   All
                 </TabsTrigger>
                 <TabsTrigger
                   value="top3"
-                  className="rounded-3xl text-xs cursor-pointer"
+                  className="!text-gray-200 !data-[state=active]:text-black bg-transparent !data-[state=active]:bg-white/20 rounded-3xl text-xs cursor-pointer"
                   aria-label="Show top 3 activity logs"
                 >
                   Top 3
                 </TabsTrigger>
                 <TabsTrigger
                   value="bounty"
-                  className="rounded-3xl text-xs cursor-pointer"
+                  className="!text-gray-200 !data-[state=active]:text-black bg-transparent !data-[state=active]:bg-white/20 rounded-3xl text-xs cursor-pointer"
                   aria-label="Show bounty activity logs"
                 >
                   Bounty
                 </TabsTrigger>
                 <TabsTrigger
                   value="issue"
-                  className="rounded-3xl text-xs cursor-pointer"
+                  className="!text-gray-200 !data-[state=active]:text-black bg-transparent !data-[state=active]:bg-white/20 rounded-3xl text-xs cursor-pointer"
                   aria-label="Show issue activity logs"
                 >
                   Issue
@@ -343,7 +353,7 @@ export default function Logtable() {
                             isFirst ? `animate-pulse-${pulseColor}` : ''
                           }`}
                         >
-                          <div className="relative rounded-full border border-white/50 bg-white/30 p-2 backdrop-blur-md">
+                          <div className="relative rounded-full border border-white/50 bg-white/20 p-2 backdrop-blur-md">
                             <Icon className={`h-5 w-5 ${iconColor}`} />
                             <span
                               className={`-top-1 -right-1 absolute h-2.5 w-2.5 rounded-full ${dotColor} border-2 border-white ${
@@ -353,7 +363,7 @@ export default function Logtable() {
                           </div>
                         </div>
 
-                        <div className="rounded-lg border border-white/30 bg-white/20 p-3 backdrop-blur-md">
+                        <div className="rounded-lg border border-white/20 bg-white/10 p-3 backdrop-blur-md">
                           <div className="mb-2 flex items-center gap-2">
                             <Avatar className="h-6 w-6">
                               <AvatarImage
@@ -364,7 +374,7 @@ export default function Logtable() {
                                 {log.user.substring(0, 2).toUpperCase()}
                               </AvatarFallback>
                             </Avatar>
-                            <div className="font-semibold text-gray-800 text-sm">
+                            <div className="font-semibold text-gray-100 text-sm">
                               <Tooltip>
                                 <TooltipTrigger asChild>
                                   <a
@@ -383,7 +393,7 @@ export default function Logtable() {
                             </div>
                             <Badge
                               variant="secondary"
-                              className="border-none bg-white/30 backdrop-blur-md"
+                              className="border-none bg-white/20 backdrop-blur-md"
                             >
                               {label}
                             </Badge>
@@ -394,16 +404,16 @@ export default function Logtable() {
                             )}
                           </div>
 
-                          <div className="mb-2 text-gray-800 text-sm">
+                          <div className="mb-2 text-gray-100 text-sm">
                             {log.description}
                           </div>
 
-                          <div className="flex items-center justify-between text-gray-700 text-xs">
+                          <div className="flex items-center justify-between text-gray-300 text-xs">
                             <div>{formatDate(log.timestamp)}</div>
                             <div className="flex items-center gap-2">
                               <Badge
                                 variant="outline"
-                                className="flex items-center gap-1 bg-white/30 backdrop-blur-md"
+                                className="flex items-center gap-1 bg-white/10 backdrop-blur-md text-gray-300 border-gray-500"
                               >
                                 <Clock className="h-3 w-3" />
                                 {timeAgo}
@@ -427,7 +437,7 @@ export default function Logtable() {
           </CardContent>
 
           <CardFooter className="flex shrink-0 items-center justify-between border-white/20 border-t bg-white/10 p-3 backdrop-blur-md">
-            <div className="max-w-[180px] truncate text-gray-700 text-xs sm:max-w-full">
+            <div className="max-w-[180px] truncate text-gray-200 text-xs sm:max-w-full">
               Live updates • Last activity:{' '}
               {fetchedLogs[0] ? getTimeAgo(fetchedLogs[0].timestamp) : 'N/A'}
             </div>

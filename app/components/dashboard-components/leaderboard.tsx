@@ -1,9 +1,9 @@
 'use client';
 import { ScrollArea } from '@/app/components/ui/scroll-area';
 import { make_api_call } from '@/app/lib/api';
-import { AuthState, type AuthUser } from '@/app/store/useAuthStore';
+import type { AuthUser } from '@/app/store/useAuthStore';
 import useLeaderboardStore from '@/app/store/useLeaderboardStore';
-import { ArrowLeftCircle, ArrowRightCircle } from 'lucide-react';
+import { ArrowLeftCircle, ArrowRightCircle, Users } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -35,7 +35,6 @@ const Leaderboard = ({ user }: { user: AuthUser | null }) => {
     null,
   );
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
-
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
@@ -192,9 +191,16 @@ const Leaderboard = ({ user }: { user: AuthUser | null }) => {
   const { classes } = useTheme();
 
   return (
-    <Card className="z-10 flex w-full max-h-full flex-col rounded-3xl border border-white/20 bg-white/35 p-4 backdrop-blur-md">
+    <Card
+      className={`
+    z-10 flex w-full max-h-full flex-col rounded-3xl
+    ${classes.cardBg}
+    ${classes.cardBorder}
+    p-4 backdrop-blur-md
+  `}
+    >
       <div className="flex items-center justify-between">
-        <div>
+        <div className="min-w-0 overflow-hidden">
           <CardHeader
             className={`p-0 pb-1 font-bold text-4xl ${classes.cardTitle}`}
           >
@@ -210,9 +216,11 @@ const Leaderboard = ({ user }: { user: AuthUser | null }) => {
           <button
             type="button"
             onClick={handleShowParticipants}
-            className="flex transform cursor-pointer items-center gap-2 rounded-lg bg-gray-800/80 px-3 py-2 text-xs font-medium text-white shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-slate-900 sm:px-4 sm:text-sm"
+            aria-label="Show participants"
+            className="flex-shrink-0 flex items-center gap-2 rounded-lg bg-gray-800/80 px-2 py-2 text-xs font-medium text-white shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-slate-900 cursor-pointer"
           >
-            Participants
+            <Users className="h-4 w-4" />
+            <span className="hidden md:inline text-sm">Participants</span>
             <ArrowRightCircle className="h-4 w-4" />
           </button>
         ) : (
@@ -231,7 +239,9 @@ const Leaderboard = ({ user }: { user: AuthUser | null }) => {
         className={`flex items-center rounded-xl bg-white/20 px-3 py-2 font-medium ${classes.cardText} shadow-sm`}
       >
         <div
-          className={`flex-grow font-medium pl-2 ${currentView === 'participants' ? '' : 'md:w-[50%]'}`}
+          className={`flex-grow font-medium pl-2 ${
+            currentView === 'participants' ? '' : 'md:w-[50%]'
+          }`}
         >
           Name
         </div>
@@ -251,9 +261,9 @@ const Leaderboard = ({ user }: { user: AuthUser | null }) => {
               <button
                 type="button"
                 onClick={() => sortData('Bounty')}
-                className="flex items-center cursor-pointer gap-1 rounded-3xl bg-amber-500/50 px-3 py-1 font-medium text-gray-900 shadow-sm transition-all duration-200 hover:bg-amber-500/70 hover:text-gray-800 hover:shadow-md"
+                className="flex items-center cursor-pointer gap-1 rounded-3xl bg-yellow-600 px-3 py-1 font-medium text-gray-800 shadow-sm transition-all duration-200 hover:bg-amber-500/90 hover:text-gray-800 hover:shadow-md"
               >
-                <MdMonetizationOn className="mr-1 text-gray-900" /> Bounty
+                <MdMonetizationOn className="mr-1 text-gray-800" /> Bounty
                 {getSortIcon('Bounty')}
               </button>
             </div>
@@ -268,7 +278,9 @@ const Leaderboard = ({ user }: { user: AuthUser | null }) => {
           </div>
         ) : currentView === 'leaderboard' && leaderboardData.length === 0 ? (
           <div className="flex items-center justify-center px-4 py-8">
-            <div className="w-full rounded-2xl bg-white/40 p-8 text-center backdrop-blur-sm">
+            <div
+              className={`w-full rounded-2xl ${classes.cardBg}} p-8 text-center backdrop-blur-sm`}
+            >
               <p className={`text-xl font-medium ${classes.cardText}`}>
                 Be the first person to join the leaderboard by making a PR.
                 Explore projects by visiting the{' '}
@@ -305,7 +317,9 @@ const Leaderboard = ({ user }: { user: AuthUser | null }) => {
               }
             >
               <div
-                className={`flex flex-grow items-center gap-3 ${currentView === 'participants' ? '' : 'md:w-[50%]'}`}
+                className={`flex flex-grow items-center gap-3 ${
+                  currentView === 'participants' ? '' : 'md:w-[50%]'
+                }`}
               >
                 <div className="relative">
                   <ParticipantAvatar username={data.username} />

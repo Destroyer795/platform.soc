@@ -6,7 +6,7 @@ import { useTheme } from '../components/theme-context';
 
 const editions = [
   {
-    title: 'Amrita Winter of Code, 2024',
+    title: 'Amrita Winter of Code, 2025',
     description:
       'Amrita Winter of Code (AMWOC), the inaugral edition held from December, 2024 to March, 2025, ' +
       'sets a high benchmark. This event introduced a performance-based reward system ' +
@@ -24,13 +24,13 @@ const editions = [
     ],
     link: 'https://woc-leaderboard.vercel.app',
     images: [
-      '/edition1/1st_prize.JPG',
-      '/edition1/2nd_prize.JPG',
-      '/edition1/3rd_prize.JPG',
-      '/edition1/question-discussion.JPG',
-      '/edition1/group-photo.JPG',
+      '/woc-edition-1/1st_prize.JPG',
+      '/woc-edition-1/2nd_prize.JPG',
+      '/woc-edition-1/3rd_prize.JPG',
+      '/woc-edition-1/question-discussion.JPG',
+      '/woc-edition-1/group-photo.JPG',
     ],
-    thumbnail: '/edition1/thumbnail.png',
+    thumbnail: '/woc-edition-1/thumbnail.png',
     conclusion:
       'It brought together 283 participants and distributed over 7000 open-source bounties. ' +
       'This event promoted collaboration, helped students explore new technologies, and created opportunities for networking and skill development in a practical, open-source environment.',
@@ -46,12 +46,12 @@ const pastEvents = () => {
     <div className="relative min-h-screen overflow-y-auto">
       <section className="mt-10 px-4 text-center">
         <h1
-          className={`font-extrabold text-4xl ${classes.pageTitle} drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)] md:text-5xl`}
+          className={`font-extrabold text-3xl ${classes.pageTitle} drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)] md:text-5xl`}
         >
           Take a look back at our incredible journey!
         </h1>
         <p
-          className={`mx-auto mt-2 max-w-xl text-lg ${classes.pageDesc} drop-shadow-[0_1px_6px_rgba(255,255,255,0.2)]`}
+          className={`mx-auto mt-2 max-w-xl text-md ${classes.pageDesc} drop-shadow-[0_1px_6px_rgba(255,255,255,0.2)]`}
         >
           Here's a glimpse of what we've achieved together in past editions-real
           stories, real innovations, and real impact.

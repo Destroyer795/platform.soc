@@ -42,18 +42,18 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const theme = process.env.NEXT_PUBLIC_THEME || 'SUMMER';
 
   const classes: ThemeClasses = {
-    cardBg: theme === 'SUMMER' ? 'bg-white/40' : 'bg-blue-200/40',
+    cardBg: theme === 'SUMMER' ? 'bg-white/40' : 'bg-white/15',
     cardBorder: theme === 'SUMMER' ? 'border-white/20' : 'border-blue-200/20',
     cardTitle: theme === 'SUMMER' ? 'text-gray-800' : 'text-white',
-    cardText: theme === 'SUMMER' ? 'text-gray-700' : 'text-white/90',
+    cardText: theme === 'SUMMER' ? 'text-gray-700' : 'text-white/80',
     cardHover:
       theme === 'SUMMER' ? 'hover:bg-white/50' : 'hover:bg-blue-200/50',
 
     pageTitle: theme === 'SUMMER' ? 'text-white' : 'text-sky-200',
     pageDesc: theme === 'SUMMER' ? 'text-white/70' : 'text-blue-100',
 
-    chipBg: theme === 'SUMMER' ? 'bg-slate-700' : 'bg-blue-100/30',
-    chipText: theme === 'SUMMER' ? 'text-white' : 'text-blue-200',
+    chipBg: theme === 'SUMMER' ? 'bg-slate-700' : 'bg-blue-100/25',
+    chipText: theme === 'SUMMER' ? 'text-white' : 'text-blue-100/80',
     chipHoverBg: theme === 'SUMMER' ? 'bg-slate-800' : 'bg-blue-100/50',
     selectedChipBg: theme === 'SUMMER' ? 'bg-gray-50' : 'bg-blue-200/40',
     selectedChipText: theme === 'SUMMER' ? 'text-gray-900' : 'text-white',

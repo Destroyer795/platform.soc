@@ -26,7 +26,7 @@ const ResourcePage = () => {
     const fetchResources = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch('resourceCards/resources.json');
+        const response = await fetch('/data/resources.json');
 
         if (!response.ok) {
           throw new Error(`Failed to fetch resources: ${response.status}`);

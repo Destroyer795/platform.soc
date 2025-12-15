@@ -60,7 +60,9 @@ const HallOfFame = () => {
   );
   const { classes } = useTheme();
   return (
-    <Card className="z-10 w-full max-h-full flex flex-col rounded-3xl border border-white/20 bg-white/35 p-4 backdrop-blur-md">
+    <Card
+      className={`z-10 w-full max-h-full flex flex-col rounded-3xl border ${classes.cardBorder} ${classes.cardBg} p-4 backdrop-blur-md`}
+    >
       <CardHeader className={`pb-1 font-bold text-4xl ${classes.cardTitle}`}>
         Hall of Fame
       </CardHeader>

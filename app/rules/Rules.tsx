@@ -9,13 +9,14 @@ interface Rule {
 
 const rules: Rule[] = [
   {
-    label: 'GitHub Account',
-    description: 'Ensure you have a personal GitHub account.',
-  },
-  {
     label: 'Registration',
     description:
-      'Fill out the registration form with valid credentials. These will be used to track your progress and give out rewards.',
+      'Complete the registration at Anokha 2026 and ensure you have a personal GitHub account.',
+  },
+  {
+    label: 'GitHub Account',
+    description:
+      'Link your GitHub account to the WoC portal. It will be used to track your progress and give out rewards.',
   },
   {
     label: 'Descriptive Issues',
@@ -30,7 +31,7 @@ const rules: Rule[] = [
   {
     label: 'Self-Assign Issues',
     description:
-      'You are free to choose which issues to work upon. The official-bot of ASoC will assign the issue to you upon commenting `/assign` in the comments of the issue.',
+      'You are free to choose which issues to work upon. The official-bot of AMSoC will assign the issue to you upon commenting `/assign` in the comments of the issue.',
   },
   {
     label: 'Fastest Pull-Request First',
@@ -38,7 +39,7 @@ const rules: Rule[] = [
       'As there can be multiple participants working on an issue at the same time, speed and quality of solution are of essence.',
   },
   {
-    label: 'Usage of Cursor, Windsurf and AI-Tools',
+    label: 'Usage of AI Tools',
     description:
       'The use of AI tools is permitted but complete reliance on AI-generated code that does not follow the conventions of the repository will lead to rejections.',
   },
@@ -55,7 +56,7 @@ const rules: Rule[] = [
   {
     label: 'Issue Labelling',
     description:
-      'Maintainers will label issues with `ASOC-ACCEPTED` tag to indicate their eligibility for the program. New issues introduced by the participants in the form of bugs (or) feature requests; can be worked upon only after approval from maintainers.',
+      'Maintainers will label issues with `AMSOC-ACCEPTED` tag to indicate their eligibility for the program. New issues introduced by the participants in the form of bugs (or) feature requests; can be worked upon only after approval from maintainers.',
   },
   {
     label: 'Contribution Guidelines',
@@ -84,7 +85,7 @@ const Rules = () => {
           <p
             className={`mx-auto mt-2 max-w-xl text-base sm:text-lg ${classes.pageDesc} drop-shadow-[0_1px_6px_rgba(255,255,255,0.2)] px-4 sm:px-0`}
           >
-            The official rulebook for Amrita's Summer of Code, 2025
+            The official rulebook for Winter of Code, 2026
           </p>
         </div>
 
@@ -106,9 +107,9 @@ const Rules = () => {
                   <h2
                     className={`text-2xl font-bold ${classes.cardTitle} mb-1`}
                   >
-                    Charter for Amrita Summer of Code, 2025
+                    Charter for Winter of Code, 2026
                   </h2>
-                  <p className={`${classes.cardText}`}>
+                  {/* <p className={`${classes.cardText}`}>
                     This competition is for
                     <span className="font-bold">
                       {' '}
@@ -116,7 +117,7 @@ const Rules = () => {
                     </span>
                     students only. Outside contributors are not eligible for the
                     bounty program.
-                  </p>
+                  </p> */}
                 </div>
               </div>
               {/* Rule Set */}
@@ -124,7 +125,7 @@ const Rules = () => {
                 {rules.map((item, index) => (
                   <div
                     key={`${item.label}`}
-                    className={`${classes.cardBg} backdrop-blur-xm  rounded-2xl sm:rounded-3xl p-4 sm:p-6 border ${classes.cardBorder} shadow-sm hover:shadow-2xl hover:bg-white/50 transition-all duration-300`}
+                    className={`${classes.cardBg} backdrop-blur-xm  rounded-2xl sm:rounded-3xl p-4 sm:p-6 border ${classes.cardBorder} shadow-sm hover:shadow-2xl transition-all duration-300`}
                   >
                     <h2
                       className={`text-lg sm:text-xl font-bold ${classes.cardTitle} mb-2`}
