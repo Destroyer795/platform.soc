@@ -139,25 +139,30 @@ export default function RootLayout({
           type="image/jpeg"
         />
       </head>
-      <body className={`${gilroy.className} antialiased`}>
-        {/* ✅ GLOBAL DESKTOP BACKGROUND */}
-        {/* ✅ GLOBAL BACKGROUND WRAPPER */}
-        <div className="fixed inset-0 -z-10">
-          <Image
-            src="/winter_bg1.jpg"
-            alt="Winter Background"
-            fill
-            priority
-            className="hidden md:block object-cover"
-          />
-          <Image
-            src="/winter_bg_mobile.jpeg"
-            alt="Winter Mobile Background"
-            fill
-            priority
-            className="block md:hidden object-cover"
-          />
-        </div>
+      <body
+        className={`${gilroy.className} antialiased`}
+        style={{
+          background: theme === 'SUMMER' ? summerGradient : winterGradient,
+        }}
+      >
+        {theme === 'WINTER' && (
+          <div className="fixed inset-0 -z-10">
+            <Image
+              src="/winter_bg1.jpg"
+              alt="Winter Background"
+              fill
+              priority
+              className="hidden md:block object-cover"
+            />
+            <Image
+              src="/winter_bg_mobile.jpeg"
+              alt="Winter Mobile Background"
+              fill
+              priority
+              className="block md:hidden object-cover"
+            />
+          </div>
+        )}
 
         <ThemeProvider>
           <Navbar />
@@ -165,7 +170,7 @@ export default function RootLayout({
           {/* ✅ NAVBAR SPACER — PUSHES CONTENT, NOT BACKGROUND */}
           <div className="h-20" />
 
-          <Snowfall />
+          {theme === 'WINTER' && <Snowfall />}
 
           {theme === 'SUMMER' && (
             <>

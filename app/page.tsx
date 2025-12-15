@@ -44,27 +44,9 @@ const Dashboard = () => {
 
   return (
     <div className="relative flex w-full flex-col text-white">
-      {/* ✅ Desktop Background */}
-      {/* <Image
-        src="/winter_bg1.png"
-        alt="Winter Desktop Background"
-        fill
-        priority
-        className="fixed inset-0 -z-10 hidden md:block object-cover"
-      /> */}
-
-      {/* ✅ Mobile & Tablet Background */}
-      {/* <Image
-        src="/winter_bg_mobile.png"
-        alt="Winter Mobile Background"
-        fill
-        priority
-        className="fixed inset-0 -z-10 block md:hidden object-cover"
-      /> */}
-
       <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-[40%_minmax(0,1fr)] gap-8 items-start py-12 md:py-0 flex-grow">
         <div className="z-10 flex flex-col items-center md:items-start justify-center text-left py-0 md:py-12 md:h-[calc(100vh-80px)]">
-          <div className="flex flex-col items-center md:items-start gap-2 mb-6">
+          <div className="flex flex-col items-center md:items-start gap-2 md:gap-0.5 mb-4">
             <p className="text-xs sm:text-sm text-white font-medium">
               Brought to you by
             </p>
@@ -77,29 +59,29 @@ const Dashboard = () => {
                 className="h-auto max-w-[100px] object-contain"
               />
               <Image
-                src="/anokha.png"
-                alt="Anokha Logo"
-                width={100}
-                height={0}
-                className="h-auto max-w-[100px] object-contain"
-              />
-              <Image
                 src="/acmlogonew.webp"
                 alt="ACM Logo"
                 width={60}
                 height={0}
                 className="h-auto max-w-[60px] object-contain"
               />
+              <Image
+                src="/anokha.png"
+                alt="Anokha Logo"
+                width={120}
+                height={0}
+                className="h-auto max-w-[120px] object-contain"
+              />
             </div>
           </div>
 
-          <h1 className="font-extrabold text-5xl tracking-tight sm:text-6xl md:text-5xl text-white">
+          <h1 className="font-extrabold text-4xl tracking-tight sm:text-5xl md:text-5xl text-white">
             Amrita
           </h1>
-          <h1 className="mb-4 md:mb-6 font-extrabold text-4xl sm:text-5xl md:text-6xl tracking-tight text-blue-400">
+          <h1 className="mb-4 md:mb-6 font-extrabold text-4xl sm:text-5xl md:text-5xl tracking-tight text-blue-400">
             Winter of Code 2.0
           </h1>
-          <p className="mb-6 max-w-2xl text-base sm:text-lg md:text-xl text-gray-100 text-center md:text-left px-4 md:px-0">
+          <p className="mb-6 max-w-2xl text-base text-lg text-gray-100 text-center md:text-left px-4 md:px-0">
             After a successful Winter of Code last year, the ACM student chapter
             is back with the{' '}
             <strong className="text-blue-400">Winter of Code 2.0</strong>.
@@ -147,9 +129,9 @@ const Dashboard = () => {
             href="https://github.com/Infinite-Sum-Games"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-3 inline-flex items-center gap-2 text-[15px] text-gray-100 opacity-90 transition hover:opacity-100 hover:underline underline-offset-2"
+            className="mt-5 inline-flex items-center gap-2 text-[14px] font-medium text-gray-100 transition hover:opacity-100 hover:underline underline-offset-2 pl-0 md:pl-14"
           >
-            <span>Powered by</span>
+            <span>Co-developed with </span>
             <Image
               src="/Infinite Sum Games.jpeg.jpg"
               alt="Infinite Sum Games"
@@ -157,7 +139,7 @@ const Dashboard = () => {
               height={18}
               className="rounded-sm object-contain"
             />
-            <span className="font-medium">Infinite Sum Games</span>
+            <span className="text-[14px] font-medium">Infinite Sum Games</span>
           </a>
         </div>
         <div className="relative z-10 flex w-full flex-1 flex-col items-center py-8 md:py-4 md:h-[calc(100vh-80px)]">
@@ -208,27 +190,6 @@ const Dashboard = () => {
           </Tabs>
         </div>
       </div>
-      {/* <footer className="w-full text-center py-4 mt-8 text-sm text-gray-950 font-medium ">
-        <span className="inline-flex items-center gap-2 justify-center">
-          <span className="text-red-400 animate-pulse">❤️</span>
-          <span>Powered by</span>
-          <a
-            href="https://github.com/Infinite-Sum-Games"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 underline underline-offset-4 hover:text-yellow-300 transition"
-          >
-            <Image
-              src="/Infinite Sum Games.jpeg.jpg"
-              alt="Infinite Sum Games Logo"
-              width={20}
-              height={20}
-              className="rounded-sm object-contain"
-            />
-            Infinite Sum Games
-          </a>
-        </span>
-      </footer> */}
     </div>
   );
 };

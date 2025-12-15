@@ -143,15 +143,6 @@
   * {
     @apply border-border;
   }
-
-  body {
-    background: linear-gradient(
-      to bottom,
-      #3a55d4 15%,
-      #609bf5 70%,
-      #a9d1f6 100%
-    );
-  }
 }
 
 /* Hide scrollbar */
