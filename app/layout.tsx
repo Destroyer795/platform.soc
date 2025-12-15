@@ -121,8 +121,8 @@ const gilroy = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'SoC | ACM Amrita',
-  description: 'Leaderboard for Winter of Code',
+  title: 'WoC 2.0 | ACM Amrita',
+  description: 'Platform for the Winter of Code 2.0 Event',
 };
 
 export default function RootLayout({
