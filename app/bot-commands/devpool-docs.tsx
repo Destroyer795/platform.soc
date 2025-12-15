@@ -5,7 +5,7 @@ const DevPoolDocs = () => {
   const { theme, classes } = useTheme();
 
   return (
-    <div className="max-h-screen bg-gradient-to-br p-4 mt-6 md:mt-2 md:p-6">
+    <div className="min-h-screen bg-gradient-to-br p-4 mt-6 md:mt-2 md:p-6 pb-10">
       <div className="max-w-7xl mx-auto flex flex-col">
         {/* Header */}
         <div className="text-center mb-6 md:mb-8">
@@ -17,7 +17,7 @@ const DevPoolDocs = () => {
           <p
             className={`mx-auto mt-2 max-w-xl text-base md:text-lg drop-shadow-[0_1px_6px_rgba(255,255,255,0.2)] ${classes.pageDesc}`}
           >
-            Your guide to Summer of Code's bot commands
+            Your guide to Winter of Code's bot commands
           </p>
         </div>
 
@@ -39,7 +39,7 @@ const DevPoolDocs = () => {
                       Contributors
                     </h2>
                     <p className={`text-sm md:text-base ${classes.cardText}`}>
-                      Commands for registered Summer of Code participants
+                      Commands for registered Winter of Code participants
                     </p>
                   </div>
                 </div>
@@ -187,7 +187,9 @@ const DevPoolDocs = () => {
                       key={i}
                       className={`${classes.cardBg} backdrop-blur-sm rounded-xl p-3 ${classes.cardBorder}`}
                     >
-                      <code className="font-bold text-indigo-700">{b.cmd}</code>
+                      <code className={`font-bold ${classes.cardTitle}`}>
+                        {b.cmd}
+                      </code>
                       <p className={`${classes.cardText} text-sm mt-1`}>
                         {b.desc}
                       </p>
