@@ -550,8 +550,8 @@ const ReposPage = () => {
               ))
             ) : (
               <div className="flex flex-col items-center justify-center py-10 text-center">
-                <GitBranch className="mb-2 h-10 w-10 text-gray-600" />
-                <p className="text-gray-600">No repositories found.</p>
+                <GitBranch className={`mb-2 h-10 w-10 ${classes.cardText}`} />
+                <p className={`${classes.cardText}`}>No repositories found.</p>
               </div>
             )}
           </div>
@@ -688,8 +688,8 @@ const ReposPage = () => {
             )
           ) : (
             <div className="flex h-40 flex-col items-center justify-center rounded-lg border-2 border-white/30 border-dashed bg-white/10">
-              <Code className="mb-2 h-8 w-8 text-gray-600" />
-              <p className="text-gray-600 text-sm sm:text-base">
+              <Code className={`mb-2 h-8 w-8 ${classes.cardText}`} />
+              <p className={`${classes.cardText} text-sm sm:text-base`}>
                 Select a repository to view its issues
               </p>
             </div>
@@ -736,7 +736,7 @@ const ReposPage = () => {
           <div className="flex items-center font-semibold text-xl sm:text-2xl text-gray-100">
             <GitBranch className="mr-2 h-6 w-6 text-gray-100" />
             Repositories
-            <span className="ml-2 text-gray-700">
+            <span className={`ml-2 ${classes.cardText}`}>
               ({filteredRepositories.length})
             </span>
           </div>
@@ -842,8 +842,8 @@ const ReposPage = () => {
               ))
             ) : (
               <div className="flex flex-col items-center justify-center py-10 text-center">
-                <GitBranch className="mb-2 h-10 w-10 text-gray-200" />
-                <p className="text-gray-600">No repositories found.</p>
+                <GitBranch className={`mb-2 h-10 w-10 ${classes.cardText}`} />
+                <p className={`${classes.cardText}`}>No repositories found.</p>
               </div>
             )}
           </div>
@@ -856,9 +856,9 @@ const ReposPage = () => {
       >
         <div className="mb-3 flex items-center justify-between border-b border-white/50 pb-2">
           <h2 className="flex items-center font-semibold text-xl sm:text-2xl text-gray-800">
-            <Code className="mr-2 h-6 w-6 text-gray-600" />
+            <Code className={`mr-2 h-6 w-6 ${classes.cardText}`} />
             {selectedRepo && (
-              <span className="ml-2 text-lg text-gray-800">
+              <span className={`ml-2 text-lg ${classes.cardText}`}>
                 {selectedRepo.name}
               </span>
             )}
@@ -962,8 +962,8 @@ const ReposPage = () => {
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center py-10 text-center">
-                <Search className="mb-2 h-10 w-10 text-gray-600" />
-                <p className="text-gray-600">No issues found</p>
+                <Search className={`mb-2 h-10 w-10 ${classes.cardText}`} />
+                <p className={`${classes.cardText}`}>No issues found</p>
                 {hasActiveFilters && (
                   <Button
                     variant="link"
@@ -978,8 +978,8 @@ const ReposPage = () => {
             )
           ) : (
             <div className="flex h-40 flex-col items-center justify-center rounded-lg border-2 border-white/30 border-dashed bg-white/10">
-              <Code className="mb-2 h-8 w-8 text-gray-600" />
-              <p className="text-gray-600 text-sm sm:text-base">
+              <Code className={`mb-2 h-8 w-8 ${classes.cardText}`} />
+              <p className={`${classes.cardText} text-sm sm:text-base`}>
                 Select a repository to view its issues
               </p>
             </div>
