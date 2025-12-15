@@ -1,9 +1,9 @@
 'use client';
 import { ScrollArea } from '@/app/components/ui/scroll-area';
 import { make_api_call } from '@/app/lib/api';
-import { AuthState, type AuthUser } from '@/app/store/useAuthStore';
+import type { AuthUser } from '@/app/store/useAuthStore';
 import useLeaderboardStore from '@/app/store/useLeaderboardStore';
-import { ArrowLeftCircle, ArrowRightCircle } from 'lucide-react';
+import { ArrowLeftCircle, ArrowRightCircle, Users } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -200,7 +200,7 @@ const Leaderboard = ({ user }: { user: AuthUser | null }) => {
   `}
     >
       <div className="flex items-center justify-between">
-        <div>
+        <div className="min-w-0 overflow-hidden">
           <CardHeader
             className={`p-0 pb-1 font-bold text-4xl ${classes.cardTitle}`}
           >
@@ -216,9 +216,11 @@ const Leaderboard = ({ user }: { user: AuthUser | null }) => {
           <button
             type="button"
             onClick={handleShowParticipants}
-            className="flex transform cursor-pointer items-center gap-2 rounded-lg bg-gray-800/80 px-3 py-2 text-xs font-medium text-white shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-slate-900 sm:px-4 sm:text-sm"
+            aria-label="Show participants"
+            className="flex-shrink-0 flex items-center gap-2 rounded-lg bg-gray-800/80 px-2 py-2 text-xs font-medium text-white shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-slate-900 cursor-pointer"
           >
-            Participants
+            <Users className="h-4 w-4" />
+            <span className="hidden md:inline text-sm">Participants</span>
             <ArrowRightCircle className="h-4 w-4" />
           </button>
         ) : (
@@ -276,7 +278,9 @@ const Leaderboard = ({ user }: { user: AuthUser | null }) => {
           </div>
         ) : currentView === 'leaderboard' && leaderboardData.length === 0 ? (
           <div className="flex items-center justify-center px-4 py-8">
-            <div className="w-full rounded-2xl bg-white/40 p-8 text-center backdrop-blur-sm">
+            <div
+              className={`w-full rounded-2xl ${classes.cardBg}} p-8 text-center backdrop-blur-sm`}
+            >
               <p className={`text-xl font-medium ${classes.cardText}`}>
                 Be the first person to join the leaderboard by making a PR.
                 Explore projects by visiting the{' '}
