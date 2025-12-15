@@ -990,12 +990,14 @@ const ReposPage = () => {
   );
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-      <div className="w-11/12 mx-auto flex flex-1 flex-col pt-4">
+    <div className="relative flex h-[calc(100vh-5rem)] w-full flex-col overflow-hidden">
+      <div className="w-11/12 mx-auto flex flex-1 flex-col pt-4 h-full">
         <div className="hidden md:block md:flex-1 md:min-h-0">
           {desktopView}
         </div>
-        <div className="md:hidden">{mobileView}</div>
+        <div className="md:hidden h-full overflow-y-auto pb-20">
+          {mobileView}
+        </div>
       </div>
     </div>
   );
