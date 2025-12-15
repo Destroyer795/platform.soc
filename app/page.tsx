@@ -52,21 +52,21 @@ const Dashboard = () => {
             </p>
             <div className="flex items-center gap-4">
               <Image
-                src="/amrita-reverse-logo.svg"
+                src="/amrita-logo.svg"
                 alt="Amrita Logo"
                 width={100}
                 height={0}
                 className="h-auto max-w-[100px] object-contain"
               />
               <Image
-                src="/acmlogonew.webp"
+                src="/acm-logo.webp"
                 alt="ACM Logo"
                 width={60}
                 height={0}
                 className="h-auto max-w-[60px] object-contain"
               />
               <Image
-                src="/anokha.png"
+                src="/anokha-logo.png"
                 alt="Anokha Logo"
                 width={120}
                 height={0}
@@ -133,7 +133,7 @@ const Dashboard = () => {
           >
             <span>Co-developed with </span>
             <Image
-              src="/Infinite Sum Games.jpeg.jpg"
+              src="/isg-logo.jpg"
               alt="Infinite Sum Games"
               width={18}
               height={18}

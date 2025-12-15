@@ -24,13 +24,13 @@ const editions = [
     ],
     link: 'https://woc-leaderboard.vercel.app',
     images: [
-      '/edition1/1st_prize.JPG',
-      '/edition1/2nd_prize.JPG',
-      '/edition1/3rd_prize.JPG',
-      '/edition1/question-discussion.JPG',
-      '/edition1/group-photo.JPG',
+      '/woc-edition-1/1st_prize.JPG',
+      '/woc-edition-1/2nd_prize.JPG',
+      '/woc-edition-1/3rd_prize.JPG',
+      '/woc-edition-1/question-discussion.JPG',
+      '/woc-edition-1/group-photo.JPG',
     ],
-    thumbnail: '/edition1/thumbnail.png',
+    thumbnail: '/woc-edition-1/thumbnail.png',
     conclusion:
       'It brought together 283 participants and distributed over 7000 open-source bounties. ' +
       'This event promoted collaboration, helped students explore new technologies, and created opportunities for networking and skill development in a practical, open-source environment.',

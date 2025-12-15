@@ -135,7 +135,7 @@ export default function RootLayout({
       <head>
         <link
           rel="icon"
-          href="fallbackImage.jpg"
+          href="fallback-penguin.jpg"
           type="image/jpeg"
         />
       </head>
@@ -148,14 +148,14 @@ export default function RootLayout({
         {theme === 'WINTER' && (
           <div className="fixed inset-0 -z-10">
             <Image
-              src="/winter_bg1.jpg"
+              src="/winter-theme/winterBg.jpg"
               alt="Winter Background"
               fill
               priority
               className="hidden md:block object-cover"
             />
             <Image
-              src="/winter_bg_mobile.jpeg"
+              src="/winter-theme/winterBgMobile.jpeg"
               alt="Winter Mobile Background"
               fill
               priority
