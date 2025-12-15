@@ -141,7 +141,7 @@ const TeamPage = () => {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 justify-items-center gap-6 p-2 sm:grid-cols-2 sm:p-4 md:grid-cols-3 w-full ml-auto mr-auto mt-8">
+          <div className="grid grid-cols-1 justify-items-center gap-3 md:gap-6 p-2 sm:grid-cols-2 sm:p-4 md:grid-cols-3 w-full ml-auto mr-auto mt-8">
             {filteredTeam.map((card, index: number) => (
               <Card
                 key={`${card.name}-${index}`}

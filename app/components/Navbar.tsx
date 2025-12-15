@@ -169,9 +169,9 @@ const Navbar = () => {
             <MobileNavLink href="/rules">Rules</MobileNavLink>
             <MobileNavLink href="/repo">Repositories</MobileNavLink>
             <MobileNavLink href="/bot-commands">Bot Commands</MobileNavLink>
-            <MobileNavLink href="/request-for-code">
+            {/* <MobileNavLink href="/request-for-code">
               Request for Code
-            </MobileNavLink>
+            </MobileNavLink> */}
             <MobileNavLink href="/resources">Resources</MobileNavLink>
             <MobileNavLink href="/team">Team</MobileNavLink>
             <MobileNavLink href="/past-editions">Past Editions</MobileNavLink>
