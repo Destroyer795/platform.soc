@@ -143,6 +143,22 @@ const Dashboard = () => {
               </button>
             )}
           </div>
+          <a
+            href="https://github.com/Infinite-Sum-Games"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex items-center gap-2 text-[15px] text-gray-100 opacity-90 transition hover:opacity-100 hover:underline underline-offset-2"
+          >
+            <span>Powered by</span>
+            <Image
+              src="/Infinite Sum Games.jpeg.jpg"
+              alt="Infinite Sum Games"
+              width={18}
+              height={18}
+              className="rounded-sm object-contain"
+            />
+            <span className="font-medium">Infinite Sum Games</span>
+          </a>
         </div>
         <div className="relative z-10 flex w-full flex-1 flex-col items-center py-8 md:py-4 md:h-[calc(100vh-80px)]">
           <Tabs
