@@ -4,9 +4,9 @@ import { useCallback, useEffect, useRef } from 'react';
 
 const CLOUD_COUNT = 5;
 const CLOUD_IMAGES = [
-  '/cloudImage1.png',
-  '/cloudImage2.png',
-  '/cloudImage3.png',
+  '/summer-theme/cloudImage1.png',
+  '/summer-theme/cloudImage2.png',
+  '/summer-theme/cloudImage3.png',
 ];
 const OFFSET = 500;
 const MIN_DURATION = 60 * 1;

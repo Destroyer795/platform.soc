@@ -23,7 +23,7 @@ const TeamPage = () => {
     const loadTeam = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch('/team.json');
+        const response = await fetch('/data/team.json');
         if (!response.ok) {
           throw new Error(`HTTP Error! Status ${response.status}`);
         }

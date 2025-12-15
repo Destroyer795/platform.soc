@@ -50,7 +50,7 @@ const ParticipantAvatar = ({ username, className }: ParticipantAvatarProps) => {
       ) : null}
       <AvatarFallback>
         <img
-          src="/icon_badge.png"
+          src="/icon-badge.png"
           alt="Fallback"
           loading="lazy"
           className="w-full h-full"
