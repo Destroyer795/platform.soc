@@ -662,18 +662,15 @@ const ReposPage = () => {
             ) : filteredIssues.length > 0 ? (
               <div className="space-y-4">
                 {filteredIssues.map((issue: IssuesData) => (
-                  <div
-                    key={issue.id}
-                    className="transform transition-all duration-200 hover:translate-y-[-2px]"
-                  >
+                  <div key={issue.id}>
                     <IssueCard {...issue} />
                   </div>
                 ))}
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center py-10 text-center">
-                <Search className="mb-2 h-10 w-10 text-gray-900" />
-                <p className="text-gray-600">No issues found</p>
+                <Search className={`mb-2 h-10 w-10 ${classes.cardText}`} />
+                <p className={`${classes.cardText}`}>No issues found</p>
                 {hasActiveFilters && (
                   <Button
                     variant="link"
