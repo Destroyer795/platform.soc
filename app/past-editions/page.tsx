@@ -8,7 +8,7 @@ const editions = [
   {
     title: 'Amrita Winter of Code, 2025',
     description:
-      'Amrita Winter of Code (AMWOC), the inaugral edition held from December, 2024 to March, 2025, ' +
+      'Amrita Winter of Code (AMWoC), the inaugral edition held from December, 2024 to March, 2025, ' +
       'sets a high benchmark. This event introduced a performance-based reward system ' +
       'where contributors earned monetary rewards based on bounty points, while maintainers ' +
       'saw real progress on their repositories.Every contributor was rewarded, and project maintainers saw meaningful progress on their repositories. ' +
