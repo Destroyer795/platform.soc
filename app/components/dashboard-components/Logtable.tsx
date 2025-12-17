@@ -2,6 +2,7 @@
 
 import type React from 'react';
 
+import { make_api_call } from '@/app/lib/api';
 import { Activity, Bug, Clock, Sparkles, Trophy } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTheme } from '../theme-context';
@@ -137,13 +138,13 @@ export default function Logtable() {
     const fetchLogs = async () => {
       setIsLoading(true);
       try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/updates/latest`,
-        );
-        const data: ApiResponse = await res.json();
+        const result = await make_api_call<ApiResponse>({
+          url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/updates/latest`,
+          method: 'GET',
+        });
 
-        if (res.ok) {
-          const transformed = data.updates.slice(0, 5).map((log) => ({
+        if (result.success && result.data) {
+          const transformed = result.data.updates.slice(0, 5).map((log) => ({
             id: log.time,
             user: log.github_username,
             description: log.message,
@@ -155,7 +156,7 @@ export default function Logtable() {
           setFilteredLogs(transformed);
           console.log('Initial logs:', transformed);
         } else {
-          setError('Failed to fetch logs');
+          setError(result.error || 'Failed to fetch logs');
         }
       } catch (error) {
         setError('Network error occurred');
