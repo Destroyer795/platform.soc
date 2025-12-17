@@ -1,3 +1,4 @@
+import { toast } from '@/app/components/ui/use-toast';
 import { useAuthStore } from '../store/useAuthStore';
 
 export async function make_api_call<T = unknown>({
@@ -44,6 +45,7 @@ export async function make_api_call<T = unknown>({
     }
 
     const response = await fetch(finalUrl, options);
+
     if (response.status === 401 && retry && user?.refresh_token) {
       const refreshRes = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/refresh`,
@@ -75,6 +77,15 @@ export async function make_api_call<T = unknown>({
       }
       clearUser();
       throw new Error('Session expired. Please login again.');
+    }
+
+    if (response.status === 422) {
+      const errorData = await response.json().catch(() => ({}));
+      const message = 'Please link your GitHub account to continue.';
+
+      toast({ description: message });
+
+      throw new Error(message);
     }
 
     if (!response.ok) {
