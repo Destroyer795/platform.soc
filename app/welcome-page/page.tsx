@@ -53,7 +53,7 @@ export default function Page() {
                   Amrita
                 </h1>
                 <h1 className="mb-6 font-extrabold text-4xl sm:text-5xl md:text-6xl tracking-tight text-yellow-300">
-                  Summer of Code
+                  Winter of Code
                 </h1>
               </div>
 

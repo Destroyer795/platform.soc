@@ -80,7 +80,7 @@ const Rules = () => {
           <h1
             className={`font-extrabold text-3xl mt-6 md:mt-0 sm:text-4xl md:text-5xl ${classes.pageTitle} drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]`}
           >
-            Rules for This Summer
+            Rules for This Winter
           </h1>
           <p
             className={`mx-auto mt-2 max-w-xl text-base sm:text-lg ${classes.pageDesc} drop-shadow-[0_1px_6px_rgba(255,255,255,0.2)] px-4 sm:px-0`}
