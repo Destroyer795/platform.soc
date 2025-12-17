@@ -6,10 +6,10 @@ import SunGlareEffect from '@/app/components/dashboard-components/SunGlareEffect
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
 import { Label } from '@/app/components/ui/label';
-import { toast } from '@/app/components/ui/use-toast';
 import { make_api_call } from '@/app/lib/api';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import * as z from 'zod';
 
 const formSchema = z.object({
@@ -115,11 +115,7 @@ export default function RegisterPage() {
         validatedData.github_username,
       );
       if (!isGithubValid) {
-        toast({
-          title: 'Error',
-          description: 'Invalid GitHub username',
-          variant: 'destructive',
-        });
+        toast.error('Invalid GitHub username');
         return;
       }
 
@@ -139,10 +135,7 @@ export default function RegisterPage() {
       setCanResendOtp(false);
       setTimeout(() => setCanResendOtp(true), 5 * 60 * 1000); // Enable resend after 5 minutes
 
-      toast({
-        title: 'Success',
-        description: 'OTP sent to your email',
-      });
+      toast.success('OTP sent to your email');
     } catch (error) {
       if (error instanceof z.ZodError) {
         const newErrors: Partial<Record<keyof FormData, string>> = {};
@@ -153,12 +146,9 @@ export default function RegisterPage() {
         }
         setErrors(newErrors);
       } else {
-        toast({
-          title: 'Error',
-          description:
-            error instanceof Error ? error.message : 'Registration failed',
-          variant: 'destructive',
-        });
+        toast.error(
+          error instanceof Error ? error.message : 'Registration failed',
+        );
       }
     } finally {
       setIsSubmitting(false);
@@ -187,10 +177,7 @@ export default function RegisterPage() {
         throw new Error(result.error || 'OTP verification failed');
       }
 
-      toast({
-        title: 'Success',
-        description: 'Registration successful!',
-      });
+      toast.success('Registration successful!');
 
       // TODO: Initiate GitHub OAuth
       router.push('/welcome-page');
@@ -208,27 +195,15 @@ export default function RegisterPage() {
         setShowOtpInput(false);
         setOtp('');
         setAccessToken('');
-        toast({
-          title: 'Error',
-          description: 'OTP seems to be expired. Please try registering again.',
-          variant: 'destructive',
-        });
+        toast.error('OTP seems to be expired. Please try registering again.');
         setTimeout(() => {
           router.push('/register');
           router.refresh();
         }, 400);
       } else if (error instanceof z.ZodError) {
-        toast({
-          title: 'Error',
-          description: 'OTP must be 6 digits',
-          variant: 'destructive',
-        });
+        toast.error('OTP must be 6 digits');
       } else {
-        toast({
-          title: 'Error',
-          description: 'OTP verification failed, Please try again.',
-          variant: 'destructive',
-        });
+        toast.error('OTP verification failed, Please try again.');
       }
     } finally {
       setIsVerifying(false);
@@ -249,10 +224,7 @@ export default function RegisterPage() {
       if (result.success) {
         setCanResendOtp(false);
         setResendTimer(300); // 5 minutes
-        toast({
-          title: 'Success',
-          description: 'OTP resent to your email',
-        });
+        toast.success('OTP resent to your email');
       }
     } catch (error) {
       setFormData({
@@ -267,11 +239,7 @@ export default function RegisterPage() {
       setShowOtpInput(false);
       setOtp('');
       setAccessToken('');
-      toast({
-        title: 'Error',
-        description: 'OTP seems to be expired or Wrong. Please try again.',
-        variant: 'destructive',
-      });
+      toast.error('OTP seems to be expired or Wrong. Please try again.');
       setTimeout(() => {
         router.push('/register');
         router.refresh();

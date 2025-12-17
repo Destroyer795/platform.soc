@@ -1,4 +1,4 @@
-import { toast } from '@/app/components/ui/use-toast';
+import { toast } from 'react-hot-toast';
 import { useAuthStore } from '../store/useAuthStore';
 
 export async function make_api_call<T = unknown>({
@@ -83,7 +83,7 @@ export async function make_api_call<T = unknown>({
       const errorData = await response.json().catch(() => ({}));
       const message = 'Please link your GitHub account to continue.';
 
-      toast({ description: message });
+      toast.error(message);
 
       throw new Error(message);
     }

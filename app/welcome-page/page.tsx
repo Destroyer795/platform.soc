@@ -2,9 +2,9 @@
 
 import { CheckCircle, Cloud, Github } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-hot-toast';
 import Navbar from '../components/Navbar';
 import SunGlareEffect from '../components/dashboard-components/SunGlareEffect';
-import { toast } from '../components/ui/use-toast';
 import { handleSignIn } from '../lib/utils';
 
 export default function Page() {
@@ -16,11 +16,7 @@ export default function Page() {
       router.push('/');
     } catch (error) {
       console.error('Authentication failed:', error);
-      toast({
-        title: 'Authentication Failed',
-        description: 'Please try signing in again.',
-        variant: 'destructive',
-      });
+      toast.error('Authentication Failed. Please try signing in again.');
     }
   };
 
