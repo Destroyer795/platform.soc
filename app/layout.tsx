@@ -3,12 +3,11 @@ import './globals.css';
 import localFont from 'next/font/local';
 import Image from 'next/image';
 import Navbar from './components/Navbar';
+import Snowfall from './components/Snowfallnew';
 import Cloud from './components/dashboard-components/Cloud';
-import Snowfall from './components/dashboard-components/Snowfall';
 import SunGlareEffect from './components/dashboard-components/SunGlareEffect';
 import { ThemeProvider } from './components/theme-context';
 import { Toaster } from './components/ui/toaster';
-
 const theme = process.env.NEXT_PUBLIC_THEME;
 const summerGradient =
   'linear-gradient(to bottom, #3a55d4 15%, #609bf5 70%, #a9d1f6 100%)';
