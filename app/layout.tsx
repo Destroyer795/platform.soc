@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import localFont from 'next/font/local';
 import Image from 'next/image';
+import { Toaster } from 'react-hot-toast';
 import Navbar from './components/Navbar';
 import Snowfall from './components/Snowfallnew';
 import Cloud from './components/dashboard-components/Cloud';
@@ -144,6 +145,11 @@ export default function RootLayout({
           background: theme === 'SUMMER' ? summerGradient : winterGradient,
         }}
       >
+        <Toaster
+          position="bottom-center"
+          toastOptions={{ style: { maxWidth: '400px' } }}
+        />
+
         {theme === 'WINTER' && (
           <div className="fixed inset-0 -z-10">
             <Image
@@ -166,7 +172,6 @@ export default function RootLayout({
         <ThemeProvider>
           <Navbar />
 
-          {/* ✅ NAVBAR SPACER — PUSHES CONTENT, NOT BACKGROUND */}
           <div className="h-20" />
 
           {theme === 'WINTER' && <Snowfall />}
@@ -179,8 +184,6 @@ export default function RootLayout({
           )}
 
           {children}
-
-          <Toaster />
         </ThemeProvider>
       </body>
     </html>
