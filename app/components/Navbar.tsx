@@ -10,7 +10,6 @@ import { useTheme } from './theme-context';
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
 
   const router = useRouter();
   const user = useAuthStore((state) => state.user);
@@ -179,7 +178,6 @@ const Navbar = () => {
 
         {/* Mobile Menu - Proper Extension */}
         <div
-          ref={menuRef}
           className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out border-gray-500 ${
             mobileMenuOpen ? 'max-h-[500px] border-t' : 'max-h-0 '
           }`}
