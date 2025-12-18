@@ -4,17 +4,26 @@ import { LogOut, Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { useTheme } from './theme-context';
-
 const Navbar = () => {
+  const prevPathRef = useRef<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
-
+  const pathname = usePathname();
   const router = useRouter();
   const user = useAuthStore((state) => state.user);
   const clearUser = useAuthStore((state) => state.clearUser);
   const github_username = user?.github_username || '';
+
+  useEffect(() => {
+    if (prevPathRef.current && prevPathRef.current !== pathname) {
+      setMobileMenuOpen(false);
+    }
+
+    prevPathRef.current = pathname;
+  }, [pathname]);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
