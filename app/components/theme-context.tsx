@@ -3,6 +3,7 @@ import { type ReactNode, createContext, useContext } from 'react';
 
 type ThemeClasses = {
   cardBg: string;
+  cardBgHover: string;
   cardBorder: string;
   cardTitle: string;
   cardText: string;
@@ -43,6 +44,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 
   const classes: ThemeClasses = {
     cardBg: theme === 'SUMMER' ? 'bg-white/40' : 'bg-white/15',
+    cardBgHover: theme === 'SUMMER' ? 'bg-white/60' : 'bg-white/30',
     cardBorder: theme === 'SUMMER' ? 'border-white/20' : 'border-blue-200/20',
     cardTitle: theme === 'SUMMER' ? 'text-gray-800' : 'text-white',
     cardText: theme === 'SUMMER' ? 'text-gray-700' : 'text-white/80',
