@@ -1,56 +1,58 @@
 'use client';
 
-import { useAuthStore } from '@/app/store/useAuthStore';
+import { toast } from '@/app/components/ui/use-toast';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useAuthStore } from '../../store/useAuthStore';
 
 export default function AuthCallback() {
-  return (
-    <Suspense>
-      <AuthCallbackContent />
-    </Suspense>
-  );
-}
-
-function AuthCallbackContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const setUser = useAuthStore((state) => state.setUser);
+  const { setUser } = useAuthStore();
 
   useEffect(() => {
-    const access_token = searchParams.get('access_token');
-    const refresh_token = searchParams.get('refresh_token');
-    const github_username = searchParams.get('github_username');
+    const accessToken = searchParams.get('access_token');
+    const refreshToken = searchParams.get('refresh_token');
+    const githubUsername = searchParams.get('github_username');
     const email = searchParams.get('email');
-    const bounty = searchParams.get('bounty');
+    const bountyStr = searchParams.get('bounty');
+    const error = searchParams.get('error');
 
-    if (access_token && refresh_token && github_username && email && bounty) {
-      // Store user data in auth store.
-      setUser({
-        access_token,
-        refresh_token,
-        github_username,
-        email,
-        bounty: Number(bounty),
+    if (error) {
+      toast({
+        title: 'Error',
+        description: 'GitHub linking failed or account already linked.',
+        variant: 'destructive',
       });
-      // Close the popup and notify the parent window.
-      window.opener.postMessage(
-        { type: 'AUTH_SUCCESS' },
-        window.location.origin,
-      );
-      window.close();
+      router.push('/');
+      return;
     }
-  }, [searchParams, setUser]);
+
+    if (accessToken && refreshToken && githubUsername && email) {
+      // update the auth store with the new data
+      setUser({
+        access_token: accessToken,
+        refresh_token: refreshToken,
+        github_username: githubUsername,
+        email: email,
+        bounty: bountyStr ? Number.parseInt(bountyStr) : 0,
+      });
+
+      toast({
+        title: 'Success',
+        description: 'GitHub account linked successfully!',
+      });
+      router.push('/');
+    } else {
+      router.push('/');
+    }
+  }, [searchParams, setUser, router]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-2xl font-semibold text-gray-800">
-          Processing authentication...
-        </h1>
-        <p className="mt-2 text-gray-600">
-          Please wait while we complete the sign-in process.
-        </p>
+    <div className="flex h-screen w-full items-center justify-center bg-black text-white">
+      <div className="flex flex-col items-center gap-4">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent" />
+        <p>Finishing setup...</p>
       </div>
     </div>
   );
