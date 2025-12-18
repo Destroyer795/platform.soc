@@ -30,6 +30,21 @@ const Navbar = () => {
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
   }, []);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const handleScroll = () => {
+      setMobileMenuOpen(false);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [mobileMenuOpen]);
+
   useEffect(() => {
     if (!mobileMenuOpen) return;
 
