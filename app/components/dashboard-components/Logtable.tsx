@@ -257,7 +257,7 @@ export default function Logtable() {
                     newActivity ? 'animate-pulse' : ''
                   }`}
                 >
-                  <Activity className="h-5 w-5 text-blue-500" />
+                  <Activity className="h-5 w-5 text-blue-300" />
                 </div>
                 <div className="flex flex-col items-start sm:flex-row sm:items-center sm:gap-2">
                   <CardTitle className="font-bold text-gray-100 text-xl">

@@ -48,7 +48,7 @@ const DevPoolDocs = () => {
               <div className="space-y-3 md:space-y-4 flex-1">
                 {/* /assign */}
                 <div
-                  className={`${classes.cardBg} backdrop-blur-sm rounded-2xl p-4 ${classes.cardBorder} transition-all duration-200 hover:bg-white/50`}
+                  className={`${classes.cardBg} backdrop-blur-sm rounded-2xl p-4 ${classes.cardBorder} transition-all duration-200 hover:${classes.cardBgHover}`}
                 >
                   <code
                     className={`text-xl font-bold mb-2 block ${classes.cardTitle}`}
@@ -63,7 +63,7 @@ const DevPoolDocs = () => {
 
                 {/* /unassign */}
                 <div
-                  className={`${classes.cardBg} backdrop-blur-sm rounded-2xl p-4 ${classes.cardBorder} transition-all duration-200 hover:bg-white/50`}
+                  className={`${classes.cardBg} backdrop-blur-sm rounded-2xl p-4 ${classes.cardBorder} transition-all duration-200 hover:${classes.cardBgHover}`}
                 >
                   <code
                     className={`text-xl font-bold mb-2 block ${classes.cardTitle}`}
@@ -111,7 +111,7 @@ const DevPoolDocs = () => {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
                 {/* /bounty */}
                 <div
-                  className={`${classes.cardBg} backdrop-blur-sm rounded-xl p-4 ${classes.cardBorder}`}
+                  className={`${classes.cardBg} backdrop-blur-sm rounded-xl p-4 ${classes.cardBorder} hover:${classes.cardBgHover}`}
                 >
                   <code
                     className={`text-lg font-bold block mb-2 ${classes.cardTitle}`}
@@ -125,7 +125,7 @@ const DevPoolDocs = () => {
 
                 {/* /penalty */}
                 <div
-                  className={`${classes.cardBg} backdrop-blur-sm rounded-xl p-4 ${classes.cardBorder}`}
+                  className={`${classes.cardBg} backdrop-blur-sm rounded-xl p-4 ${classes.cardBorder} hover:${classes.cardBgHover}`}
                 >
                   <code
                     className={`text-lg font-bold block mb-2 ${classes.cardTitle}`}
@@ -139,7 +139,7 @@ const DevPoolDocs = () => {
 
                 {/* /help */}
                 <div
-                  className={`${classes.cardBg} backdrop-blur-sm rounded-xl p-4 ${classes.cardBorder}`}
+                  className={`${classes.cardBg} backdrop-blur-sm rounded-xl p-4 ${classes.cardBorder} hover:${classes.cardBgHover}`}
                 >
                   <code
                     className={`text-lg font-bold block mb-2 ${classes.cardTitle}`}
@@ -185,7 +185,7 @@ const DevPoolDocs = () => {
                     <div
                       // biome-ignore lint: lint/suspicious/noArrayIndexKey
                       key={i}
-                      className={`${classes.cardBg} backdrop-blur-sm rounded-xl p-3 ${classes.cardBorder}`}
+                      className={`${classes.cardBg} backdrop-blur-sm rounded-xl p-3 ${classes.cardBorder} hover:${classes.cardBgHover}`}
                     >
                       <code className={`font-bold ${classes.cardTitle}`}>
                         {b.cmd}

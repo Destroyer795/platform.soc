@@ -4,15 +4,26 @@ import { LogOut, Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 import { useTheme } from './theme-context';
-
 const Navbar = () => {
+  const prevPathRef = useRef<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
   const router = useRouter();
   const user = useAuthStore((state) => state.user);
   const clearUser = useAuthStore((state) => state.clearUser);
   const github_username = user?.github_username || '';
+
+  useEffect(() => {
+    if (prevPathRef.current && prevPathRef.current !== pathname) {
+      setMobileMenuOpen(false);
+    }
+
+    prevPathRef.current = pathname;
+  }, [pathname]);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
@@ -29,6 +40,38 @@ const Navbar = () => {
     return () => window.removeEventListener('message', handleMessage);
   }, []);
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const handleScroll = () => {
+      setMobileMenuOpen(false);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const handleOutsideClick = (event: MouseEvent | TouchEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+    document.addEventListener('touchstart', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener('touchstart', handleOutsideClick);
+    };
+  }, [mobileMenuOpen]);
+
   const handleLogout = () => {
     if (confirm('Are you sure you want to logout?')) {
       clearUser();
@@ -38,7 +81,10 @@ const Navbar = () => {
   const { classes } = useTheme();
 
   return (
-    <div className="fixed top-4 left-0 flex w-full justify-center z-50">
+    <div
+      ref={navRef}
+      className="fixed top-4 left-0 flex w-full justify-center z-50"
+    >
       <nav
         className={`w-11/12 rounded-2xl  border-b  ${classes.cardBg}
     ${classes.cardBorder} z-50 backdrop-blur-2xl`}
@@ -218,11 +264,25 @@ const NavLink = ({
   children: React.ReactNode;
   textClass: string;
 }) => (
+  // <Link
+  //   href={href}
+  //   className={`whitespace-nowrap rounded-lg px-2 py-1 font-medium text-md transition-colors duration-200 hover:bg-blue-50 hover:text-blue-500 ${textClass}`}
+  // >
+  //   {children}
+  // </Link>
   <Link
     href={href}
-    className={`whitespace-nowrap rounded-lg px-2 py-1 font-medium text-md transition-colors duration-200 hover:bg-blue-50 hover:text-blue-500 ${textClass}`}
+    className={`group relative whitespace-nowrap rounded-xs px-2 py-1 font-semibold text-lg transition-colors duration-200 ${textClass}`}
   >
-    {children}
+    <span className="pointer-events-none absolute inset-0 rounded-xs bg-transparent opacity-0 scale-95 transition-all duration-400 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:backdrop-blur-xs" />
+    <span className="relative z-10 transition-colors duration-400 ease-out group-hover:text-blue-200">
+      {children}
+    </span>
+
+    <span className="pointer-events-none absolute -left-0.5 -top-0.5 w-1.5 h-1.5 border-t border-l border-transparent group-hover:border-blue-200 transform origin-bottom-right scale-20 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-400 ease-out" />
+    <span className="pointer-events-none absolute -right-0.5 -top-0.5 w-1.5 h-1.5 border-t border-r border-transparent group-hover:border-blue-200 transform origin-bottom-left scale-20 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-400 ease-out" />
+    <span className="pointer-events-none absolute -left-0.5 -bottom-0.5 w-1.5 h-1.5 border-b border-l border-transparent group-hover:border-blue-200 transform origin-top-right scale-20 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-400 ease-out" />
+    <span className="pointer-events-none absolute -right-0.5 -bottom-0.5 w-1.5 h-1.5 border-b border-r border-transparent group-hover:border-blue-200 transform origin-top-left scale-20 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-400 ease-out" />
   </Link>
 );
 
@@ -234,11 +294,27 @@ const MobileNavLink = ({
   href: string;
   children: React.ReactNode;
 }) => (
+  // <Link
+  //   href={href}
+  //   className="block rounded-md px-3 py-2 font-medium text-base text-gray-200 transition-colors duration-200 hover:bg-blue-50 hover:text-blue-500"
+  // >
+  //   {children}
+  // </Link>
   <Link
     href={href}
-    className="block rounded-md px-3 py-2 font-medium text-base text-gray-200 transition-colors duration-200 hover:bg-blue-50 hover:text-blue-500"
+    className={
+      'group relative block rounded-xs px-3 py-2 font-medium text-base text-gray-200 transition-colors duration-200'
+    }
   >
-    {children}
+    <span className="pointer-events-none absolute inset-0 rounded-xs transition-all duration-400 bg-transparent group-hover:backdrop-blur-xs" />
+    <span className="relative z-10 transition-colors duration-400 group-hover:text-blue-200">
+      {children}
+    </span>
+
+    <span className="pointer-events-none absolute -left-0.5 -top-0.5 w-1.5 h-1.5 border-t border-l border-transparent group-hover:border-blue-200 transform origin-bottom-right scale-20 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-400 ease-out" />
+    <span className="pointer-events-none absolute -right-0.5 -top-0.5 w-1.5 h-1.5 border-t border-r border-transparent group-hover:border-blue-200 transform origin-bottom-left scale-20 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-400 ease-out" />
+    <span className="pointer-events-none absolute -left-0.5 -bottom-0.5 w-1.5 h-1.5 border-b border-l border-transparent group-hover:border-blue-200 transform origin-top-right scale-20 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-400 ease-out" />
+    <span className="pointer-events-none absolute -right-0.5 -bottom-0.5 w-1.5 h-1.5 border-b border-r border-transparent group-hover:border-blue-200 transform origin-top-left scale-20 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-400 ease-out" />
   </Link>
 );
 
