@@ -4,11 +4,14 @@ import { LogOut, Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTheme } from './theme-context';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+
   const router = useRouter();
   const user = useAuthStore((state) => state.user);
   const clearUser = useAuthStore((state) => state.clearUser);
@@ -28,7 +31,23 @@ const Navbar = () => {
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
   }, []);
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
 
+    const handleOutsideClick = (event: MouseEvent | TouchEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+    document.addEventListener('touchstart', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener('touchstart', handleOutsideClick);
+    };
+  }, [mobileMenuOpen]);
   const handleLogout = () => {
     if (confirm('Are you sure you want to logout?')) {
       clearUser();
@@ -38,7 +57,10 @@ const Navbar = () => {
   const { classes } = useTheme();
 
   return (
-    <div className="fixed top-4 left-0 flex w-full justify-center z-50">
+    <div
+      ref={navRef}
+      className="fixed top-4 left-0 flex w-full justify-center z-50"
+    >
       <nav
         className={`w-11/12 rounded-2xl  border-b  ${classes.cardBg}
     ${classes.cardBorder} z-50 backdrop-blur-2xl`}
@@ -156,6 +178,7 @@ const Navbar = () => {
 
         {/* Mobile Menu - Proper Extension */}
         <div
+          ref={menuRef}
           className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out border-gray-500 ${
             mobileMenuOpen ? 'max-h-[500px] border-t' : 'max-h-0 '
           }`}
