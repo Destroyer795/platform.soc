@@ -35,7 +35,7 @@ const Navbar = () => {
     if (!mobileMenuOpen) return;
 
     const handleOutsideClick = (event: MouseEvent | TouchEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
         setMobileMenuOpen(false);
       }
     };
@@ -48,6 +48,7 @@ const Navbar = () => {
       document.removeEventListener('touchstart', handleOutsideClick);
     };
   }, [mobileMenuOpen]);
+
   const handleLogout = () => {
     if (confirm('Are you sure you want to logout?')) {
       clearUser();
