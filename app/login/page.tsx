@@ -1,5 +1,4 @@
 'use client';
-
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
 import { Label } from '@/app/components/ui/label';
@@ -12,7 +11,7 @@ import * as z from 'zod';
 import { useAuthStore } from '../store/useAuthStore';
 
 // Password hashing utility
-export async function hashPassword(password: string): Promise<string> {
+async function hashPassword(password: string): Promise<string> {
   const encoder = new TextEncoder();
   const data = encoder.encode(password);
   const hashBuffer = await crypto.subtle.digest('SHA-256', data);

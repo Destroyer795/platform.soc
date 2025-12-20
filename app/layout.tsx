@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import localFont from 'next/font/local';
 import Image from 'next/image';
+import { Toaster } from 'react-hot-toast';
 import Navbar from './components/Navbar';
 import Snowfall from './components/Snowfallnew';
 import Cloud from './components/dashboard-components/Cloud';

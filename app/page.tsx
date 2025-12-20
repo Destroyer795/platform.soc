@@ -13,6 +13,7 @@ import { ArrowRight, Github } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 import Logtable from './components/dashboard-components/Logtable';
 import { useTheme } from './components/theme-context';
 import { handleSignIn } from './lib/utils';
@@ -32,11 +33,7 @@ const Dashboard = () => {
     // If no user or no token, redirect to login
     if (!currentUser || !currentUser.access_token) {
       console.error('No access token found. User might not be logged in.');
-      toast({
-        title: 'Error',
-        description: 'You must be logged in first.',
-        variant: 'destructive',
-      });
+      toast.error('You must be logged in first.');
       router.push('/login');
       return;
     }
@@ -67,14 +64,7 @@ const Dashboard = () => {
       }
     } catch (error) {
       console.error('OAuth Error:', error);
-      toast({
-        title: 'Error',
-        description:
-          error instanceof Error
-            ? error.message
-            : 'Could not connect to GitHub',
-        variant: 'destructive',
-      });
+      toast.error('Failed to connect with GitHub. Please try again.');
     }
   };
 

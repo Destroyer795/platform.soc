@@ -1,11 +1,12 @@
 'use client';
 
-import { toast } from '@/app/components/ui/use-toast';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
+import { Suspense } from 'react';
+import toast from 'react-hot-toast';
 import { useAuthStore } from '../../store/useAuthStore';
 
-export default function AuthCallback() {
+function AuthCallbackContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { setUser } = useAuthStore();
@@ -19,11 +20,7 @@ export default function AuthCallback() {
     const error = searchParams.get('error');
 
     if (error) {
-      toast({
-        title: 'Error',
-        description: 'GitHub linking failed or account already linked.',
-        variant: 'destructive',
-      });
+      toast.error('Authentication Error');
       router.push('/');
       return;
     }
@@ -38,16 +35,12 @@ export default function AuthCallback() {
         bounty: bountyStr ? Number.parseInt(bountyStr) : 0,
       });
 
-      toast({
-        title: 'Success',
-        description: 'GitHub account linked successfully!',
-      });
+      toast.success('GitHub account linked successfully!');
       router.push('/');
     } else {
       router.push('/');
     }
   }, [searchParams, setUser, router]);
-
   return (
     <div className="flex h-screen w-full items-center justify-center bg-black text-white">
       <div className="flex flex-col items-center gap-4">
@@ -55,5 +48,22 @@ export default function AuthCallback() {
         <p>Finishing setup...</p>
       </div>
     </div>
+  );
+}
+
+export default function AuthCallback() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex h-screen w-full items-center justify-center bg-black text-white">
+          <div className="flex flex-col items-center gap-4">
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent" />
+            <p>Finishing setup...</p>
+          </div>
+        </div>
+      }
+    >
+      <AuthCallbackContent />
+    </Suspense>
   );
 }
