@@ -13,6 +13,7 @@ import { ArrowRight, Github } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 import Logtable from './components/dashboard-components/Logtable';
 import { useTheme } from './components/theme-context';
 import { handleSignIn } from './lib/utils';
@@ -20,24 +21,52 @@ import { useAuthStore } from './store/useAuthStore';
 
 const Dashboard = () => {
   const router = useRouter();
-  const user = useAuthStore((state) => state.user);
-
-  useEffect(() => {
-    const handleMessage = (event: MessageEvent) => {
-      if (
-        event.origin === window.location.origin &&
-        event.data.type === 'AUTH_SUCCESS'
-      ) {
-        window.location.reload();
-      }
-    };
-
-    window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
-  }, []);
-
   const theme = process.env.NEXT_PUBLIC_THEME;
   const { classes } = useTheme();
+
+  const user = useAuthStore((state) => state.user);
+
+  const handleOAuth = async () => {
+    // Get the latest state directly
+    const currentUser = useAuthStore.getState().user;
+
+    // If no user or no token, redirect to login
+    if (!currentUser || !currentUser.access_token) {
+      console.error('No access token found. User might not be logged in.');
+      toast.error('You must be logged in first.');
+      router.push('/login');
+      return;
+    }
+
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/github`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${currentUser.access_token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (res.status === 401) {
+        throw new Error('Session expired. Please login again.');
+      }
+
+      if (!res.ok) {
+        throw new Error('Failed to initiate GitHub login');
+      }
+
+      const data = await res.json();
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        console.error('No URL returned from backend');
+      }
+    } catch (error) {
+      console.error('OAuth Error:', error);
+      toast.error('Failed to connect with GitHub. Please try again.');
+    }
+  };
 
   return (
     <div className="relative flex w-full flex-col text-white">
@@ -90,36 +119,44 @@ const Dashboard = () => {
               <>
                 <button
                   type="button"
-                  onClick={handleSignIn}
-                  className="flex cursor-pointer transform items-center justify-center gap-2 rounded-lg bg-gray-800 px-4 py-2 text-sm font-medium sm:px-8 sm:py-3 sm:font-semibold text-white shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-slate-900 sm:gap-3"
-                >
-                  <Github size={22} />
-                  Log in with GitHub
-                </button>
-                <button
-                  type="button"
-                  onClick={() => router.push('/register')}
+                  onClick={() => router.push('/login')}
                   className="transform cursor-pointer rounded-lg bg-blue-400 px-6 py-2 text-sm font-medium sm:px-8 sm:py-3 sm:font-semibold text-gray-900 shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 focus:ring-offset-amber-700"
                 >
-                  Register Now
+                  Login Now
                 </button>
               </>
             ) : (
-              <button
-                type="button"
-                onClick={() => router.push(`/profile/${user.github_username}`)}
-                className="flex cursor-pointer transform items-center justify-between gap-2 rounded-3xl bg-gray-800 px-2 py-2 text-sm font-medium w-fit sm:font-semibold text-white shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-slate-900 sm:gap-3"
-              >
-                <img
-                  src={`https://github.com/${user.github_username}.png`}
-                  alt={user.github_username}
-                  className="h-8 w-8 rounded-full border border-gray-300 shadow-sm"
-                />
-                <span className="font-semibold text-base">
-                  Track My Progress
-                </span>
-                <ArrowRight size={24} />
-              </button>
+              <>
+                {/* show only if github_username is empty */}
+                {!user.github_username && (
+                  <button
+                    type="button"
+                    onClick={handleOAuth}
+                    className="flex cursor-pointer transform items-center justify-center gap-2 rounded-lg bg-gray-800 px-4 py-2 text-sm font-medium sm:px-8 sm:py-3 sm:font-semibold text-white shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-slate-900 sm:gap-3"
+                  >
+                    <Github size={22} />
+                    Link with GitHub
+                  </button>
+                )}
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    router.push(`/profile/${user.github_username}`)
+                  }
+                  className="flex cursor-pointer transform items-center justify-between gap-2 rounded-3xl bg-gray-800 px-2 py-2 text-sm font-medium w-fit sm:font-semibold text-white shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-slate-900 sm:gap-3"
+                >
+                  <img
+                    src={`https://github.com/${user.github_username}.png`}
+                    alt={user.github_username}
+                    className="h-8 w-8 rounded-full border border-gray-300 shadow-sm"
+                  />
+                  <span className="font-semibold text-base">
+                    Track My Progress
+                  </span>
+                  <ArrowRight size={24} />
+                </button>
+              </>
             )}
           </div>
           <a

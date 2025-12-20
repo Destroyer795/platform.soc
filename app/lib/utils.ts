@@ -12,7 +12,7 @@ export const handleSignIn = () => {
   const top = window.screenY + (window.outerHeight - height) / 2;
 
   window.open(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/github`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/github`,
     'GitHub Sign In',
     `width=${width},height=${height},left=${left},top=${top}`,
   );
