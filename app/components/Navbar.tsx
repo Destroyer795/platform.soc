@@ -4,15 +4,26 @@ import { LogOut, Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 import { useTheme } from './theme-context';
-
 const Navbar = () => {
+  const prevPathRef = useRef<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
   const router = useRouter();
   const user = useAuthStore((state) => state.user);
   const clearUser = useAuthStore((state) => state.clearUser);
   const github_username = user?.github_username || '';
+
+  useEffect(() => {
+    if (prevPathRef.current && prevPathRef.current !== pathname) {
+      setMobileMenuOpen(false);
+    }
+
+    prevPathRef.current = pathname;
+  }, [pathname]);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
@@ -29,6 +40,38 @@ const Navbar = () => {
     return () => window.removeEventListener('message', handleMessage);
   }, []);
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const handleScroll = () => {
+      setMobileMenuOpen(false);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const handleOutsideClick = (event: MouseEvent | TouchEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+    document.addEventListener('touchstart', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener('touchstart', handleOutsideClick);
+    };
+  }, [mobileMenuOpen]);
+
   const handleLogout = () => {
     if (confirm('Are you sure you want to logout?')) {
       clearUser();
@@ -38,7 +81,10 @@ const Navbar = () => {
   const { classes } = useTheme();
 
   return (
-    <div className="fixed top-4 left-0 flex w-full justify-center z-50">
+    <div
+      ref={navRef}
+      className="fixed top-4 left-0 flex w-full justify-center z-50"
+    >
       <nav
         className={`w-11/12 rounded-2xl  border-b  ${classes.cardBg}
     ${classes.cardBorder} z-50 backdrop-blur-2xl`}

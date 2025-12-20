@@ -13,12 +13,9 @@ import { ArrowRight, Github } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import Navbar from './components/Navbar';
-import Cloud from './components/dashboard-components/Cloud';
 import Logtable from './components/dashboard-components/Logtable';
-import SunGlareEffect from './components/dashboard-components/SunGlareEffect';
 import { useTheme } from './components/theme-context';
-import { toast } from './components/ui/use-toast';
+import { handleSignIn } from './lib/utils';
 import { useAuthStore } from './store/useAuthStore';
 
 const Dashboard = () => {

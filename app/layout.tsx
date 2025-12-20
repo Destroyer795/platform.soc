@@ -3,11 +3,10 @@ import './globals.css';
 import localFont from 'next/font/local';
 import Image from 'next/image';
 import Navbar from './components/Navbar';
+import Snowfall from './components/Snowfallnew';
 import Cloud from './components/dashboard-components/Cloud';
-import Snowfall from './components/dashboard-components/Snowfall';
 import SunGlareEffect from './components/dashboard-components/SunGlareEffect';
 import { ThemeProvider } from './components/theme-context';
-import { Toaster } from './components/ui/toaster';
 
 const theme = process.env.NEXT_PUBLIC_THEME;
 const summerGradient =
@@ -145,6 +144,11 @@ export default function RootLayout({
           background: theme === 'SUMMER' ? summerGradient : winterGradient,
         }}
       >
+        <Toaster
+          position="bottom-center"
+          toastOptions={{ style: { maxWidth: '400px' } }}
+        />
+
         {theme === 'WINTER' && (
           <div className="fixed inset-0 -z-10">
             <Image
@@ -167,7 +171,6 @@ export default function RootLayout({
         <ThemeProvider>
           <Navbar />
 
-          {/* ✅ NAVBAR SPACER — PUSHES CONTENT, NOT BACKGROUND */}
           <div className="h-20" />
 
           {theme === 'WINTER' && <Snowfall />}
@@ -180,8 +183,6 @@ export default function RootLayout({
           )}
 
           {children}
-
-          <Toaster />
         </ThemeProvider>
       </body>
     </html>
