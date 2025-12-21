@@ -13,9 +13,7 @@ type TeamMember = {
 };
 
 const TeamPage = () => {
-  const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
-  const [_allTags, setAllTags] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -31,11 +29,6 @@ const TeamPage = () => {
         const data = await response.json();
         const teamData: TeamMember[] = data.team;
         setTeamMembers(teamData);
-
-        // Generate unique tags from all resources
-        const tags = teamData.flatMap((member: TeamMember) => member.tags);
-        const uniqueTags = [...new Set(tags)].sort();
-        setAllTags(uniqueTags);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load team');
         console.error('Error loading team:', err);
@@ -47,73 +40,16 @@ const TeamPage = () => {
     loadTeam();
   }, []);
 
-  // Toggle a tag in the selectedLabels array
-  // const toggleTag = (tag: string) => {
-  //   setSelectedLabels((prev) =>
-  //     prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
-  //   );
-  // };
-
-  // Clear all selected tags
-  // const clearFilters = () => {
-  //   setSelectedLabels([]);
-  // };
-
-  // Filtering Logic (same as before)
-  const filteredTeam =
-    selectedLabels.length === 0
-      ? teamMembers
-      : teamMembers
-          .map((resource) => {
-            const matchingTagsCount = selectedLabels.filter((tag) =>
-              resource.tags.includes(tag),
-            ).length;
-            return { resource, matchingTagsCount };
-          })
-          .filter(({ matchingTagsCount }) => matchingTagsCount > 0)
-          .sort((a, b) => b.matchingTagsCount - a.matchingTagsCount)
-          .map(({ resource }) => resource);
   const { theme, classes } = useTheme();
-  const maintainers = filteredTeam.filter((member) =>
+  const maintainers = teamMembers.filter((member) =>
     member.tags.includes('Maintainer'),
   );
-  const developers = filteredTeam.filter(
+  const developers = teamMembers.filter(
     (member) => !member.tags.includes('Maintainer'),
   );
 
   return (
     <div className="min-h-screen">
-      {/* TODO: Filter Chips (enable after all maintainers are added) */}
-      {/* <div className="relative mx-auto mt-4 flex max-w-3xl flex-wrap justify-center gap-2"> */}
-      {/*   {allTags.map((tag) => { */}
-      {/*     const isSelected = selectedLabels.includes(tag); */}
-      {/*     return ( */}
-      {/*       <button */}
-      {/*         type="button" */}
-      {/*         key={tag} */}
-      {/*         onClick={() => toggleTag(tag)} */}
-      {/*         className={`flex cursor-pointer items-center justify-center rounded-full px-3 py-1 font-medium text-sm shadow-sm transition-all duration-200 ${isSelected */}
-      {/*           ? 'bg-slate-700 text-white hover:bg-slate-800' */}
-      {/*           : 'border border-gray-300 bg-gray-50 text-gray-900 hover:bg-gray-100' */}
-      {/*           }`} */}
-      {/*       > */}
-      {/*         {isSelected && <BsCheckLg className="mr-2 h-4 w-4" />} */}
-      {/*         {tag} */}
-      {/*       </button> */}
-      {/*     ); */}
-      {/*   })} */}
-      {/*   {selectedLabels.length > 0 && ( */}
-      {/*     <button */}
-      {/*       type="button" */}
-      {/*       onClick={clearFilters} */}
-      {/*       className="ml-2 rounded-full bg-[#ffa4a4] px-2 py-1 font-medium text-[#360000] text-sm shadow-sm transition-all duration-200 hover:bg-[#ffa4a4]/80 flex items-center justify-center align-middle" */}
-      {/*     > */}
-      {/*       <FaTimes className="mr-1 h-4 w-4" /> */}
-      {/*       Clear Filters */}
-      {/*     </button> */}
-      {/*   )} */}
-      {/* </div> */}
-
       <section className="mx-auto max-w-(--breakpoint-xl) px-4 pb-10 pt-10 sm:px-6 md:px-8">
         {isLoading ? (
           <div className="flex min-h-[60vh] items-center justify-center gap-2">
@@ -124,11 +60,9 @@ const TeamPage = () => {
           <div className="flex min-h-[60vh] items-center justify-center">
             <p className="text-red-500">{error}</p>
           </div>
-        ) : filteredTeam.length === 0 ? (
+        ) : teamMembers.length === 0 ? (
           <div className="flex min-h-[60vh] items-center justify-center">
-            <p className="text-white">
-              No team members matched your selected tag.
-            </p>
+            <p className="text-white">No team members found.</p>
           </div>
         ) : (
           <div className="flex flex-col gap-16">
