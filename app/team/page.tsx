@@ -139,10 +139,10 @@ const TeamPage = () => {
                 Maintainers
               </h2>
               <p
-                className={`mx-auto mt-2 max-w-2xl text-lg ${classes.pageDesc} drop-shadow-[0_1px_6px_rgba(255,255,255,0.2)]`}
+                className={`mx-auto mt-2 max-w-3xl text-lg ${classes.pageDesc} drop-shadow-[0_1px_6px_rgba(255,255,255,0.2)]`}
               >
-                Buiding the project's long-term vision, setting standards, and
-                ensuring every contribution meets a high bar of quality.{' '}
+                Guiding the project forward and ensuring contributions meet high
+                standards.
               </p>
               <div className="grid grid-cols-1 justify-items-center gap-3 md:gap-6 p-2 sm:grid-cols-2 sm:p-4 md:grid-cols-3 w-full ml-auto mr-auto mt-8">
                 {maintainers.map((card, index: number) => (
@@ -161,10 +161,10 @@ const TeamPage = () => {
                 Developers
               </h2>
               <p
-                className={`mx-auto mt-2 max-w-2xl text-lg ${classes.pageDesc} drop-shadow-[0_1px_6px_rgba(255,255,255,0.2)]`}
+                className={`mx-auto mt-2 max-w-3xl text-lg ${classes.pageDesc} drop-shadow-[0_1px_6px_rgba(255,255,255,0.2)]`}
               >
-                Meet the developers behind this website, responsible for
-                bringing the platform to life through thoughtful engineering.{' '}
+                Meet the developers behind this website, bringing it to life
+                through thoughtful engineering.
               </p>
               <div className="grid grid-cols-1 justify-items-center gap-3 md:gap-6 p-2 sm:grid-cols-2 sm:p-4 md:grid-cols-3 w-full ml-auto mr-auto mt-8">
                 {developers.map((card, index: number) => (
