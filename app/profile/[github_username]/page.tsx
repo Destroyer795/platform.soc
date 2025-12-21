@@ -2,9 +2,6 @@
 import { useRouter } from 'next/navigation';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import Navbar from '../../components/Navbar';
-import Cloud from '../../components/dashboard-components/Cloud';
-import SunGlareEffect from '../../components/dashboard-components/SunGlareEffect';
 import GameAchievementSystem from '../../components/profile-components/GameAchivementSystem';
 import Profile, {
   type ProfileResponse,
@@ -70,10 +67,7 @@ const ProfilePage = () => {
   if (!hydrated) {
     return (
       <>
-        <SunGlareEffect />
-        <Cloud />
-        <Navbar />
-        <div className="w-full max-w-screen mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10 overflow-x-hidden">
+        <div className="w-full max-w-screen mx-auto px-9 sm:px-6 lg:px-8 pt-20 pb-10 overflow-x-hidden">
           <div className="flex justify-center items-center min-h-64">
             <div>Loading...</div>
           </div>
@@ -84,10 +78,7 @@ const ProfilePage = () => {
 
   return (
     <>
-      <SunGlareEffect />
-      <Cloud />
-      <Navbar />
-      <div className="w-full max-w-screen mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10 overflow-x-hidden">
+      <div className="w-full max-w-screen mx-auto px-4 sm:px-6 lg:px-8  pb-10 overflow-x-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
           <div className="col-span-1 lg:col-span-2 w-full">
             <Profile
