@@ -114,13 +114,13 @@ const Dashboard = () => {
             Collaborate, learn, build innovative projects and showcase your
             skills!
           </p>
-          <div className="flex flex-row gap-4 sm:flex-row">
+          <div className="flex flex-col gap-4 w-1/2">
             {!user ? (
               <>
                 <button
                   type="button"
                   onClick={() => router.push('/login')}
-                  className="transform cursor-pointer rounded-lg bg-blue-400 px-6 py-2 text-sm font-medium sm:px-8 sm:py-3 sm:font-semibold text-gray-900 shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 focus:ring-offset-amber-700"
+                  className="w-full transform cursor-pointer rounded-lg bg-blue-400 py-2 text-sm font-medium sm:py-3 sm:font-semibold text-gray-900 shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 focus:ring-offset-amber-700"
                 >
                   Login Now
                 </button>
@@ -128,42 +128,46 @@ const Dashboard = () => {
             ) : (
               <>
                 {/* show only if github_username is empty */}
-                {!user.github_username && (
+                {!user.github_username ? (
                   <button
                     type="button"
                     onClick={handleOAuth}
-                    className="flex cursor-pointer transform items-center justify-center gap-2 rounded-lg bg-gray-800 px-4 py-2 text-sm font-medium sm:px-8 sm:py-3 sm:font-semibold text-white shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-slate-900 sm:gap-3"
+                    className="w-full flex cursor-pointer transform items-center justify-center gap-2 rounded-lg bg-gray-800 py-2 text-sm font-medium sm:py-3 sm:font-semibold text-white shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-slate-900 sm:gap-3"
                   >
                     <Github size={22} />
                     Link with GitHub
                   </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      router.push(`/profile/${user.github_username}`)
+                    }
+                    className="w-full flex cursor-pointer transform items-center justify-between gap-2 rounded-3xl bg-gray-800 px-1 py-2 text-sm font-medium sm:font-semibold text-white shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-slate-900 sm:gap-3"
+                  >
+                    <img
+                      src={`https://github.com/${user.github_username}.png`}
+                      alt={user.github_username}
+                      className="h-8 w-8 rounded-full border border-gray-300 shadow-sm"
+                    />
+                    <span className="font-semibold text-lg lg:text-base">
+                      Track My Progress
+                    </span>
+                    <ArrowRight
+                      size={24}
+                      className="pr-1"
+                    />
+                  </button>
                 )}
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    router.push(`/profile/${user.github_username}`)
-                  }
-                  className="flex cursor-pointer transform items-center justify-between gap-2 rounded-3xl bg-gray-800 px-2 py-2 text-sm font-medium w-fit sm:font-semibold text-white shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-slate-900 sm:gap-3"
-                >
-                  <img
-                    src={`https://github.com/${user.github_username}.png`}
-                    alt={user.github_username}
-                    className="h-8 w-8 rounded-full border border-gray-300 shadow-sm"
-                  />
-                  <span className="font-semibold text-base">
-                    Track My Progress
-                  </span>
-                  <ArrowRight size={24} />
-                </button>
               </>
             )}
           </div>
+
           <a
             href="https://github.com/Infinite-Sum-Games"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-5 inline-flex items-center gap-2 text-[14px] font-medium text-gray-100 transition hover:opacity-100 hover:underline underline-offset-2 pl-0 md:pl-14"
+            className="mt-5 inline-flex items-center gap-2 font-medium text-gray-100 transition hover:opacity-100 hover:underline underline-offset-2"
           >
             <span>Co-developed with </span>
             <Image
@@ -173,7 +177,7 @@ const Dashboard = () => {
               height={18}
               className="rounded-sm object-contain"
             />
-            <span className="text-[14px] font-medium">Infinite Sum Games</span>
+            <span className=" font-medium">Infinite Sum Games</span>
           </a>
         </div>
         <div className="relative z-10 flex w-full flex-1 flex-col items-center py-8 md:py-4 md:h-[calc(100vh-80px)]">
