@@ -60,12 +60,12 @@ const LoadingCard = () => (
 const ErrorCard = () => (
   <div className="w-full flex items-center justify-center min-h-[320px] py-12">
     <div className="w-full max-w-md mx-auto">
-      <div className="rounded-2xl bg-[#101624] bg-opacity-90 shadow-2xl px-8 py-10 flex flex-col items-center border-2 border-red-900/30">
+      <div className="rounded-2xl bg-white/25 shadow-2xl px-8 py-10 flex flex-col items-center border-2 border-red-900/30">
         <AlertCircle className="w-12 h-12 text-red-500 mb-4" />
-        <h2 className="text-2xl font-semibold text-gray-800 mb-2 text-center">
+        <h2 className="text-2xl font-semibold mb-2 text-center text-white/80">
           Oops! Something went wrong.
         </h2>
-        <p className="text-base text-gray-600 text-center">
+        <p className="text-base text-white/80 text-center">
           Please try again later <span className="animate-pulse">😊</span>
         </p>
       </div>
