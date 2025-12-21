@@ -16,7 +16,6 @@ import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 import Logtable from './components/dashboard-components/Logtable';
 import { useTheme } from './components/theme-context';
-import { handleSignIn } from './lib/utils';
 import { useAuthStore } from './store/useAuthStore';
 
 const Dashboard = () => {
