@@ -119,7 +119,7 @@ const Dashboard = () => {
                 <button
                   type="button"
                   onClick={() => router.push('/login')}
-                  className="w-full transform cursor-pointer rounded-lg bg-blue-400 py-2 text-sm font-medium sm:py-3 sm:font-semibold text-gray-900 shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 focus:ring-offset-amber-700"
+                  className="w-full transform cursor-pointer rounded-lg bg-blue-400 py-2 text-md font-medium sm:py-3 sm:font-semibold text-gray-900 shadow-lg transition duration-300 ease-in-out hover:scale-102 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 focus:ring-offset-blue-800"
                 >
                   Login Now
                 </button>
