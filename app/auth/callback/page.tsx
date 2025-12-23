@@ -42,7 +42,7 @@ function AuthCallbackContent() {
     }
   }, [searchParams, setUser, router]);
   return (
-    <div className="flex min-h-[calc(100vh-5rem)] w-full items-center justify-center bg-white/10 text-white">
+    <div className="flex min-h-[calc(100vh-5rem)] w-full items-center justify-center bg-transparent text-white">
       <div className="flex flex-col items-center gap-4">
         <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent" />
         <p>Establishing connection with GitHub...</p>
@@ -55,7 +55,7 @@ export default function AuthCallback() {
   return (
     <Suspense
       fallback={
-        <div className="flex min-h-[calc(100vh-5rem)] w-full items-center justify-center bg-white/10 text-white">
+        <div className="flex min-h-[calc(100vh-5rem)] w-full items-center justify-center bg-transparent text-white">
           <div className="flex flex-col items-center gap-4">
             <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent" />
             <p>Establishing connection with GitHub...</p>
