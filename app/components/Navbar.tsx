@@ -168,7 +168,7 @@ const Navbar = () => {
                           toast.error('Please link your GitHub account.');
                         }
                       }}
-                      className="cursor-pointer flex items-center gap-2 rounded-l-full bg-white px-2 py-1 text-base font-semibold text-gray-800 shadow transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-200"
+                      className="cursor-pointer flex items-center gap-2 rounded-l-full bg-white px-2 py-1 text-base font-semibold text-gray-800 shadow transition hover:shadow-md"
                     >
                       <img
                         src={

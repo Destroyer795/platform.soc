@@ -186,19 +186,19 @@ const Dashboard = () => {
             >
               <TabsTrigger
                 value="live-activity"
-                className="py-2.5 text-sm font-bold data-[state=inactive]:text-gray-300 data-[state=active]:bg-white  rounded-3xl transition-all cursor-pointer"
+                className="py-2.5 text-sm font-bold data-[state=inactive]:text-gray-300 data-[state=active]:bg-white rounded-3xl transition-all cursor-pointer"
               >
                 Live Activity
               </TabsTrigger>
               <TabsTrigger
                 value="leaderboard"
-                className="py-2.5 text-sm font-bold data-[state=inactive]:text-gray-300 data-[state=active]:bg-white  rounded-3xl transition-all cursor-pointer"
+                className="py-2.5 text-sm font-bold data-[state=inactive]:text-gray-300 data-[state=active]:bg-white rounded-3xl transition-all cursor-pointer"
               >
                 Leaderboard
               </TabsTrigger>
               <TabsTrigger
                 value="hall-of-fame"
-                className="py-2.5 text-sm font-bold data-[state=inactive]:text-gray-300 data-[state=active]:bg-white  rounded-3xl transition-all cursor-pointer"
+                className="py-2.5 text-sm font-bold data-[state=inactive]:text-gray-300 data-[state=active]:bg-white rounded-3xl transition-all cursor-pointer"
               >
                 Hall of Fame
               </TabsTrigger>
