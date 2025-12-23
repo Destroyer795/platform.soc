@@ -1,8 +1,8 @@
 'use client';
 import Card from '@/app/components/TeamProfileCard';
+import { useTheme } from '@/app/components/theme-context';
 import { Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { useTheme } from '../components/theme-context';
 
 type TeamMember = {
   name: string;

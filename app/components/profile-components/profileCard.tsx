@@ -1,5 +1,10 @@
 'use client';
 import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from '@/app/components/ui/chart';
+import {
   AlertCircle,
   Clock,
   GitPullRequest,
@@ -17,7 +22,6 @@ import {
   RadarChart,
   ResponsiveContainer,
 } from 'recharts';
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from '../ui/chart';
 
 export interface ProfileResponse {
   message: string;

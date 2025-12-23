@@ -1,4 +1,6 @@
 'use client';
+import { useTheme } from '@/app/components/theme-context';
+import { Card, CardDescription, CardHeader } from '@/app/components/ui/card';
 import { ScrollArea } from '@/app/components/ui/scroll-area';
 import { make_api_call } from '@/app/lib/api';
 import type { AuthUser } from '@/app/store/useAuthStore';
@@ -9,8 +11,6 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FaSort, FaSortDown, FaSortUp } from 'react-icons/fa'; // Import sorting icons
 import { MdCode, MdMonetizationOn } from 'react-icons/md';
-import { useTheme } from '../theme-context';
-import { Card, CardDescription, CardHeader } from '../ui/card';
 import ParticipantAvatar from './ParticipantAvatar';
 
 export type TUserData = {

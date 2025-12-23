@@ -1,3 +1,4 @@
+import { useTheme } from '@/app/components/theme-context';
 import { Badge } from '@/app/components/ui/badge';
 import {
   Card,
@@ -9,7 +10,6 @@ import {
 import type { ReposData } from '@/app/store/useRepositoryStore';
 import { ChevronRight } from 'lucide-react';
 import React from 'react';
-import { useTheme } from '../theme-context';
 
 const RepoCard = (props: ReposData) => {
   const { classes } = useTheme();

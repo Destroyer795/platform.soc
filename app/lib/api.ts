@@ -1,5 +1,5 @@
+import { useAuthStore } from '@/app/store/useAuthStore';
 import { toast } from 'react-hot-toast';
-import { useAuthStore } from '../store/useAuthStore';
 
 export async function make_api_call<T = unknown>({
   url,
