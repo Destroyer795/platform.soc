@@ -76,14 +76,22 @@ export async function make_api_call<T = unknown>({
         });
       }
       clearUser();
-      throw new Error('Session expired. Please login again.');
+      toast.error('Session expired. Please login again.');
     }
 
     if (response.status === 422) {
       const errorData = await response.json().catch(() => ({}));
       const message = 'Please link your GitHub account to continue.';
-
       toast.error(message);
+
+      throw new Error(message);
+    }
+
+    if (response.status === 500) {
+      const errorData = await response.json().catch(() => ({}));
+      const message =
+        errorData.message || 'Server error. Please try again later.';
+      toast.error('Server error. Please try again later.');
 
       throw new Error(message);
     }
@@ -103,11 +111,13 @@ export async function make_api_call<T = unknown>({
       error: null,
     };
   } catch (error) {
+    const message =
+      error instanceof Error ? error.message : 'An unexpected error occurred';
+    toast.error(message);
     return {
       success: false,
       data: null,
-      error:
-        error instanceof Error ? error.message : 'An unexpected error occurred',
+      error: message,
     };
   }
 }
