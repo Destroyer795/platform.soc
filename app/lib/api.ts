@@ -30,7 +30,8 @@ export async function make_api_call<T = unknown>({
       ).toString();
       finalUrl = `${url}?${queryString}`;
     }
-    const defaultHeaders = {
+
+    const defaultHeaders: Record<string, string> = {
       'Content-Type': 'application/json',
       ...headers,
     };
@@ -46,6 +47,13 @@ export async function make_api_call<T = unknown>({
 
     const response = await fetch(finalUrl, options);
 
+    // INVALID CREDENTIALS 401
+    if (response.status === 401 && url.includes('/auth/login')) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData?.message || 'Invalid email or password');
+    }
+
+    // TOKEN EXPIRED 401
     if (response.status === 401 && retry && user?.refresh_token) {
       const refreshRes = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/refresh`,
@@ -66,41 +74,39 @@ export async function make_api_call<T = unknown>({
           access_token: newAccessToken,
         });
 
+        const newHeaders = {
+          ...headers,
+          Authorization: `Bearer ${newAccessToken}`,
+        };
+
         return make_api_call<T>({
           url,
           method,
-          headers,
+          headers: newHeaders,
           params,
           body,
           retry: false,
         });
       }
       clearUser();
-      toast.error('Session expired. Please login again.');
+      throw new Error('Session expired. Please login again.');
     }
 
+    // GITHUB ACCOUNT NOT LINKED 422
     if (response.status === 422) {
-      const errorData = await response.json().catch(() => ({}));
-      const message = 'Please link your GitHub account to continue.';
-      toast.error(message);
-
-      throw new Error(message);
+      throw new Error('Please link your GitHub account to continue.');
     }
 
+    // INTERNAL SERVER ERROR 500
     if (response.status === 500) {
-      const errorData = await response.json().catch(() => ({}));
-      const message =
-        errorData.message || 'Server error. Please try again later.';
-      toast.error('Server error. Please try again later.');
-
-      throw new Error(message);
+      throw new Error('Server error. Please try again later.');
     }
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      const errorMessage =
-        errorData.message || `HTTP error! Status: ${response.status}`;
-      throw new Error(errorMessage);
+      throw new Error(
+        errorData.message || `HTTP error! Status: ${response.status}`,
+      );
     }
 
     const data = await response.json().catch(() => ({}));
@@ -113,7 +119,9 @@ export async function make_api_call<T = unknown>({
   } catch (error) {
     const message =
       error instanceof Error ? error.message : 'An unexpected error occurred';
+
     toast.error(message);
+
     return {
       success: false,
       data: null,
