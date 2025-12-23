@@ -1,14 +1,17 @@
 'use client';
+
+import { useTheme } from '@/app/components/theme-context'; // Ensure path is correct
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
 import { Label } from '@/app/components/ui/label';
 import { toast } from '@/app/components/ui/use-toast';
 import { make_api_call } from '@/app/lib/api';
+import { useAuthStore } from '@/app/store/useAuthStore';
+import { ArrowRight, Loader2, Lock, Mail } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import * as z from 'zod';
-import { useAuthStore } from '../store/useAuthStore';
 
 // Password hashing utility
 async function hashPassword(password: string): Promise<string> {
@@ -28,6 +31,9 @@ type FormData = z.infer<typeof formSchema>;
 
 export default function LoginPage() {
   const router = useRouter();
+  const { classes, theme } = useTheme();
+  const { setUser } = useAuthStore();
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     email: '',
@@ -39,8 +45,23 @@ export default function LoginPage() {
   const [touched, setTouched] = useState<
     Partial<Record<keyof FormData, boolean>>
   >({});
-  // useAuthStore
-  const { setUser } = useAuthStore();
+
+  const inputStyles =
+    theme === 'SUMMER'
+      ? `bg-white/50 border-gray-300 text-gray-900 placeholder:${classes.cardText} focus:border-blue-600/50 focus:ring-blue-600/20`
+      : `bg-black/20 border-white/10 text-white placeholder:${classes.cardText}  focus:border-blue-500/50 focus:ring-blue-500/20`;
+
+  const iconColor = theme === 'SUMMER' ? 'text-gray-500' : 'text-slate-400';
+
+  const buttonStyles =
+    theme === 'SUMMER'
+      ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-blue-900/10'
+      : 'bg-blue-400 hover:bg-blue-500 text-gray-900 shadow-blue-900/20';
+
+  const linkStyles =
+    theme === 'SUMMER'
+      ? 'text-blue-600 hover:text-blue-500'
+      : 'text-blue-400 hover:text-blue-300';
 
   const validateField = (name: keyof FormData, value: string) => {
     const fieldSchema = formSchema.shape[name];
@@ -86,7 +107,7 @@ export default function LoginPage() {
         throw new Error(result.error || 'Login failed');
       }
 
-      console.log('Login successful:', result.data);
+      // console.log('Login successful:', result.data);
 
       setUser({
         access_token: result.data.accessToken,
@@ -100,75 +121,150 @@ export default function LoginPage() {
       router.push('/');
       router.refresh();
     } catch (error) {
-      // ... error handling
+      toast({
+        title: 'Error',
+        description:
+          error instanceof Error ? error.message : 'Something went wrong',
+        variant: 'destructive',
+      });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="container mx-auto min-h-screen flex justify-center items-center px-4">
-      <div className="max-w-md w-full">
-        <div className="flex flex-col rounded-3xl border border-white/20 bg-white/40 p-8 shadow-lg backdrop-blur-md">
+    <div className="relative min-h-[calc(100vh-5rem)] flex items-center justify-center p-4 overflow-hidden">
+      <div className="relative w-full max-w-md">
+        <div
+          className={`backdrop-blur-3xl ${classes.cardBg} ${classes.cardBorder} border rounded-2xl shadow-2xl p-8 overflow-hidden transition-colors duration-300`}
+        >
+          {/* Header */}
           <div className="mb-8 text-center">
-            <h1 className="text-3xl font-bold text-gray-800">Welcome Back</h1>
-            <p className="text-gray-600 mt-2">Login to continue</p>
+            <h1
+              className={`text-3xl font-bold tracking-tight ${classes.cardTitle} mb-2`}
+            >
+              Welcome Back
+            </h1>
+            <p className={`text-sm  ${classes.cardText}`}>
+              Use your Anokha '26 credentials to Login
+            </p>
           </div>
 
           <form
             onSubmit={onSubmit}
             className="space-y-6"
           >
+            {/* Email Field */}
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="name@example.com"
-                value={formData.email}
-                onChange={handleInputChange}
-                onBlur={handleBlur}
-                className="bg-white/20"
-              />
+              <Label
+                htmlFor="email"
+                className={`font-medium ml-1 ${classes.cardText}`}
+              >
+                Email Address
+              </Label>
+              <div className="relative group">
+                <div
+                  className={`absolute left-3 top-1/2 -translate-y-1/2 transition-colors ${iconColor} group-focus-within:text-blue-500`}
+                >
+                  <Mail
+                    className={`${classes.cardText}`}
+                    size={18}
+                  />
+                </div>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  onBlur={handleBlur}
+                  className={`pl-10 h-11 rounded-xl transition-all ${inputStyles} ${
+                    touched.email && errors.email
+                      ? 'border-red-500/50 focus:border-red-500/50'
+                      : ''
+                  }`}
+                />
+              </div>
               {touched.email && errors.email && (
-                <p className="text-xs text-red-500">{errors.email}</p>
+                <p className="text-xs text-red-500 ml-1 animate-in fade-in slide-in-from-top-1">
+                  {errors.email}
+                </p>
               )}
             </div>
 
+            {/* Password Field */}
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                placeholder="••••••••"
-                value={formData.password}
-                onChange={handleInputChange}
-                onBlur={handleBlur}
-                className="bg-white/20"
-              />
+              <div className="flex items-center justify-between ml-1">
+                <Label
+                  htmlFor="password"
+                  className={`font-medium ${classes.cardText}`}
+                >
+                  Password
+                </Label>
+              </div>
+              <div className="relative group">
+                <div
+                  className={`absolute left-3 top-1/2 -translate-y-1/2 transition-colors ${iconColor} group-focus-within:text-blue-500`}
+                >
+                  <Lock
+                    className={`${classes.cardText}`}
+                    size={18}
+                  />
+                </div>
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="*****"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  onBlur={handleBlur}
+                  className={`pl-10 h-11 rounded-xl transition-all ${inputStyles} ${
+                    touched.password && errors.password
+                      ? 'border-red-500/50 focus:border-red-500/50'
+                      : ''
+                  }`}
+                />
+              </div>
               {touched.password && errors.password && (
-                <p className="text-xs text-red-500">{errors.password}</p>
+                <p className="text-xs text-red-500 ml-1 animate-in fade-in slide-in-from-top-1">
+                  {errors.password}
+                </p>
               )}
             </div>
 
+            {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-600 py-6 text-lg rounded-3xl"
+              className={`w-full h-11 font-semibold rounded-xl shadow-lg transition-all cursor-pointer duration-300 hover:scale-102 ${buttonStyles}`}
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Logging in...' : 'Login'}
+              {isSubmitting ? (
+                <span className="flex items-center gap-2">
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Logging in...
+                </span>
+              ) : (
+                <span className="flex items-center gap-2">
+                  Login
+                  <ArrowRight
+                    size={18}
+                    className="opacity-80"
+                  />
+                </span>
+              )}
             </Button>
 
-            <div className="text-center mt-4">
-              <p className="text-sm text-gray-600">
+            {/* Footer */}
+            <div className="text-center pt-2">
+              <p className={`text-sm ${classes.cardText}`}>
                 Don't have an account?{' '}
                 <Link
-                  href="/register"
-                  className="font-semibold text-blue-700 hover:underline"
+                  href="https://anokha.amrita.edu/events"
+                  className={`font-medium transition-colors hover:underline underline-offset-4 ${linkStyles}`}
                 >
-                  Register here
+                  Register Here
                 </Link>
               </p>
             </div>

@@ -16,7 +16,6 @@ import {
   XCircle,
 } from 'lucide-react';
 import React, { useEffect, useState, useMemo } from 'react';
-import Navbar from '../components/Navbar';
 import IssueCard from '../components/repo-components/IssueCard';
 import RepoCard from '../components/repo-components/RepoCard';
 import { useTheme } from '../components/theme-context';
