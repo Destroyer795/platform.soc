@@ -121,7 +121,7 @@ export default function LoginPage() {
       router.push('/');
       router.refresh();
     } catch (error) {
-      toast.error('Something went wrong');
+      console.error('Something went wrong');
     } finally {
       setIsSubmitting(false);
     }
