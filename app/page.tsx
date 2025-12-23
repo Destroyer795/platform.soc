@@ -113,7 +113,7 @@ const Dashboard = () => {
             Collaborate, learn, build innovative projects and showcase your
             skills!
           </p>
-          <div className="flex flex-col gap-4 w-1/2">
+          <div className="flex flex-col gap-4 w-full sm:w-auto md:w-1/2 items-center md:items-start">
             {!user ? (
               <>
                 <button
@@ -142,20 +142,17 @@ const Dashboard = () => {
                     onClick={() =>
                       router.push(`/profile/${user.github_username}`)
                     }
-                    className="w-full flex cursor-pointer transform items-center justify-between gap-2 rounded-3xl bg-gray-800 px-1 py-2 text-sm font-medium sm:font-semibold text-white shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-slate-900 sm:gap-3"
+                    className="w-fit flex cursor-pointer transform items-center justify-start gap-3 rounded-3xl bg-gray-800 px-3 py-2 text-sm font-medium sm:font-semibold text-white shadow-lg transition duration-300 ease-in-out hover:scale-102 hover:bg-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-1 focus:ring-offset-slate-900 sm:gap-3"
                   >
                     <img
                       src={`https://github.com/${user.github_username}.png`}
                       alt={user.github_username}
                       className="h-8 w-8 rounded-full border border-gray-300 shadow-sm"
                     />
-                    <span className="font-semibold text-lg lg:text-base">
+                    <span className="font-semibold text-lg lg:text-base whitespace-nowrap">
                       Track My Progress
                     </span>
-                    <ArrowRight
-                      size={24}
-                      className="pr-1"
-                    />
+                    <ArrowRight size={24} />
                   </button>
                 )}
               </>
