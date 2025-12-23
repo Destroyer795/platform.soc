@@ -154,7 +154,7 @@ export default function Logtable() {
 
           setFetchedLogs(transformed);
           setFilteredLogs(transformed);
-          console.log('Initial logs:', transformed);
+          // console.log('Initial logs:', transformed);
         } else {
           setError(result.error || 'Failed to fetch logs');
         }

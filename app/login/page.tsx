@@ -107,7 +107,7 @@ export default function LoginPage() {
         throw new Error(result.error || 'Login failed');
       }
 
-      console.log('Login successful:', result.data);
+      // console.log('Login successful:', result.data);
 
       setUser({
         access_token: result.data.accessToken,
