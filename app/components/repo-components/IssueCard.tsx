@@ -6,8 +6,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/app/components/ui/card';
+import { cn } from '@/app/lib/utils';
 import type { IssuesData } from '@/app/store/useRepositoryStore';
-import { cn } from '@/lib/utils';
 import { color } from 'framer-motion';
 import { Code, Coins, ExternalLink, GitPullRequest } from 'lucide-react';
 import Link from 'next/link';

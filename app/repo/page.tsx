@@ -19,11 +19,11 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/app/components/ui/tabs';
+import { cn } from '@/app/lib/utils';
 import {
   type IssuesData,
   useRepositoryStore,
 } from '@/app/store/useRepositoryStore';
-import { cn } from '@/lib/utils';
 import {
   CheckSquare,
   Code,

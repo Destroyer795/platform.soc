@@ -13,7 +13,7 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/app/components/ui/tabs';
-import { cn } from '@/lib/utils';
+import { cn } from '@/app/lib/utils';
 import { FileText, GitBranch } from 'lucide-react';
 import { XCircle } from 'lucide-react';
 import { useState } from 'react';
