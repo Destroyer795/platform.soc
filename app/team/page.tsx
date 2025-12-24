@@ -1,7 +1,8 @@
 'use client';
 import Card from '@/app/components/TeamProfileCard';
+import { randomise } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTheme } from '../components/theme-context';
 
 type TeamMember = {
@@ -41,8 +42,12 @@ const TeamPage = () => {
   }, []);
 
   const { theme, classes } = useTheme();
-  const maintainers = teamMembers.filter((member) =>
-    member.tags.includes('Maintainer'),
+  const maintainers = useMemo(
+    () =>
+      randomise(
+        teamMembers.filter((member) => member.tags.includes('Maintainer')),
+      ),
+    [teamMembers],
   );
   const wocTeam = teamMembers.filter((member) =>
     member.tags.some((tag) => tag !== 'Maintainer'),
