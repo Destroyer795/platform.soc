@@ -44,8 +44,8 @@ const TeamPage = () => {
   const maintainers = teamMembers.filter((member) =>
     member.tags.includes('Maintainer'),
   );
-  const developers = teamMembers.filter(
-    (member) => !member.tags.includes('Maintainer'),
+  const wocTeam = teamMembers.filter((member) =>
+    member.tags.some((tag) => tag !== 'Maintainer'),
   );
 
   return (
@@ -75,7 +75,7 @@ const TeamPage = () => {
               <p
                 className={`mx-auto mt-2 max-w-3xl text-lg ${classes.pageDesc} drop-shadow-[0_1px_6px_rgba(255,255,255,0.2)]`}
               >
-                Guiding the project forward and ensuring contributions meet high
+                Guiding projects forward and ensuring contributions meet high
                 standards.
               </p>
               <div className="grid grid-cols-1 justify-items-center gap-3 md:gap-6 p-2 sm:grid-cols-2 sm:p-4 md:grid-cols-3 w-full ml-auto mr-auto mt-8">
@@ -83,6 +83,7 @@ const TeamPage = () => {
                   <Card
                     key={`${card.name}-${index}`}
                     {...card}
+                    tags={['Maintainer']}
                   />
                 ))}
               </div>
@@ -92,19 +93,20 @@ const TeamPage = () => {
               <h2
                 className={`font-extrabold text-4xl ${classes.pageTitle} drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)] md:text-5xl`}
               >
-                Developers
+                The WoC Team
               </h2>
               <p
                 className={`mx-auto mt-2 max-w-3xl text-lg ${classes.pageDesc} drop-shadow-[0_1px_6px_rgba(255,255,255,0.2)]`}
               >
-                Meet the developers behind this website, bringing it to life
-                through thoughtful engineering.
+                Meet the people behind WoC, bringing it to life through
+                thoughtful work and collaboration.
               </p>
               <div className="grid grid-cols-1 justify-items-center gap-3 md:gap-6 p-2 sm:grid-cols-2 sm:p-4 md:grid-cols-3 w-full ml-auto mr-auto mt-8">
-                {developers.map((card, index: number) => (
+                {wocTeam.map((card, index: number) => (
                   <Card
                     key={`${card.name}-${index}`}
                     {...card}
+                    tags={card.tags.filter((tag) => tag !== 'Maintainer')}
                   />
                 ))}
               </div>
