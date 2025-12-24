@@ -9,6 +9,7 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/app/components/ui/tabs';
+import { make_api_call } from '@/app/lib/api';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -38,28 +39,22 @@ const Dashboard = () => {
     }
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/github`, {
+      const { success, data, error } = await make_api_call<{ url?: string }>({
+        url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/github`,
         method: 'GET',
         headers: {
           Authorization: `Bearer ${currentUser.access_token}`,
-          'Content-Type': 'application/json',
         },
       });
 
-      if (res.status === 401) {
-        throw new Error('Session expired. Please login again.');
+      if (!success) {
+        throw new Error(error || 'Failed to initiate GitHub login');
       }
 
-      if (!res.ok) {
-        throw new Error('Failed to initiate GitHub login');
-      }
-
-      const data = await res.json();
-
-      if (data.url) {
+      if (data?.url) {
         window.location.href = data.url;
       } else {
-        console.error('No URL returned from backend');
+        throw new Error('No URL returned from backend');
       }
     } catch (error) {
       console.error('OAuth Error:', error);

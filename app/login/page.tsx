@@ -4,13 +4,13 @@ import { useTheme } from '@/app/components/theme-context'; // Ensure path is cor
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
 import { Label } from '@/app/components/ui/label';
-import { toast } from '@/app/components/ui/use-toast';
 import { make_api_call } from '@/app/lib/api';
 import { useAuthStore } from '@/app/store/useAuthStore';
 import { ArrowRight, Loader2, Lock, Mail } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import * as z from 'zod';
 
 // Password hashing utility
@@ -117,16 +117,11 @@ export default function LoginPage() {
         bounty: 0,
       });
 
-      toast({ title: 'Success', description: 'Logged in successfully!' });
+      toast.success('Logged in successfully!');
       router.push('/');
       router.refresh();
     } catch (error) {
-      toast({
-        title: 'Error',
-        description:
-          error instanceof Error ? error.message : 'Something went wrong',
-        variant: 'destructive',
-      });
+      console.error('Something went wrong');
     } finally {
       setIsSubmitting(false);
     }
@@ -261,7 +256,9 @@ export default function LoginPage() {
               <p className={`text-sm ${classes.cardText}`}>
                 Don't have an account?{' '}
                 <Link
-                  href="https://anokha.amrita.edu/events"
+                  href="https://anokha.amrita.edu/events/8ebc7d47-c0a3-4226-851a-001a02ec2d5a"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`font-medium transition-colors hover:underline underline-offset-4 ${linkStyles}`}
                 >
                   Register Here

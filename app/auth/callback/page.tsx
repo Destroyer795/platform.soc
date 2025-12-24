@@ -1,10 +1,10 @@
 'use client';
 
+import { useAuthStore } from '@/app/store/useAuthStore';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { Suspense } from 'react';
 import toast from 'react-hot-toast';
-import { useAuthStore } from '../../store/useAuthStore';
 
 function AuthCallbackContent() {
   const router = useRouter();

@@ -1,9 +1,9 @@
 'use client';
 import Card from '@/app/components/TeamProfileCard';
-import { randomise } from '@/lib/utils';
+import { useTheme } from '@/app/components/theme-context';
+import { randomise } from '@/app/lib/utils';
 import { Loader2 } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
-import { useTheme } from '../components/theme-context';
 
 type TeamMember = {
   name: string;
