@@ -257,6 +257,8 @@ export default function LoginPage() {
                 Don't have an account?{' '}
                 <Link
                   href="https://anokha.amrita.edu/events/8ebc7d47-c0a3-4226-851a-001a02ec2d5a"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`font-medium transition-colors hover:underline underline-offset-4 ${linkStyles}`}
                 >
                   Register Here
